@@ -30,10 +30,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Custom Apps
-    'backend.csgo',
+    'backend.api',
+    'backend.cases',
     'backend.test_dev',
-    # 'backend.auth_app',
-    # 'backend.profile_app',
 ]
 
 MIDDLEWARE = [
