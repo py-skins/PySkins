@@ -1,0 +1,127 @@
+.wrapper {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  color: var(--text-white);
+  
+  @media screen and (max-width: 640px) {
+    flex-direction: column-reverse;
+  }
+}
+
+// left box------
+
+.left-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  z-index: 10;
+  width: 100%;
+
+  .top-header {
+    text-transform: capitalize;
+    span {
+      color: var(--desc-color);
+    }
+  }
+
+  .hero-big-header {
+    text-transform: uppercase;
+    font-size:48px;
+    font-weight:400;
+    span {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    @media screen and (max-width: 640px) {
+      font-size: 40px;
+    }
+  }
+
+  .desc {
+    color: var(--desc-color);
+  }
+
+  .bottom-header {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+
+
+}
+
+// stroke-----
+.stroke-wrapper {
+  position: absolute;
+  top: 140px;
+  left: 30px;
+  @media screen and (max-width: 640px) {
+    top: 190px;
+    left: 0px;
+  }
+
+  .stroke-text {
+    text-transform: uppercase;
+    font-size: 120px;
+    opacity: .7;
+    // color: #14b0a8;
+    color: #b0146a;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1.2px;
+  }
+  // .stroke-text {
+  //   text-transform: uppercase;
+  //   font-size: 120px;
+  //   opacity: .8;
+  //   background: linear-gradient(to right, #14b0a8, #b0146a);
+  //   // color: #14b0a8;
+  //   // color: #b0146a;
+  //   color: var(--home-background);
+  //   -webkit-background-clip: text;
+  //   // -webkit-text-fill-color: transparent;
+  //   // -webkit-text-stroke-width: .8px;
+  //   -webkit-text-stroke: 1.8px transparent;
+  // }
+}
+
+// images-------
+.hero-imgContainer {
+  flex: 1;
+  height: 550px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid red;
+
+  @media screen and (max-width: 640px) {
+    height: 200px;
+  }
+
+  .hero-knive {
+    object-fit:contain;
+    // border: 1px solid blue;
+    width: 80%;
+
+    @media screen and (min-width: 1024px) {
+      animation: rotation 5s infinite ease alternate;
+      width: 90%;
+      height: 90%;
+    }
+  }
+  
+  @keyframes rotation {
+    0% {
+      rotate: 0deg;
+    }
+    100% {
+      rotate: 5deg;
+    }
+  }
+
+}

@@ -1,0 +1,43 @@
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+
+:root {
+  /* ----Navbar----- */
+  --nav-links: #fff;
+  --nav-background: #234;
+  --nav-hover: #8A8B8C;
+  --nav-shadow: 0px 0px 8px #000;
+
+  /* ------Home Page------ */
+  --home-background: #21201E;
+  --text-white: white;
+  --desc-color: #AEA89B;
+  --primary-color: #B0141B;
+  --stats-card: #2b2926;
+  --button-main-bg: #B0141B;
+  --button-second-bg: white;
+  --border-main: 1px solid #fff6
+
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

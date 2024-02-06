@@ -1,0 +1,97 @@
+.card-header {
+  margin: 20px 0;
+  color: var(--text-white);
+  font-size:25px;
+}
+
+.carousel {
+  margin-top: 110px;
+}
+
+.card-wrapper {
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  color: var(--text-white);
+}
+
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #3F3C38;
+  position: relative;
+  // width: 250px;
+  width: 100%;
+  height: 200px;
+  margin: 0px 2px;
+  transition: all .25s;
+
+  // @media screen and (max-width: 390px) {
+  //   width: 100%
+  // }
+
+  &:hover {
+    border-radius: 10px;
+    height: 220px;
+  }
+  
+
+  .imgBox {
+    position: absolute;
+    top: 15px;
+    width: 180px;
+    height: 120px;
+    border-radius: 10px;
+    transition: all .25s;
+    }
+
+    &:hover>.imgBox {
+      top: -30px;
+      rotate: 5deg;
+    }
+
+    .card-title {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .content {
+      position: absolute;
+      width: 100%;
+      height: 57px;
+      text-align: start;
+      top: 140px;
+      transition: all .25s;
+      overflow: hidden;
+      // padding: 0px 0px;
+      
+      @media screen and (max-width: 390px) {
+        padding: 15px 0px;
+      }
+      p {
+        padding: 5px 20px;
+      }
+    }
+
+    &:hover>.content {
+      top: 110px;
+      height: 120px;
+    }
+
+    .card-trade {
+      background-color: var(--primary-color);
+      height: 57px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      cursor: pointer;
+      transition: all .25s;
+    }
+}
+

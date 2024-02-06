@@ -1,0 +1,97 @@
+.card__wrapper {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  @media screen and (max-width: 640px) {
+    height: 100%;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 50px;
+  }
+}
+
+.nav__card {
+  width: 350px;
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .nav__card-icon {
+    font-size: 26px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+
+  .nav__card-title {
+    text-align: center;
+    color: var(--text-white);
+  }
+
+  .nav__card-desc {
+    text-align: center;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    letter-spacing: 0px;
+    color: var(--desc-color);
+    @media screen and (max-width: 640px) {
+     padding: 0;
+    }
+  }
+
+  .nav__card-navigate {
+    display: flex;
+    justify-content: center;
+    color: var(--text-white);
+  
+    .nav__card-link > span {
+      width: 25px;
+      transition: all .3s;
+    }
+
+    &:hover > .nav__card-link > span {
+      padding-left: 5px;
+    }
+
+    .nav__card-link {
+      transition: all .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 400;
+      gap: 6px;
+
+      background: linear-gradient(45deg,#fff, #ffc);    
+      background-repeat: no-repeat;
+      background-size: 40%;
+      animation: animate infinite;
+      animation-duration: 8s;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: var(--primary-color);
+
+      @keyframes animate {
+        0% {
+          background-position: -800%;
+        }
+        100% {
+          background-position: 800%;
+        }
+      }
+
+    }
+    .nav__card-delayOne {
+      animation-delay: .8s;
+    }
+    .nav__card-delayTwo {
+      animation-delay: 1.6s;
+    }
+   
+    
+  }
+}
