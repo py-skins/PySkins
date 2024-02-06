@@ -9,7 +9,7 @@ from backend.cases.models import Skin, Case
 from backend.test_dev.test_data.cases_data import CASES_DATA
 
 Skin.objects.all().delete()
-Case.objects.all().delete()
+# Case.objects.all().delete()
 
 for json_data in CASES_DATA:
     case_data = json_data["case_data"]
@@ -44,21 +44,20 @@ for json_data in CASES_DATA:
             if not skin_listing:
                 continue
 
-            skin_instance = Skin(
-                name=skin_name,
-                image_url=skin_main_image_url,
-                price=skin_price,
-                quality=skin_quality,
-                rarity_color=skin_rarity_color,
-                weapon_type=skin_weapon_type,
-                listings=skin_listing,
-                drop_chance=skin_chance,
-                preview_image_url=skin_preview_image_url,
-                case_container=case_instance,
-            )
-
             try:
-                skin_instance.full_clean()
-                skin_instance.save()
+                skin_instance = Skin.objects.create(
+                    name=skin_name,
+                    image_url=skin_main_image_url,
+                    price=skin_price,
+                    quality=skin_quality,
+                    rarity_color=skin_rarity_color,
+                    weapon_type=skin_weapon_type,
+                    listings=skin_listing,
+                    drop_chance=skin_chance,
+                    preview_image_url=skin_preview_image_url,
+                    case_container=case_instance,
+                )
             except Exception as e:
-                print(e)
+                raise Exception(e)
+
+print("Ready")
