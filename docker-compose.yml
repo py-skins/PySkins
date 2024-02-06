@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: my-postgres-container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234qwer
+      POSTGRES_DB: py_skins_db
+    ports:
+      - "5432:5432"
+
+  django:
+    container_name: py-skins-django
+    image: py-skins-django
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    command: [ "gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi:application" ]
+    ports:
+      - "8000:8000"
+
+  frontend:
+    container_name: py-skins-react
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: py-skins-react
+    ports:
+      - "3000:3000"
+#    volumes:
+#      - ./src:/app/src
