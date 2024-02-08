@@ -1,5 +1,6 @@
 import os
 import django
+from django.db import transaction
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
@@ -9,7 +10,9 @@ from backend.cases.models import Skin, Case
 from backend.test_dev.test_data.cases_data import CASES_DATA
 
 Skin.objects.all().delete()
-# Case.objects.all().delete()
+Case.objects.all().delete()
+
+skin_objects = []
 
 for json_data in CASES_DATA:
     case_data = json_data["case_data"]
@@ -45,7 +48,7 @@ for json_data in CASES_DATA:
                 continue
 
             try:
-                skin_instance = Skin.objects.create(
+                skin_instance = Skin(
                     name=skin_name,
                     image_url=skin_main_image_url,
                     price=skin_price,
@@ -57,7 +60,17 @@ for json_data in CASES_DATA:
                     preview_image_url=skin_preview_image_url,
                     case_container=case_instance,
                 )
+
+                skin_objects.append(skin_instance)
+
             except Exception as e:
                 raise Exception(e)
+
+batch_size = 1000
+
+for i in range(0, len(skin_objects), batch_size):
+    batch = skin_objects[i:i+batch_size]
+    with transaction.atomic():
+        Skin.objects.bulk_create(batch)
 
 print("Ready")
