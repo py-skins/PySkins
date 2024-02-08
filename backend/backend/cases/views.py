@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+from backend.cases.models import Case
+from backend.cases.serializers import CaseSerializer
+
+
+class ListCasesView(generics.ListAPIView):
+    serializer_class = CaseSerializer
+    queryset = Case.objects.all()
+
+
