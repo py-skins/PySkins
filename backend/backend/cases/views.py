@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from backend.cases.models import Case
-from backend.cases.serializers import CaseSerializer
+from backend.cases.models import Case, Skin
+from backend.cases.serializers import CaseSerializer, SkinSerializer
 
 
 class ListCasesView(generics.ListAPIView):
@@ -9,3 +9,6 @@ class ListCasesView(generics.ListAPIView):
     queryset = Case.objects.all()
 
 
+class ListSkinsView(generics.ListAPIView):
+    serializer_class = SkinSerializer
+    queryset = Skin.objects.order_by('id')[:2]
