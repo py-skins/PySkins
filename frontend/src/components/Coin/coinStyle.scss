@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+
+.coin {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  transform-style: preserve-3d;
+
+  .heads,
+  .tails {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: darkgoldenrod;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    backface-visibility: hidden;
+  }
+
+  .heads {
+    z-index: 10;
+    & img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transition: all .1s;
+    }
+  }
+  .tails {
+    transform: rotateX(-180deg);
+    padding: 10px;
+  }
+  
+
+  &.spinheads {
+    animation: spin-heads 2s forwards;
+    scale: 110%;
+  }
+  
+  &.spintails {
+    animation: spin-tails 2s forwards;
+  }
+
+  &.inactive span {
+    transform: scale(0);
+    opacity: 0;
+  }
+  
+  &.active span {
+    opacity: 1;
+  }
+}
+
+.coin-scale {
+  animation: scale 2000ms alternate;
+}
+
+@keyframes scale{
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 4;
+  }
+}
+
+@keyframes spin-heads{
+  from{
+    transform: rotateX(0);
+  }
+  to{
+    transform: rotateX(1800deg);
+  }
+}
+
+@keyframes spin-tails{
+  from{
+    transform: rotateX(0);
+  }
+  to{
+    transform: rotateX(1980deg);
+  }
+}
+
+
