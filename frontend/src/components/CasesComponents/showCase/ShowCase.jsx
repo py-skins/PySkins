@@ -22,13 +22,13 @@ const ShowCase = ({ skinsList, closeCase, caseName }) => {
 
   const prizes = skinsList.map((skin) => ({
     image: skin.main_image_url,
-    text: skin.name
-  }))
+    text: skin.name,
+  }));
 
   const reproductionArray = (array = [], length = 0) => [
     ...Array(length)
       .fill("_")
-      .map(() => array[Math.floor(Math.random() * array.length)])
+      .map(() => array[Math.floor(Math.random() * array.length)]),
   ];
 
   const reproducedPrizeList = [
@@ -36,21 +36,34 @@ const ShowCase = ({ skinsList, closeCase, caseName }) => {
     ...reproductionArray(prizes, prizes.length * 3),
     ...prizes,
     ...reproductionArray(prizes, prizes.length * 10),
-    ...prizes
+    ...prizes,
   ];
-  
+
   // This generates an unique id for every prize, we cant use the one comming from the server, because we duplicate the array many times
-  const generateId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
+  const generateId = () =>
+    Date.now().toString(36) + Math.random().toString(36).substring(2);
   // and this applies the id to the item
   const prizeList = reproducedPrizeList.map((prize) => ({
     ...prize,
-    id: generateId()
+    id: generateId(),
   }));
 
   const roulette = (
-    <RouletteSpinner prizes={prizeList} makeRequest={true} caseName={caseName} isStarted={isCaseOpened} />
+    <RouletteSpinner
+      prizes={prizeList}
+      makeRequest={true}
+      caseName={caseName}
+      isStarted={isCaseOpened}
+    />
   );
-  const roulette2 = <RouletteSpinner prizes={prizeList} makeRequest={false} caseName={caseName} isStarted={isCaseOpened} />
+  const roulette2 = (
+    <RouletteSpinner
+      prizes={prizeList}
+      makeRequest={false}
+      caseName={caseName}
+      isStarted={isCaseOpened}
+    />
+  );
 
   return (
     <div className={styles.showCase}>
@@ -76,13 +89,13 @@ const ShowCase = ({ skinsList, closeCase, caseName }) => {
         <div className={styles.actionBtns}>
           <Button
             onClick={closeCase}
-            variant='red'
+            variant="red"
             icon={BsChevronLeft}
             title="Back to cases"
           />
           <Button
             onClick={openCase}
-            variant='red'
+            variant="red"
             icon={BsChevronRight}
             title="Open container"
           />

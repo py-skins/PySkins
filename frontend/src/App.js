@@ -8,10 +8,10 @@ import KnivesPage from "./pages/knives/KnivesPage";
 import Cases from "./pages/cases/Cases";
 import Footer from "./components/core/footer/Footer";
 import HomePage from "./pages/home/HomePage";
+import ScrollToTop from "./components/Navbar/ScrollToTop";
 
 import "./App.css";
 import RouletteSpinner from "./components/roulette-spinner/RouletteSpinner";
-
 
 const routes = [
   { path: "/", element: <HomePage /> },
@@ -26,8 +26,11 @@ const routes = [
 function App() {
   return (
     <>
+      <ScrollToTop />
       <ChatBarPopup />
+
       <Navbar />
+
       <Routes>
         {routes.map((route, index) => (
           <Route path={route.path} element={route.element} key={index} />

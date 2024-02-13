@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./navbar.scss"; // Import your SCSS file
 import Button from "../core/button/Button";
 import { BsSteam } from "react-icons/bs";
@@ -14,54 +14,55 @@ const Navbar = () => {
 
   return (
     <>
-
-    <div className={`navbar ${open ? "open" : "close"}`}>
-      {/* LOGO */}
-      <div className="logo">
-        <NavLink to="/">Logo</NavLink>
-      </div>
-
-      {/* RIGHT SIDE */}
-      <div className={`sidebar ${open ? "open" : "close"}`}>
-        <Button
-          icon={AiOutlineClose}
-          onClick={closeMenu}
-          variant="outline"
-          size="sm"
-        />
-
-        <div className="right-side" onClick={closeMenu}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="about">About</NavLink>
-          <NavLink to="services">Services</NavLink>
-          <NavLink to="casino">Casino</NavLink>
-          <NavLink to="cases">Cases</NavLink>
-          <NavLink to="knives">Knives</NavLink>
+      <div className={`navbar ${open ? "open" : "close"}`}>
+        {/* LOGO */}
+        <div className="logo">
+          <NavLink to="/">
+            <img src={"/img/pylogo-transperant.png"} alt="" />
+          </NavLink>
         </div>
 
-        {/* LOGIN BTN */}
-        <div>
+        {/* RIGHT SIDE */}
+        <div className={`sidebar ${open ? "open" : "close"}`}>
           <Button
-            icon={BsSteam}
-            title="Login with Steam"
-            variant="red"
+            icon={AiOutlineClose}
+            onClick={closeMenu}
+            variant="outline"
             size="sm"
-            reverse
-            opacity
+          />
+
+          <div className="right-side" onClick={closeMenu}>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="about">About</NavLink>
+            <NavLink to="services">Services</NavLink>
+            <NavLink to="casino">Casino</NavLink>
+            <NavLink to="cases">Cases</NavLink>
+            <NavLink to="knives">Knives</NavLink>
+          </div>
+
+          {/* LOGIN BTN */}
+          <div>
+            <Button
+              icon={BsSteam}
+              title="Login with Steam"
+              variant="red"
+              size="sm"
+              reverse
+              opacity
+            />
+          </div>
+        </div>
+
+        <div className="navbar__menu-btn">
+          <Button
+            size={"sm"}
+            variant={"outline"}
+            icon={HiOutlineMenuAlt4}
+            onClick={openMenu}
           />
         </div>
       </div>
-
-      <div className="navbar__menu-btn">
-        <Button
-          size={"sm"}
-          variant={"outline"}
-          icon={HiOutlineMenuAlt4}
-          onClick={openMenu}
-        />
-      </div>
-    </div>
-    {open ? <BackDrop onClick={closeMenu} /> : null}
+      {open ? <BackDrop onClick={closeMenu} /> : null}
     </>
   );
 };
