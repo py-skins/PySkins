@@ -1,12 +1,13 @@
-import React from 'react'
-import CoinFlip from '../../components/Coin/CoinFlip'
+import React from "react";
+import CoinFlip from "../../components/Coin/CoinFlip";
+import styles from "./Casino.module.scss";
 
 const Casino = () => {
   return (
-    <div>
+    <div className={styles.container_section}>
       <CoinFlip />
     </div>
-  )
-}
+  );
+};
 
-export default Casino
+export default Casino;

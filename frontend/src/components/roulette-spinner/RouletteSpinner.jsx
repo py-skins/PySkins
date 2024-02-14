@@ -52,9 +52,10 @@ const RouletteSpinner = ({ prizes, isStarted, caseName, makeRequest }) => {
   useEffect(() => {
     const newPrizeIndex = prizes.length / 2 + 50;
     prizes.splice(newPrizeIndex, 0, prizeItem);
-    console.log(prizeItem)
+    console.log(prizeItem);
     setPrizeIndex(prizes.length - newPrizeIndex);
     setPrizeIndex(newPrizeIndex);
+    console.log(newPrizeIndex);
   }, [prizeItem]);
 
   return (
