@@ -19,6 +19,16 @@ from backend.api.utils import *
 #     except jwt.ExpiredSignatureError:
 #         raise AuthenticationFailed('Unauthenticated!')
 
+def extract_test_data():
+    cases_data = {}
+    for case in CASES_DATA:
+        case_name = case['case_data']['name']
+        cases_data[case_name] = case
+    return cases_data
+
+
+cases_data_reworked = extract_test_data()
+
 
 class CSGOOpenCaseView(APIView):
     def __init__(self, **kwargs):
@@ -27,15 +37,13 @@ class CSGOOpenCaseView(APIView):
         self.cases_data = self.extract_test_data()
 
     def get(self, request):
-        return Response("TEST!")
+        case_name = request.query_params.get('caseName', None).lower()
 
-    def post(self, request):
-        request_data = request.data
-        case_name = request_data['case_name'].lower()
-        skins_rarity = {}
-        if case_name not in self.cases_data.keys():
+        if case_name not in self.cases_data:
             return Response({"error": "Case not found!"})
+
         case = self.cases_data[case_name]
+        skins_rarity = {}
 
         for skin in case['skins']:
             skin_rarity = skin['skin_rarity']['rarity_name']
@@ -61,14 +69,17 @@ class CSGOOpenCaseView(APIView):
         print('winning condition', winning_skin_condition)
 
         return Response({
-            'id': skin['id'],
+            'id': winning_skin['id'],
             'name': winning_skin['name'],
             'condition': winning_skin_condition,
             'price': winning_skin_price,
             'stattrak': stattrak,
-            'main_image_url': skin['main_image_url'],
+            'main_image_url': winning_skin['main_image_url'],
             'chance': chance_of_skin
         })
+
+    def post(self, request):
+        return Response({"error": "Method not setup"})
 
     def extract_test_data(self):
         cases_data = {}
@@ -311,3 +322,27 @@ class CSGOCaseView(APIView):
     #     serializer.is_valid(raise_exception=True)
     #     serializer.save()
     #     return Response(serializer.data)
+
+
+class CSGOGetCasesView(APIView):
+
+    def get(self, request):
+        reworked_data = {}
+        cases = cases_data_reworked
+        for case_name in cases:
+            case_data = cases[case_name]['case_data']
+            reworked_data[case_name] = case_data
+        print(reworked_data)
+
+        return Response({"data": reworked_data})
+
+
+class CSGOGetCaseDataView(APIView):
+
+    def get(self, request):
+        case_name = request.query_params.get("caseName", None)
+
+        if case_name not in cases_data_reworked:
+            return Response({"error": "Case not found!"})
+
+        return Response({"data": cases_data_reworked[case_name]})
