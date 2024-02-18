@@ -1,26 +1,24 @@
-import styles from './CaseCard.module.css';
+import styles from "./CaseCard.module.scss";
 
-const CaseCard = ({
-  caseData,
-  onClick,
-}) => {
+const CaseCard = ({ caseData, onClick }) => {
   const handleCardClick = () => {
-    onClick(caseData.name)
-  }
-    return (
-        <article id={caseData.case_name} onClick={handleCardClick} className={`${styles.case_card} ${styles.rarity_common}`}>
-            <div className={styles.case_img_wrapper}>
-              <img src={caseData.image_url} alt="" />
-            </div>
-            <div className={styles.case_description}>
-              <h3 className={styles.case_title}>{caseData.name}</h3>
-              <p className={styles.case_price}>
-                The price for this case is : 
-                <span> {caseData.case_price}</span>
-              </p>
-            </div>
-          </article>
-    );
+    onClick(caseData.name);
+  };
+  return (
+    <article
+      id={caseData.name}
+      onClick={handleCardClick}
+      className={`${styles.article} ${styles.rarity_common}`}
+    >
+      <img src={caseData.image_url} alt="case-img" />
+      <div className={styles.desc}>
+        <p className={styles.title}>{caseData.name}</p>
+        <p className={styles.price}>
+          Price: <span> {caseData.price}</span>
+        </p>
+      </div>
+    </article>
+  );
 };
 
 export default CaseCard;

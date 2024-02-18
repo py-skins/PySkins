@@ -38,16 +38,14 @@ const Hero = () => {
               hover
             />
 
-            
-              <Button
-                icon={BsSteam}
-                title="Login with Steam"
-                variant="white"
-                size="md"
-                reverse
-                opacity
-              />
-            
+            <Button
+              IconRight={BsSteam}
+              title="Login with Steam"
+              variant="white"
+              size="md"
+              reverse
+              opacity
+            />
           </div>
         </div>
 

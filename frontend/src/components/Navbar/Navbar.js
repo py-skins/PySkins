@@ -25,7 +25,7 @@ const Navbar = () => {
         {/* RIGHT SIDE */}
         <div className={`sidebar ${open ? "open" : "close"}`}>
           <Button
-            icon={AiOutlineClose}
+            iconRight={AiOutlineClose}
             onClick={closeMenu}
             variant="outline"
             size="sm"
@@ -43,7 +43,7 @@ const Navbar = () => {
           {/* LOGIN BTN */}
           <div>
             <Button
-              icon={BsSteam}
+              iconLeft={BsSteam}
               title="Login with Steam"
               variant="red"
               size="sm"
@@ -57,7 +57,7 @@ const Navbar = () => {
           <Button
             size={"sm"}
             variant={"outline"}
-            icon={HiOutlineMenuAlt4}
+            IconRight={HiOutlineMenuAlt4}
             onClick={openMenu}
           />
         </div>

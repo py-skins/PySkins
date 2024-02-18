@@ -12,9 +12,8 @@ const RouletteSpinner = ({ prizes, isStarted, caseName, makeRequest }) => {
     if (prizeIndex === 0) {
       return;
     }
-    setStart(true);
 
-    // Here you can trigger your socket event
+    setStart(true);
   }, [prizeIndex]);
 
   useEffect(() => {
@@ -23,30 +22,11 @@ const RouletteSpinner = ({ prizes, isStarted, caseName, makeRequest }) => {
     }
   }, []);
 
-  // Socket imitation
-  // useEffect(() => {
-  //   if (start === false) {
-  //     return;
-  //   }
-
-  //   // Server delay imitation
-  //   const timeout = setTimeout(() => {
-  //     const winPrizeIndex = prizes.length * 4 + 0;
-
-  //     setPrizeIndex(winPrizeIndex);
-  //     console.log("Set `prizeIndex` from socket");
-  //   }, 2000);
-
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, [start]);
-
   async function openCaseFetch() {
-    const body = { case_name: caseName };
-    const data = await openCase(body);
-    setPrizeItem(data);
-    return data;
+    // const body = { case_name: caseName };
+    // const data = await openCase(body);
+    setPrizeItem(3);
+    // return data;
   }
 
   useEffect(() => {
@@ -65,7 +45,6 @@ const RouletteSpinner = ({ prizes, isStarted, caseName, makeRequest }) => {
         prizeIndex={prizeIndex}
         start={isStarted}
         spinningTime={3}
-        // onPrizeDefined={handlePrizeDefined}
         soundWhileSpinning=""
       />
     </>

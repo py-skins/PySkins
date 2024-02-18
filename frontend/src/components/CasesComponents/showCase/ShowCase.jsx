@@ -5,12 +5,27 @@ import SkinCard from "./SkinCard";
 import Button from "../../core/button/Button";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import RouletteSpinner from "../../roulette-spinner/RouletteSpinner";
+import { fetchCaseSkins } from "../../../api/casesServices";
 
+import CaseOpener from "./test1/CaseOpener";
 import dropSound from "./sounds/case_drop_01.mp3";
 
-const ShowCase = ({ skinsList, closeCase, caseName }) => {
+const ShowCase = ({ closeCase, caseName }) => {
+  const [skins, setSkins] = useState([]);
+
   const dropSoundAudio = new Audio(dropSound);
+
   useEffect(() => {
+    (async () => {
+      try {
+        const data = await fetchCaseSkins(caseName);
+
+        setSkins(data.data.skins);
+      } catch (e) {
+        alert(e);
+      }
+    })();
+
     dropSoundAudio.volume = 0.1;
     dropSoundAudio.play();
   }, []);
@@ -20,7 +35,7 @@ const ShowCase = ({ skinsList, closeCase, caseName }) => {
     setIsCaseOpened(true);
   };
 
-  const prizes = skinsList.map((skin) => ({
+  const prizes = skins.map((skin) => ({
     image: skin.main_image_url,
     text: skin.name,
   }));
@@ -39,10 +54,9 @@ const ShowCase = ({ skinsList, closeCase, caseName }) => {
     ...prizes,
   ];
 
-  // This generates an unique id for every prize, we cant use the one comming from the server, because we duplicate the array many times
   const generateId = () =>
     Date.now().toString(36) + Math.random().toString(36).substring(2);
-  // and this applies the id to the item
+
   const prizeList = reproducedPrizeList.map((prize) => ({
     ...prize,
     id: generateId(),
@@ -66,40 +80,41 @@ const ShowCase = ({ skinsList, closeCase, caseName }) => {
   );
 
   return (
-    <div className={styles.showCase}>
-      <div className={styles.container}>
-        <h2 className={styles.welcome_msg}>
-          Items that might be in this case:
-        </h2>
+    <div className={styles.container}>
+      <p className={styles.welcome_msg}>Items that might be in this case:</p>
 
-        {isCaseOpened ? (
-          <div className={styles.rouletteWrapper}>
-            <div className={styles.roulette}>
-              <div className={styles.blurredRoulette}>{roulette2}</div>
-              <div className={styles.circleRoulette}>{roulette}</div>
-            </div>
+      {/* {isCaseOpened && (
+        <div className={styles.rouletteWrapper}>
+          <div className={styles.roulette}>
+            <div className={styles.blurredRoulette}>{roulette2}</div>
+            <div className={styles.circleRoulette}>{roulette}</div>
           </div>
-        ) : (
-          <div className={styles.skinsList}>
-            {skinsList.map((skin) => (
-              <SkinCard key={skin.id} skin={skin} />
-            ))}
-          </div>
-        )}
-        <div className={styles.actionBtns}>
-          <Button
-            onClick={closeCase}
-            variant="red"
-            icon={BsChevronLeft}
-            title="Back to cases"
-          />
-          <Button
-            onClick={openCase}
-            variant="red"
-            icon={BsChevronRight}
-            title="Open container"
-          />
         </div>
+      )} */}
+
+      {isCaseOpened && <CaseOpener Skins={skins}></CaseOpener>}
+
+      {!isCaseOpened && (
+        <div className={styles.skinsList}>
+          {skins.map((skin) => (
+            <SkinCard key={skin.id} skin={skin} />
+          ))}
+        </div>
+      )}
+
+      <div className={styles.actionBtns}>
+        <Button
+          onClick={closeCase}
+          variant="red"
+          IconLeft={BsChevronLeft}
+          title="Back to cases"
+        />
+        <Button
+          onClick={openCase}
+          variant="red"
+          IconRight={BsChevronRight}
+          title="Open container"
+        />
       </div>
     </div>
   );

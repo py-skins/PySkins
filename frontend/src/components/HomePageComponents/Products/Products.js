@@ -3,10 +3,9 @@ import "./products.scss"; // Import your SCSS file
 import Container from "../../Container/Container";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { fetchCases } from "../../../api/casesServices";
+import { fetchCasesOld } from "../../../api/casesServices";
 import Skeleton from "../Skeleton/Skeleton";
 import ScrollTrigger from "react-scroll-trigger";
-
 
 const delay = async (promise) => {
   return new Promise((resolve) => {
@@ -39,11 +38,11 @@ const responsive = {
 
 const Products = () => {
   const [skins, setSkins] = useState([]);
-  const [load, setLoad] = useState(false); 
+  const [load, setLoad] = useState(false);
 
   const fetchSkins = async () => {
     try {
-      const data = await fetchCases();
+      const data = await fetchCasesOld();
       setSkins(data);
     } catch (error) {
       console.log(error);
@@ -72,7 +71,7 @@ const Products = () => {
                 {/* LOAD SKINS WHEN SCROLL ON CAROUSEL */}
                 {load && (
                   <div className="card-wrapper">
-                    <Suspense fallback={ <Skeleton type="carousel" /> }>
+                    <Suspense fallback={<Skeleton type="carousel" />}>
                       <SkinsCarousel product={product} />
                     </Suspense>
                   </div>

@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css?family=Arvo");
+body {
+  background: rgb(25, 25, 33);
+}
+
+.raffle-container {
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+  align-self: center;
+}
+
+.raffle-roller {
+  position: relative;
+  margin: 20px auto;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.raffle-roller:before {
+  content: "";
+  position: absolute;
+  border: none;
+  z-index: 12222225;
+  width: 5px;
+  height: 100%;
+  left: 50%;
+  background: #d16266;
+}
+
+.raffle-roller-holder {
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid #3c3759;
+}
+
+.raffle-roller-container {
+  width: 18040px;
+  max-width: 18040px;
+  height: 120px;
+  background: #191726;
+  margin-left: 0;
+  transition: all 8s cubic-bezier(0.08, 0.6, 0, 1);
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  display: inline-block;
+  float: left;
+  margin: 4px 0px 0.5px 5px;
+  width: 110px;
+  height: 100px;
+  border: 1px solid #70677c;
+  background: #14202b;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+.winning-item {
+  border: 2px solid #66b233;
+  position: relative;
+  top: -1px;
+  border-bottom: 4px solid #66b233;
+  box-shadow: 0 0 7px 0 #66b233;
+}
+
+.start {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    cursor: pointer;
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: #0e1a23;
+    border-radius: 50%;
+  }
+
+  .active {
+    background-color: var(--primary-color);
+  }
+}
+
+.inventory {
+  margin: 0 auto;
+  width: 1280px;
+  max-width: 1280px;
+  padding: 10px 15px 6px;
+  height: auto;
+  border: 2px solid #1c3344;
+  background: #0e1a23;
+  margin-bottom: 30px;
+}
+
+.inventory > .item {
+  float: none;
+  cursor: pointer;
+  margin: 4px 2px 0.5px 2px;
+}
+
+.inventory > .item:hover {
+  background-size: 90%;
+  background-color: #182a38;
+}
+
+.inventory > .item:active {
+  height: 83px;
+  width: 80px;
+  position: relative;
+  top: -2px;
+  border: 2px solid #356d27;
+  border-bottom: 4px solid #356d27;
+}
