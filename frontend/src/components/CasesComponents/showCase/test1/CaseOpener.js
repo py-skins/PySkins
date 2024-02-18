@@ -34,7 +34,7 @@ const RaffleRoller = (Skins) => {
 
     for (let i = 0; i < 164; i++) {
       const randed = randomInt(1, 17);
-      let element = `<div id="raffle${id}-CardNumber${i}" class="${styles.item} ${styles.class_red_item}" style="background-image:url(${Skins.Skins[randed].main_image_url}); border-bottom: 4px solid ${Skins.Skins[randed].skin_rarity.rarity_color};"></div>`;
+      let element = `<div id="raffle${id}-CardNumber${i}" class="${styles.item}" style="background-image:url(${Skins.Skins[randed].main_image_url}); border-bottom: 4px solid ${Skins.Skins[randed].skin_rarity.rarity_color};"></div>`;
 
       raffleRollerContainer.insertAdjacentHTML("beforeend", element);
     }
@@ -58,7 +58,7 @@ const RaffleRoller = (Skins) => {
     setTimeout(() => {
       winningItem.classList.add(styles["winning-item"]);
       setRolled(skin);
-      const win_element = `<div class='${styles.item} ${styles.class_red_item}' style='background-image: url(${skinimg}) ; border-bottom: 4px solid ${rarity}'></div>`;
+      const win_element = `<div class='${styles.item}' style='background-image: url(${skinimg}) ; border-bottom: 4px solid ${rarity}'></div>`;
 
       const inventory = document.querySelector(`.${styles.inventory}`);
       inventory.insertAdjacentHTML("beforeend", win_element);
