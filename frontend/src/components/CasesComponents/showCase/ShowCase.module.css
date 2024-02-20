@@ -3,12 +3,32 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
   width: 100%;
 }
 
 .welcome_msg {
   font-weight: 500;
   font-size: 24px;
+}
+
+.start {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    cursor: pointer;
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: #0e1a23;
+    border-radius: 50%;
+  }
+
+  .active {
+    background-color: var(--primary-color);
+  }
 }
 
 .skinsList {

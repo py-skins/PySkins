@@ -11,7 +11,6 @@ import HomePage from "./pages/home/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
 
 import "./App.css";
-import RouletteSpinner from "./components/roulette-spinner/RouletteSpinner";
 
 const routes = [
   { path: "/", element: <HomePage /> },
@@ -20,7 +19,6 @@ const routes = [
   { path: "/casino", element: <Casino /> },
   { path: "/services", element: <ServicesPage /> },
   { path: "/knives", element: <KnivesPage /> },
-  { path: "/roulette", element: <RouletteSpinner /> },
 ];
 
 function App() {
