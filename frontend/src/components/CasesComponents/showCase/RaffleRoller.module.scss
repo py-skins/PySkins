@@ -7,14 +7,15 @@ body {
   display: flex;
   flex-direction: column;
   align-self: center;
-  width: 100%;
-  // width: 1480px;
+  width: 1480px;
+  // width: 380px;
 }
 
 .raffle-roller {
   position: relative;
   margin: 20px auto;
   width: 1480px;
+  // width: 380px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -41,6 +42,11 @@ body {
   width: 15000px;
   max-width: 15000px;
   height: 150px;
+
+  // width: 8000px;
+  // max-width: 8000px;
+  // height: 90px;
+
   background: #191726;
   margin-left: 0;
   transition: all 8s cubic-bezier(0.08, 0.6, 0, 1);
@@ -54,6 +60,9 @@ body {
   margin: 4px 0px 0.5px 5px;
   width: 150px;
   height: 135px;
+
+  // width: 90px;
+  // height: 80px;
   border: 1px solid #70677c;
   background: #14202b;
   background-size: 100%;
@@ -72,25 +81,6 @@ img {
   top: -1px;
   border-bottom: 4px solid #66b233;
   box-shadow: 0 0 7px 0 #66b233;
-}
-
-.start {
-  margin-top: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    cursor: pointer;
-    padding: 8px 15px;
-    margin-right: 10px;
-    background-color: #0e1a23;
-    border-radius: 50%;
-  }
-
-  .active {
-    background-color: var(--primary-color);
-  }
 }
 
 .inventory {

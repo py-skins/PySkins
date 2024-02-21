@@ -24,7 +24,7 @@ const ShowCase = ({ closeCase, caseName }) => {
     (async () => {
       try {
         const data = await fetchCaseSkins(caseName);
-
+        console.log(data.data.skins);
         setSkins(data.data.skins);
       } catch (e) {
         alert(e);
@@ -66,7 +66,7 @@ const ShowCase = ({ closeCase, caseName }) => {
         const raffleRollerContainer = document.getElementById(`raffle${id}`);
         raffleRollerContainer.style.transition =
           "all 8s cubic-bezier(.08,.6,0,1)";
-        const winningItem = document.getElementById(`raffle${id}-CardNumber84`);
+        const winningItem = document.getElementById(`raffle${id}-CardNumber73`);
         winningItem.style.backgroundImage = `url(${skinimg})`;
 
         setTimeout(() => {
@@ -87,6 +87,7 @@ const ShowCase = ({ closeCase, caseName }) => {
         }, 9000);
 
         let width = 10250;
+        // let width = 5680;
         raffleRollerContainer.style.marginLeft = `-${width}px`;
       };
 
