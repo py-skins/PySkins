@@ -5,22 +5,20 @@ import AboutPage from "./pages/about/AboutPage";
 import Casino from "./pages/casino/Casino";
 import ServicesPage from "./pages/services/ServicesPage";
 import KnivesPage from "./pages/knives/KnivesPage";
-import Cases from "./pages/cases/Cases";
+import Cases2 from "./pages/cases/Cases";
 import Footer from "./components/core/footer/Footer";
 import HomePage from "./pages/home/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
 
 import "./App.css";
-import RouletteSpinner from "./components/roulette-spinner/RouletteSpinner";
 
 const routes = [
   { path: "/", element: <HomePage /> },
   { path: "/about", element: <AboutPage /> },
-  { path: "/cases", element: <Cases /> },
+  { path: "/cases", element: <Cases2 /> },
   { path: "/casino", element: <Casino /> },
   { path: "/services", element: <ServicesPage /> },
   { path: "/knives", element: <KnivesPage /> },
-  { path: "/roulette", element: <RouletteSpinner /> },
 ];
 
 function App() {

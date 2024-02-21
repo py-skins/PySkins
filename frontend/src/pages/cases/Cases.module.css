@@ -1,21 +1,15 @@
 .container_section {
-  background-image: url(https://convars.com/imgs/bga_en.png?2);
-  background-position: center;
-  height: 100vh;
+  background: var(--home-background);
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
 }
 
 .cases_content_wrapper {
-  width: 50%;
-  height: 600px;
-  margin: 30px auto;
-  background-color: #456;
+  width: 90%;
+  margin: 20px auto;
   color: white;
-  /* padding: 15px 10px; */
-  box-shadow: 0px 0px 16px #0006;
-  position: relative;
+  box-shadow: 0px 0px 8px var(--primary-color);
 }
 
 .welcome_msg {

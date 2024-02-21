@@ -7,26 +7,24 @@ import styles from "./Cases.module.css";
 import { fetchCases } from "../../api/casesServices";
 
 const CasesContainer = () => {
-  const initialCasesState = [
-    {
-      case_data: {
-        image_url: "",
-        name: "",
-        price: "",
-      },
-    },
-  ];
+  const initialCasesState = [];
 
   const [cases, setCases] = useState(initialCasesState);
   const [isCaseClicked, setIsCaseClicked] = useState(false);
-  const [clickedCase, setClickedCase] = useState({});
-
+  const [clickedCaseName, setClickedCaseName] = useState("");
 
   useEffect(() => {
     (async () => {
       try {
         const data = await fetchCases();
-        setCases(data);
+
+        const dataArray = [];
+        for (const key in data.data) {
+          const { name, image_url, price } = data.data[key];
+          dataArray.push({ name, image_url, price });
+        }
+
+        setCases(dataArray);
       } catch (e) {
         alert(e);
       }
@@ -34,32 +32,24 @@ const CasesContainer = () => {
   }, []);
 
   const onCaseClick = (caseName) => {
+    setClickedCaseName(caseName);
     setIsCaseClicked(true);
-    const currCase = cases.find((x) => x.case_data.name == caseName);
-    setClickedCase(currCase);
+    // const currCase = cases.find((x) => x.name === caseName);
   };
 
   const closeCase = () => {
     setIsCaseClicked(false);
-    setClickedCase({});
+    setClickedCaseName("");
   };
 
   return (
     <section className={styles.container_section}>
       <div className={styles.cases_content_wrapper}>
-        <div className={styles.cases_bg_div}>
-          <img src="https://convars.com/imgs/case/bg/6.jpg" alt="" />
-        </div>
-        <div className={styles.no_selector_img_bg}>
-          <img
-            src="https://convars.com/imgs/skins/containers/startup.png"
-            alt=""
-          />
-        </div>
-        {!isCaseClicked ? (
+        {!isCaseClicked && (
           <CasesPanorama cases={cases} onCaseClick={onCaseClick} />
-        ) : (
-          <ShowCase closeCase={closeCase} caseName={clickedCase.case_data.name} skinsList={clickedCase.skins} />
+        )}
+        {isCaseClicked && (
+          <ShowCase closeCase={closeCase} caseName={clickedCaseName} />
         )}
       </div>
     </section>
