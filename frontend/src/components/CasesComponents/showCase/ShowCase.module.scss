@@ -13,7 +13,6 @@
 }
 
 .start {
-  margin-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,12 +61,14 @@
 }
 
 .circleRoulette {
-  /* position: absolute; */
-  /* bottom: 0; */
-  /* left: 50%; */
-  /* translate: -50%; */
-  /* z-index: 5; */
-  /* clip-path: circle(155px at 50% 50%); */
-  /* -webkit-clip-path: circle(155px at 50% 50%); */
   transform: scale(1.1);
+}
+
+@media (max-width: 500px) {
+  .start {
+    p {
+      padding: 5px 12px;
+      margin-right: 5px;
+    }
+  }
 }

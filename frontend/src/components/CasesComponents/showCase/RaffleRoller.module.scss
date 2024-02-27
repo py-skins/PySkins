@@ -8,14 +8,12 @@ body {
   flex-direction: column;
   align-self: center;
   width: 1480px;
-  // width: 380px;
 }
 
 .raffle-roller {
   position: relative;
   margin: 20px auto;
   width: 1480px;
-  // width: 380px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -42,11 +40,6 @@ body {
   width: 15000px;
   max-width: 15000px;
   height: 150px;
-
-  // width: 8000px;
-  // max-width: 8000px;
-  // height: 90px;
-
   background: #191726;
   margin-left: 0;
   transition: all 8s cubic-bezier(0.08, 0.6, 0, 1);
@@ -60,9 +53,6 @@ body {
   margin: 4px 0px 0.5px 5px;
   width: 150px;
   height: 135px;
-
-  // width: 90px;
-  // height: 80px;
   border: 1px solid #70677c;
   background: #14202b;
   background-size: 100%;
@@ -116,4 +106,32 @@ img {
   top: -2px;
   border: 2px solid #356d27;
   border-bottom: 4px solid #356d27;
+}
+
+@media (max-width: 500px) {
+  .raffle-container {
+    width: 380px;
+  }
+
+  .raffle-roller {
+    width: 380px;
+  }
+
+  .raffle-roller-container {
+    width: 8000px;
+    max-width: 8000px;
+    height: 90px;
+  }
+
+  .item {
+    width: 90px;
+    height: 80px;
+  }
+
+  .inventory {
+    .item {
+      width: 85px;
+      height: 75px;
+    }
+  }
 }

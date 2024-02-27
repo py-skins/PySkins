@@ -16,15 +16,15 @@ const Hero = () => {
 
           <div className="hero-big-header">
             <div>
-              trade <span>cs:go</span> skins
+              trade <span>cs2</span> skins
             </div>
           </div>
 
           <div className="desc">
             <p>
-              Our CSGO Trade Bot Has All the Skins You Need!
+              Our CS2 Trade Bot Has All the Skins You Need!
               <br />
-              Trade CS:GO Skins Instantly with Lowest Fees!
+              Trade CS2 Skins Instantly with Lowest Fees!
             </p>
           </div>
 

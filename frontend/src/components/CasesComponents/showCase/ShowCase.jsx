@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import styles from "./ShowCase.module.css";
+import styles from "./ShowCase.module.scss";
 import SkinCard from "./SkinCard";
 import Button from "../../core/button/Button";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
@@ -24,7 +24,7 @@ const ShowCase = ({ closeCase, caseName }) => {
     (async () => {
       try {
         const data = await fetchCaseSkins(caseName);
-        console.log(data.data.skins);
+        // console.log(data.data.skins);
         setSkins(data.data.skins);
       } catch (e) {
         alert(e);
@@ -49,7 +49,7 @@ const ShowCase = ({ closeCase, caseName }) => {
       raffleRollerContainer.style.marginLeft = "0px";
       raffleRollerContainer.innerHTML = "";
 
-      console.log(skins[0].skin_rarity.rarity_color);
+      // console.log(skins[0].skin_rarity.rarity_color);
 
       const randomInt = (min, max) => {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -86,8 +86,15 @@ const ShowCase = ({ closeCase, caseName }) => {
           }
         }, 9000);
 
-        let width = 10250;
+        // let width = 10250;
         // let width = 5680;
+
+        let width = 10250;
+        // Check viewport width
+        if (window.innerWidth <= 500) {
+          width = 5680;
+        }
+        console.log("Viewport:", window.innerWidth);
         raffleRollerContainer.style.marginLeft = `-${width}px`;
       };
 
@@ -179,8 +186,6 @@ const ShowCase = ({ closeCase, caseName }) => {
                 title="Open container"
               />
             )}
-
-            {/* <Button variant="red" title="START" onClick={startRaffle} /> */}
           </div>
         )}
       </div>
