@@ -15,10 +15,10 @@ function Footer() {
           </p>
 
           <p>
-            Introducing PySkins: Your Ultimate Destination for CS:GO Skin
+            Introducing PySkins: Your Ultimate Destination for CS2 Skin
             Gambling! Join us at PySkins and elevate your gaming experience to
-            new heights. Get ready to immerse yourself in the world of CS:GO
-            skin gambling like never before!
+            new heights. Get ready to immerse yourself in the world of CS2 skin
+            gambling like never before!
           </p>
 
           <p>Copyright © PySkins 2024 All Rights Reserved</p>

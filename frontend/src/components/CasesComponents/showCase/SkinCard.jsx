@@ -1,14 +1,13 @@
 import styles from "./SkinCard.module.css";
 
 const SkinCard = ({ skin }) => {
-
   let counter = 0;
   let currPrice = 0;
   const skinPrices = skin.quality_prices;
-  for (let [_,price] of Object.entries(skinPrices)) {
-    const numberPrice = Number(price.price)
+  for (let [_, price] of Object.entries(skinPrices)) {
+    const numberPrice = Number(price.price);
     counter++;
-    currPrice += numberPrice
+    currPrice += numberPrice;
   }
 
   const avgPrice = (currPrice / counter).toFixed(2);
@@ -33,7 +32,6 @@ const SkinCard = ({ skin }) => {
         </div>
         <div className={styles.itemInfo}>
           <p className={styles.itemName}>{skin.name}</p>
-          {/* <p className={styles.skinName}>Ancient Earth</p> */}
         </div>
       </a>
     </article>

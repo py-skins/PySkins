@@ -70,6 +70,34 @@
   left: 0px;
 }
 
+@media (max-width: 1280px) {
+  .item {
+    max-width: 150px;
+  }
+
+  .hoverPopUp {
+    left: -150px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 530px) {
+  .item {
+    max-width: 132px;
+  }
+
+  .hoverPopUp {
+    left: -132px;
+    font-size: 12px;
+  }
+
+  .hoverPopUpIcon {
+    i {
+      zoom: 0.9;
+    }
+  }
+}
+
 @keyframes showcase {
   0% {
     transform: scale(0.8);

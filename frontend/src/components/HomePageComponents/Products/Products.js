@@ -58,7 +58,7 @@ const Products = () => {
   return (
     <Container>
       <div className="carousel">
-        <h1 className="card-header">Trade Our CS:GO Skins</h1>
+        <h1 className="card-header">Trade Our CS2 Skins</h1>
         <ScrollTrigger onEnter={() => setLoad(true)}>
           <Carousel
             responsive={responsive}

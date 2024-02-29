@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import styles from "./ShowCase.module.css";
+import styles from "./ShowCase.module.scss";
 import SkinCard from "./SkinCard";
 import Button from "../../core/button/Button";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { fetchCaseSkins } from "../../../api/casesServices";
+import { fetchCaseSkins, fetchCaseOpening } from "../../../api/casesServices";
 import RaffleRoller from "./RaffleRoller";
 import stylesRaffle from "./RaffleRoller.module.scss";
 
@@ -24,7 +24,7 @@ const ShowCase = ({ closeCase, caseName }) => {
     (async () => {
       try {
         const data = await fetchCaseSkins(caseName);
-        console.log(data.data.skins);
+        // console.log(data.data.skins);
         setSkins(data.data.skins);
       } catch (e) {
         alert(e);
@@ -40,34 +40,43 @@ const ShowCase = ({ closeCase, caseName }) => {
     setIsCaseOpened(true);
   };
 
-  const startRaffle = () => {
-    const generate = (id) => {
-      const randed2 = id - 1;
-      const raffleRollerContainer = document.getElementById(`raffle${id}`);
+  function findIndexById(array, id) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id === id) {
+        return i;
+      }
+    }
+    return -1;
+  }
 
+  const startRaffle = async () => {
+    const generate = async (row) => {
+      const raffleRollerContainer = document.getElementById(`raffle${row}`);
       raffleRollerContainer.style.transition = "sdf";
       raffleRollerContainer.style.marginLeft = "0px";
       raffleRollerContainer.innerHTML = "";
 
-      console.log(skins[0].skin_rarity.rarity_color);
-
-      const randomInt = (min, max) => {
-        return Math.floor(Math.random() * (max - min)) + min;
-      };
+      function getRandomBetween(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
 
       for (let i = 0; i < 100; i++) {
-        const randed = randomInt(1, 17);
-        let element = `<div id="raffle${id}-CardNumber${i}" class="${stylesRaffle.item}" style="background-image:url(${skins[randed].main_image_url}); border-bottom: 4px solid ${skins[randed].skin_rarity.rarity_color};"></div>`;
+        // console.log(skins.length - 1);
+        const randed = getRandomBetween(0, skins.length - 1);
+        let element = `<div id="raffle${row}-CardNumber${i}" class="${stylesRaffle.item}" style="background-image:url(${skins[randed].main_image_url}); border-bottom: 4px solid ${skins[randed].skin_rarity.rarity_color};"></div>`;
 
         raffleRollerContainer.insertAdjacentHTML("beforeend", element);
       }
 
-      const goRoll = (id, skin, skinimg, rarity) => {
-        const raffleRollerContainer = document.getElementById(`raffle${id}`);
+      const goRoll = (row, skin, skinimg, rarity) => {
+        const raffleRollerContainer = document.getElementById(`raffle${row}`);
         raffleRollerContainer.style.transition =
           "all 8s cubic-bezier(.08,.6,0,1)";
-        const winningItem = document.getElementById(`raffle${id}-CardNumber73`);
+        const winningItem = document.getElementById(
+          `raffle${row}-CardNumber73`
+        );
         winningItem.style.backgroundImage = `url(${skinimg})`;
+        winningItem.style.borderColor = `${rarity}`;
 
         setTimeout(() => {
           winningItem.classList.add(stylesRaffle["winning-item"]);
@@ -81,24 +90,35 @@ const ShowCase = ({ closeCase, caseName }) => {
           // dropSoundAudio.volume = 0.1;
           // dropSoundAudio.play();
 
-          if (id === numRaffles) {
+          if (row === numRaffles) {
             setIsRolling(false);
           }
         }, 9000);
 
-        let width = 10250;
+        // let width = 10250;
         // let width = 5680;
+
+        let width = 10250;
+        // Check viewport width
+        if (window.innerWidth <= 500) {
+          width = 5680;
+        }
+        // console.log("Viewport:", window.innerWidth);
         raffleRollerContainer.style.marginLeft = `-${width}px`;
       };
 
+      const openedSkin = await fetchCaseOpening(caseName);
+      const id = findIndexById(skins, openedSkin.id);
+      // console.log(openedSkin.id, id);
+
       setTimeout(() => {
         goRoll(
-          id,
-          skins[randed2].name,
-          skins[randed2].main_image_url,
-          skins[randed2].skin_rarity.rarity_color
+          row,
+          skins[id].name,
+          skins[id].main_image_url,
+          skins[id].skin_rarity.rarity_color
         );
-      }, 500 * id);
+      }, 500 * row);
 
       setIsRolling(true);
     };
@@ -179,8 +199,6 @@ const ShowCase = ({ closeCase, caseName }) => {
                 title="Open container"
               />
             )}
-
-            {/* <Button variant="red" title="START" onClick={startRaffle} /> */}
           </div>
         )}
       </div>

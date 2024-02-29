@@ -1,13 +1,13 @@
 import React from "react";
 
-import styles from "./CasesPanorama.module.css";
+import styles from "./CasesPanorama.module.scss";
 import CaseCard from "../caseCard/CaseCard";
 
 const CasesPanorama = ({ cases, onCaseClick }) => {
   return (
     <div className={styles.cases_panorama}>
       <p className={styles.welcome_msg}>
-        Welcome to CS:GO Case Simulator! Choose a container to open:
+        Welcome to CS2 Case Simulator! Choose a container to open:
       </p>
       <div className={styles.cases_container}>
         {cases.map((caseData, index) => {
