@@ -9,6 +9,15 @@ export const fetchCases = async () => {
   }
 };
 
+export const fetchCaseOpening = async (caseName) => {
+  try {
+    const data = await get(`/case/open/?caseName=${caseName}`);
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
 export const fetchCaseSkins = async (caseName) => {
   try {
     const data = await get(`/case/?caseName=${caseName}`);
@@ -21,15 +30,6 @@ export const fetchCaseSkins = async (caseName) => {
 export const fetchCasesOld = async () => {
   try {
     const data = await get("/test/case");
-    return data;
-  } catch (e) {
-    throw e;
-  }
-};
-
-export const openCase = async (caseName) => {
-  try {
-    const data = await post("/case/open", caseName);
     return data;
   } catch (e) {
     throw e;
