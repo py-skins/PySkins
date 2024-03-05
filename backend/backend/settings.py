@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     # Custom Apps
     'backend.api',
+    'backend.authentication',
     'backend.cases',
     'backend.test_dev',
 ]
@@ -116,11 +117,23 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# AUTH_USER_MODEL = 'auth_app.AuthUser'
+AUTH_USER_MODEL = 'authentication.AuthUser'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 CORS_ORIGIN_ALLOW_ALL = True
+
 SECURE_BROWSER_XSS_FILTER = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
