@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -68,11 +67,3 @@ class LogoutAPIView(rest_views.APIView):
             return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
-'''
-{
-  "email": "koko@gmail.com",
-  "password": "1234qwer"
-}
-'''
