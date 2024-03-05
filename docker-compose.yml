@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres:16
-    container_name: my-postgres-container
+    container_name: py-skins-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234qwer
@@ -29,5 +29,3 @@ services:
     image: py-skins-react
     ports:
       - "3000:3000"
-#    volumes:
-#      - ./src:/app/src
