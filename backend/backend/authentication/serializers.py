@@ -9,7 +9,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ('email', 'password')
+        fields = ('id', 'email', 'password')
 
     def create(self, validated_data):
         user = UserModel.objects.create_user(
@@ -22,17 +22,3 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
-
-    def validate(self, data):
-        email = data.get('email')
-        password = data.get('password')
-
-        if email and password:
-            user = authenticate(email=email, password=password)
-            if not user:
-                raise serializers.ValidationError('Invalid email or password.')
-        else:
-            raise serializers.ValidationError('Must include "email" and "password".')
-
-        data['user'] = user
-        return data

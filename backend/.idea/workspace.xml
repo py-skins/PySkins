@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2272ea91-1183-4770-be80-765a95c3ed77" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/50eeaffd-7622-4b8a-a0c5-b38924101c9c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/50eeaffd-7622-4b8a-a0c5-b38924101c9c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/50eeaffd-7622-4b8a-a0c5-b38924101c9c/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/50eeaffd-7622-4b8a-a0c5-b38924101c9c/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/50eeaffd-7622-4b8a-a0c5-b38924101c9c/storage_v2/_src_/database/py_skins_db.PXT8Hw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/50eeaffd-7622-4b8a-a0c5-b38924101c9c/storage_v2/_src_/database/py_skins_db.PXT8Hw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/authentication/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/authentication/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/authentication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/authentication/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/authentication/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +168,8 @@
       <workItem from="1709306273719" duration="1960000" />
       <workItem from="1709575667493" duration="2018000" />
       <workItem from="1709577728637" duration="57000" />
-      <workItem from="1709577840397" duration="5102000" />
+      <workItem from="1709577840397" duration="5169000" />
+      <workItem from="1709657580346" duration="1314000" />
     </task>
     <servers />
   </component>
