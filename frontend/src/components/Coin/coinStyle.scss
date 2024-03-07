@@ -28,26 +28,25 @@
   }
 
   .heads {
-    z-index: 10;
+    z-index: 3;
     & img {
       position: absolute;
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      transition: all .1s;
+      transition: all 0.1s;
     }
   }
   .tails {
     transform: rotateX(-180deg);
     padding: 10px;
   }
-  
 
   &.spinheads {
     animation: spin-heads 2s forwards;
     scale: 110%;
   }
-  
+
   &.spintails {
     animation: spin-tails 2s forwards;
   }
@@ -56,7 +55,7 @@
     transform: scale(0);
     opacity: 0;
   }
-  
+
   &.active span {
     opacity: 1;
   }
@@ -66,7 +65,7 @@
   animation: scale 2000ms alternate;
 }
 
-@keyframes scale{
+@keyframes scale {
   0% {
     scale: 1;
   }
@@ -75,22 +74,20 @@
   }
 }
 
-@keyframes spin-heads{
-  from{
+@keyframes spin-heads {
+  from {
     transform: rotateX(0);
   }
-  to{
+  to {
     transform: rotateX(1800deg);
   }
 }
 
-@keyframes spin-tails{
-  from{
+@keyframes spin-tails {
+  from {
     transform: rotateX(0);
   }
-  to{
+  to {
     transform: rotateX(1980deg);
   }
 }
-
-

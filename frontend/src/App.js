@@ -9,6 +9,7 @@ import Cases2 from "./pages/cases/Cases";
 import Footer from "./components/core/footer/Footer";
 import HomePage from "./pages/home/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
+import PortalComponent from "./components/Portal/PortalComponent";
 
 import "./App.css";
 
@@ -25,10 +26,9 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <PortalComponent />
       <ChatBarPopup />
-
       <Navbar />
-
       <Routes>
         {routes.map((route, index) => (
           <Route path={route.path} element={route.element} key={index} />

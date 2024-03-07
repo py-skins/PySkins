@@ -14,7 +14,7 @@
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   height: 100%;
   width: 300px;
-  z-index: 5000;
+  z-index: 3;
   position: fixed;
   padding-top: 15px;
   right: -300px;
@@ -60,10 +60,10 @@
   padding: 10px 50px;
   // border: 1px solid red;
   background-color: var(--home-background);
-  gap: 6rem;
+  // gap: 6rem;
   box-shadow: var(--nav-shadow);
   height: 70px;
-  z-index: 50;
+  z-index: 3;
   right: 0;
 
   a {
@@ -85,6 +85,35 @@
 
     img {
       width: 120px;
+    }
+  }
+}
+
+.login {
+  margin-right: 15px;
+  p {
+    text-decoration: none;
+    position: relative;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      font-weight: bold;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease-out;
+    }
+
+    &:hover::before {
+      width: 100%;
     }
   }
 }

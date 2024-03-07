@@ -1,0 +1,24 @@
+.modal {
+  position: absolute;
+  top: 0px;
+  height: 100vh;
+  width: 99vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  background: var(--home-background);
+  z-index: 2;
+  opacity: 80%;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  transition: 0.3s;
+}
+
+.container_section {
+  z-index: 999;
+  position: fixed;
+}
