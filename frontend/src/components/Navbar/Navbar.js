@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.scss"; // Import your SCSS file
 import Button from "../core/button/Button";
@@ -7,10 +7,16 @@ import { AiOutlineClose } from "react-icons/ai";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import useToggle from "../../hooks/useToggle";
 import BackDrop from "../core/backdrop/BackDrop";
+import PortalComponent from "../Portal/PortalComponent";
+import LoginModal from "../LoginModal/LoginModal";
 
 const Navbar = () => {
   const { open, openMenu, closeMenu } = useToggle(false);
-  // console.log(open);
+  const [showModal, setShowModal] = useState(false);
+
+  const GoBackHandler = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -20,6 +26,24 @@ const Navbar = () => {
           <NavLink to="/">
             <img src={"/img/pylogo-transperant.png"} alt="" />
           </NavLink>
+        </div>
+
+        {/* LOGIN BTN */}
+        <div className={`login`}>
+          <p
+            className={`login`}
+            onClick={() => {
+              setShowModal(true);
+              console.log(showModal);
+            }}
+          >
+            Log In
+          </p>
+          {showModal && (
+            <PortalComponent>
+              <LoginModal onClose={GoBackHandler} />
+            </PortalComponent>
+          )}
         </div>
 
         {/* RIGHT SIDE */}
@@ -38,18 +62,6 @@ const Navbar = () => {
             <NavLink to="casino">Casino</NavLink>
             <NavLink to="cases">Cases</NavLink>
             <NavLink to="knives">Knives</NavLink>
-          </div>
-
-          {/* LOGIN BTN */}
-          <div>
-            <Button
-              iconLeft={BsSteam}
-              title="Login with Steam"
-              variant="red"
-              size="sm"
-              reverse
-              opacity
-            />
           </div>
         </div>
 
