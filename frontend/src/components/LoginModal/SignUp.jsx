@@ -75,54 +75,70 @@ const SignUp = ({ changeState }) => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>Sign Up</p>
+      <p className={styles.title}>
+        Have an account?{"  "}
+        <span className={styles.link} onClick={changeState}>
+          Sign in here
+        </span>
+      </p>
+
       <form onSubmit={handleSubmit}>
         <div className={styles.inputBox}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onFocus={() => {
-              setErrorShow("");
-            }}
-            onChange={handleEmailChange}
-          />
+          <span className={styles["p-input-icon-left"]}>
+            <i className={`${styles.pi} pi-user`} />
+            <input
+              className={styles.inputText}
+              placeholder="Email"
+              type="email"
+              id="email"
+              value={email}
+              onFocus={() => {
+                setErrorShow("");
+              }}
+              onChange={handleEmailChange}
+            />
+          </span>
           <p className={styles.error}>{emailError}</p>
         </div>
 
         <div className={styles.inputBox}>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onFocus={() => {
-              setErrorShow("");
-            }}
-            onChange={handlePasswordChange}
-          />
+          <span className={styles["p-input-icon-left"]}>
+            <i className={`${styles.pi} pi-lock`} />
+            <input
+              className={styles.inputText}
+              placeholder="Password"
+              type="password"
+              id="password"
+              value={password}
+              onFocus={() => {
+                setErrorShow("");
+              }}
+              onChange={handlePasswordChange}
+            />
+          </span>
           <p className={styles.error}>{passwordError}</p>
         </div>
 
         <div className={styles.inputBox}>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onFocus={() => {
-              setErrorShow("");
-            }}
-            onChange={handleConfirmPasswordChange}
-          />
+          <span className={styles["p-input-icon-left"]}>
+            <i className={`${styles.pi} pi-lock`} />
+            <input
+              className={styles.inputText}
+              placeholder="Confirm Password"
+              type="password"
+              id="confirm-password"
+              value={confirmPassword}
+              onFocus={() => {
+                setErrorShow("");
+              }}
+              onChange={handleConfirmPasswordChange}
+            />
+          </span>
           <p className={styles.error}>{confirmPasswordError}</p>
         </div>
 
         <div className={styles.buttonContainer}>
-          <Button type="submit" variant="red" title="Sign Up" />
-
-          <p onClick={changeState}>Log In</p>
+          <Button type="submit" size="md" variant="red" title="Sign Up" />
         </div>
 
         {errorShow && <span className={styles.error}>{errorShow}</span>}

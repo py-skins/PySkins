@@ -9,11 +9,37 @@
   z-index: 3;
 
   .title {
-    margin-top: 16px;
-    font-size: 20px;
+    margin-top: 20px;
+    font-size: 18px;
     font-weight: bold;
     align-self: center;
-    color: var(--primary-color);
+    color: #fff;
+
+    .link {
+      text-decoration: none;
+      position: relative;
+      color: var(--primary-color);
+      cursor: pointer;
+
+      &:hover {
+        font-weight: bold;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease-out;
+      }
+
+      &:hover::before {
+        width: 100%;
+      }
+    }
   }
 
   form {
@@ -30,32 +56,6 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-
-      p {
-        text-decoration: none;
-        position: relative;
-        color: #fff;
-        cursor: pointer;
-
-        &:hover {
-          font-weight: bold;
-        }
-
-        &::before {
-          content: "";
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background-color: var(--primary-color);
-          transition: width 0.3s ease-out;
-        }
-
-        &:hover::before {
-          width: 100%;
-        }
-      }
     }
 
     .inputBox {
@@ -64,12 +64,33 @@
       flex-direction: column;
       margin-bottom: 20px;
 
-      input {
+      .p-input-icon-left {
+        position: relative;
+      }
+
+      .pi {
+        position: absolute;
+        top: 50%;
+        left: 0.75rem;
+        margin-top: -0.5rem;
+        font-family: "primeicons";
+        color: var(--primary-color);
+        speak: none;
+        font-style: normal;
+        line-height: 1;
+      }
+
+      .inputText {
         width: 100%;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 5px;
+        color: #4b5563;
+        background: #ffffff;
+        padding: 0.75rem 0.75rem;
+        padding-left: 2.5rem;
+        border: none;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
       }
 
       .error {
@@ -79,3 +100,10 @@
     }
   }
 }
+
+// .p-component {
+//   font-family: var(--font-family);
+//   font-feature-settings: var(--font-feature-settings, normal);
+//   font-size: 1rem;
+//   font-weight: normal;
+// }

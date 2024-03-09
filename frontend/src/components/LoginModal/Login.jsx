@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import Button from "../core/button/Button";
+import { userLogin } from "../../api/userServices";
+
+import "primeicons/primeicons.css";
 
 const Login = ({ changeState }) => {
   const [errorShow, setErrorShow] = useState("");
@@ -31,7 +34,7 @@ const Login = ({ changeState }) => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!validateEmail(email)) {
@@ -46,47 +49,64 @@ const Login = ({ changeState }) => {
       setPasswordError("");
     }
 
-    if (email.length >= 5 && password.length >= 8) {
-      //   fetchData();
+    if (emailError === "" && passwordError === "") {
+      try {
+        const data = await userLogin();
+        console.log(data);
+      } catch (e) {
+        alert(e);
+      }
     }
   };
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>Log In</p>
+      <p className={styles.title}>
+        Don't have an account?{"  "}
+        <span className={styles.link} onClick={changeState}>
+          Sign up here
+        </span>
+      </p>
+
       <form onSubmit={handleSubmit}>
         <div className={styles.inputBox}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onFocus={() => {
-              setErrorShow("");
-            }}
-            onChange={handleEmailChange}
-          />
+          <span className={styles["p-input-icon-left"]}>
+            <i className={`${styles.pi} pi-user`} />
+            <input
+              className={styles.inputText}
+              placeholder="Email"
+              type="email"
+              id="email"
+              value={email}
+              onFocus={() => {
+                setErrorShow("");
+              }}
+              onChange={handleEmailChange}
+            />
+          </span>
           <p className={styles.error}>{emailError}</p>
         </div>
 
         <div className={styles.inputBox}>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onFocus={() => {
-              setErrorShow("");
-            }}
-            onChange={handlePasswordChange}
-          />
+          <span className={styles["p-input-icon-left"]}>
+            <i className={`${styles.pi} pi-lock`} />
+            <input
+              className={styles.inputText}
+              placeholder="Password"
+              type="password"
+              id="password"
+              value={password}
+              onFocus={() => {
+                setErrorShow("");
+              }}
+              onChange={handlePasswordChange}
+            />
+          </span>
           <p className={styles.error}>{passwordError}</p>
         </div>
 
         <div className={styles.buttonContainer}>
-          <Button type="submit" variant="red" title="Log In" />
-
-          <p onClick={changeState}> Sign Up</p>
+          <Button type="submit" size="md" variant="red" title="Log In" />
         </div>
 
         {errorShow && <span className={styles.error}>{errorShow}</span>}
