@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./coinStyle.scss"; // Import your SCSS file
+import styles from "./coin.module.scss";
 
 const Coin = () => {
   const [value, setValue] = useState(-1);
@@ -18,31 +18,34 @@ const Coin = () => {
   };
 
   return (
-    <div className='container'>
+    <div className={styles.container}>
       <div className={`${value > 0 ? "coin-scale" : ""}`}>
         <div
-          className={`${active === true ? "active" : "inactive"} ${
-            value > 0 ? (value >= 0.5 ? "spinheads" : "spintails") : ""
-          } coin`}
+          className={`${active === true ? styles.active : styles.inactive} ${
+            value > 0
+              ? value >= 0.5
+                ? styles.spinheads
+                : styles.spintails
+              : ""
+          } ${styles.coin}`}
         >
           {/* HEADS */}
-          <div className="heads">
+          <div className={styles.heads}>
             <img src={"/img/coin-tails.png"} alt="" />
           </div>
 
           {/* TAILS */}
-          <div className="tails">
-          <img src={"/img/swords_icon.png"} alt="" />
+          <div className={styles.tails}>
+            <img src={"/img/swords_icon.png"} alt="" />
           </div>
         </div>
-
       </div>
-        {/* TREASURE CASE */}
-        <div className="">
-          <button className={``} onClick={() => flipCoin()}>
-            Open
-          </button>
-        </div>
+      {/* TREASURE CASE */}
+      <div className="">
+        <button className={``} onClick={() => flipCoin()}>
+          Open
+        </button>
+      </div>
     </div>
   );
 };

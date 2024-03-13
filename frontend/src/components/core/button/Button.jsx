@@ -24,6 +24,7 @@ const Button = ({
         ${variant === "white" ? "white" : null}
         ${size === "sm" ? "sm" : null}
         ${size === "md" ? "md" : null}
+        ${size === "lg" ? "lg" : null}
         ${reverse ? "reverse" : null}
         ${hover ? "hover" : null}
         ${opacity ? "opacity" : null}

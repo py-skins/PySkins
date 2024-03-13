@@ -13,7 +13,6 @@
   .icon {
     justify-content: center;
   }
-
 }
 
 .white {
@@ -22,14 +21,13 @@
   padding: 10px 15px;
   border: none;
   font-weight: 600;
-
 }
 
 .sm {
   // max-width: 150px;
   font-size: 14px;
   gap: 5px;
-  text-transform:capitalize;
+  text-transform: capitalize;
 }
 
 .md {
@@ -42,10 +40,19 @@
   }
 }
 
+.lg {
+  min-width: 240px;
+  gap: 4px;
+  text-transform: uppercase;
+  @media screen and (max-width: 768px) {
+    min-width: none;
+    gap: 2px;
+  }
+}
+
 .reverse {
   flex-direction: row-reverse;
 }
-
 
 .btn {
   display: flex;
@@ -82,5 +89,3 @@
     opacity: 0.9;
   }
 }
-
-

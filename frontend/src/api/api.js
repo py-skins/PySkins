@@ -1,6 +1,6 @@
 const requester = async (url, method, body) => {
   // The server's url
-  const hostUrl = "http://localhost:8000/api";
+  const hostUrl = "http://localhost:8000/";
   let options = {};
   options.method = method;
   options.headers = {};
@@ -14,7 +14,7 @@ const requester = async (url, method, body) => {
   try {
     const response = await fetch(hostUrl + url, options);
     // Checking if the status is 204 (NO CONTENT) to return the response without parsing if to an object
-    if (response.status == 204) {
+    if (response.status === 204) {
       return response;
     }
     if (!response.ok) {

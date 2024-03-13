@@ -37,21 +37,31 @@ const Login = ({ changeState }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    let emailErrorTemp = "";
+    let passwordErrorTemp = "";
+
     if (!validateEmail(email)) {
-      setEmailError("Invalid email format");
-    } else {
-      setEmailError("");
+      emailErrorTemp = "Invalid email format";
     }
 
     if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters long");
-    } else {
-      setPasswordError("");
+      passwordErrorTemp = "Password must be at least 8 characters long";
     }
 
-    if (emailError === "" && passwordError === "") {
+    setEmailError(emailErrorTemp);
+    setPasswordError(passwordErrorTemp);
+
+    if (emailErrorTemp === "" && passwordErrorTemp === "") {
+      const body = {
+        email: email,
+        password: password,
+        password2: password,
+      };
+
+      console.log("Body: ", body);
+
       try {
-        const data = await userLogin();
+        const data = await userLogin(body);
         console.log(data);
       } catch (e) {
         alert(e);
