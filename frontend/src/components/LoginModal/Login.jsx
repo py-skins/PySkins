@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import Button from "../core/button/Button";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../../api/userServices";
-
+import { login } from "../../app/features/userSlice";
 import "primeicons/primeicons.css";
 
-const Login = ({ changeState }) => {
-  const [errorShow, setErrorShow] = useState("");
+const Login = ({ changeState, CloseForm }) => {
+  const [errors, setErrors] = useState({
+    details: [],
+    email: [],
+    password: [],
+  });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+
+  const dispatch = useDispatch();
 
   const validateEmail = (email) => {
-    // Regular expression for email validation
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
@@ -22,7 +27,10 @@ const Login = ({ changeState }) => {
     setEmail(event.target.value);
 
     if (event.target.value.length >= 5) {
-      setEmailError("");
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: [],
+      }));
     }
   };
 
@@ -30,41 +38,65 @@ const Login = ({ changeState }) => {
     setPassword(event.target.value);
 
     if (event.target.value.length >= 8) {
-      setPasswordError("");
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: [],
+      }));
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let emailErrorTemp = "";
-    let passwordErrorTemp = "";
+    let errorsTemp = {
+      details: [],
+      email: [],
+      password: [],
+    };
 
     if (!validateEmail(email)) {
-      emailErrorTemp = "Invalid email format";
+      errorsTemp.email.push("Invalid email format");
     }
 
     if (password.length < 8) {
-      passwordErrorTemp = "Password must be at least 8 characters long";
+      errorsTemp.password.push("Password must be at least 8 characters long");
     }
 
-    setEmailError(emailErrorTemp);
-    setPasswordError(passwordErrorTemp);
+    setErrors(errorsTemp);
 
-    if (emailErrorTemp === "" && passwordErrorTemp === "") {
+    if (errorsTemp.email.length === 0 && errorsTemp.password.length === 0) {
       const body = {
-        email: email,
+        email: email.toLowerCase(),
         password: password,
         password2: password,
       };
 
-      console.log("Body: ", body);
-
       try {
         const data = await userLogin(body);
-        console.log(data);
-      } catch (e) {
-        alert(e);
+        const userData = {
+          email,
+          isAuthenticated: true,
+          ...data,
+        };
+
+        dispatch(login(userData));
+        CloseForm();
+      } catch (error) {
+        error?.detail &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            details: error.detail,
+          }));
+        error?.email &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: error.email,
+          }));
+        error?.password &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            password: error.password,
+          }));
       }
     }
   };
@@ -89,12 +121,23 @@ const Login = ({ changeState }) => {
               id="email"
               value={email}
               onFocus={() => {
-                setErrorShow("");
+                setErrors((prevErrors) => ({
+                  ...prevErrors,
+                  email: [],
+                  details: [],
+                }));
               }}
               onChange={handleEmailChange}
             />
           </span>
-          <p className={styles.error}>{emailError}</p>
+          {errors.email.length > 0 &&
+            errors.email.map((error, index) => {
+              return (
+                <p key={index} className={styles.error}>
+                  {error}
+                </p>
+              );
+            })}
         </div>
 
         <div className={styles.inputBox}>
@@ -107,19 +150,37 @@ const Login = ({ changeState }) => {
               id="password"
               value={password}
               onFocus={() => {
-                setErrorShow("");
+                setErrors((prevErrors) => ({
+                  ...prevErrors,
+                  password: [],
+                  details: [],
+                }));
               }}
               onChange={handlePasswordChange}
             />
           </span>
-          <p className={styles.error}>{passwordError}</p>
+          {errors.password.length > 0 &&
+            errors.password.map((error, index) => {
+              return (
+                <p key={index} className={styles.error}>
+                  {error}
+                </p>
+              );
+            })}
         </div>
 
         <div className={styles.buttonContainer}>
           <Button type="submit" size="md" variant="red" title="Log In" />
         </div>
 
-        {errorShow && <span className={styles.error}>{errorShow}</span>}
+        {errors.details.length > 0 &&
+          errors.details.map((error, index) => {
+            return (
+              <p key={index} className={styles.error}>
+                {error}
+              </p>
+            );
+          })}
       </form>
     </div>
   );

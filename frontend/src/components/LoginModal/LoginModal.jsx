@@ -15,6 +15,7 @@ const LoginModal = ({ onClose }) => {
             changeState={() => {
               setShowLogin(false);
             }}
+            CloseForm={onClose}
           />
         )}
         {!showLogin && (

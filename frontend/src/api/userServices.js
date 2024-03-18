@@ -2,7 +2,7 @@ import { get, post } from "./api";
 
 export const userLogin = async (body) => {
   try {
-    const data = await get("/authentication/login", body);
+    const data = await post("authentication/token/", body);
     return data;
   } catch (e) {
     throw e;
@@ -11,7 +11,7 @@ export const userLogin = async (body) => {
 
 export const userRegister = async (body) => {
   try {
-    const data = await post("/authentication/register", body);
+    const data = await post("authentication/register/", body);
     return data;
   } catch (e) {
     throw e;

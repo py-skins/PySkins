@@ -9,43 +9,85 @@ const SignUp = ({ changeState }) => {
     password: "",
     confirmPassword: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    details: [],
+    email: [],
+    password: [],
+    confirmPassword: [],
+  });
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
 
+  function isNumericPassword(password) {
+    return /^\d+$/.test(password);
+  }
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear error when input changes
+    setErrors({ ...errors, [name]: [] }); // Clearing errors when input changes
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const { email, password, confirmPassword } = formData;
-    const newErrors = {};
+    const newErrors = {
+      email: [],
+      password: [],
+      confirmPassword: [],
+    };
 
     if (!validateEmail(email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email.push("Invalid email format");
     }
 
     if (password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters long";
+      newErrors.password.push("Password must be at least 8 characters long");
     }
+
+    // if (password.length > 8 && isNumericPassword(password)) {
+    //   newErrors.password.push("The password cannot be entirely numeric.");
+    // }
 
     if (confirmPassword !== password) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword.push("Passwords do not match");
     }
 
-    if (Object.keys(newErrors).length === 0) {
+    if (Object.keys(newErrors).every((key) => newErrors[key].length === 0)) {
+      const body = {
+        email: formData.email.toLowerCase(),
+        password: formData.password,
+        password2: formData.confirmPassword,
+      };
+
       try {
-        const data = await userRegister(formData);
+        const data = await userRegister(body);
         console.log(data);
       } catch (error) {
-        alert(error);
+        error?.detail &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            details: error.detail,
+          }));
+        error?.email &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: error.email,
+          }));
+        error?.password &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            password: error.password,
+          }));
+        error?.confirmpassword &&
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            confirmpassword: error.confirmpassword,
+          }));
       }
     } else {
       setErrors(newErrors);
@@ -74,7 +116,14 @@ const SignUp = ({ changeState }) => {
               onChange={handleInputChange}
             />
           </span>
-          <p className={styles.error}>{errors.email}</p>
+          {errors.email.length > 0 &&
+            errors.email.map((error, index) => {
+              return (
+                <p key={index} className={styles.error}>
+                  {error}
+                </p>
+              );
+            })}
         </div>
 
         <div className={styles.inputBox}>
@@ -89,7 +138,14 @@ const SignUp = ({ changeState }) => {
               onChange={handleInputChange}
             />
           </span>
-          <p className={styles.error}>{errors.password}</p>
+          {errors.password.length > 0 &&
+            errors.password.map((error, index) => {
+              return (
+                <p key={index} className={styles.error}>
+                  {error}
+                </p>
+              );
+            })}
         </div>
 
         <div className={styles.inputBox}>
@@ -104,7 +160,15 @@ const SignUp = ({ changeState }) => {
               onChange={handleInputChange}
             />
           </span>
-          <p className={styles.error}>{errors.confirmPassword}</p>
+
+          {errors.confirmPassword.length > 0 &&
+            errors.confirmPassword.map((error, index) => {
+              return (
+                <p key={index} className={styles.error}>
+                  {error}
+                </p>
+              );
+            })}
         </div>
 
         <div className={styles.buttonContainer}>
