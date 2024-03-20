@@ -10,11 +10,13 @@ import Footer from "./components/core/footer/Footer";
 import HomePage from "./pages/home/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
 import PortalComponent from "./components/Portal/PortalComponent";
+import UserProfilePage from "./pages/profile/UserProfilePage";
 
 import "./App.css";
 
 const routes = [
   { path: "/", element: <HomePage /> },
+  { path: "/profile", element: <UserProfilePage /> },
   { path: "/about", element: <AboutPage /> },
   { path: "/cases", element: <Cases2 /> },
   { path: "/casino", element: <Casino /> },

@@ -85,17 +85,18 @@ const Login = ({ changeState, CloseForm }) => {
         error?.detail &&
           setErrors((prevErrors) => ({
             ...prevErrors,
-            details: error.detail,
+            details: [...prevErrors.details, error.detail],
           }));
         error?.email &&
           setErrors((prevErrors) => ({
             ...prevErrors,
-            email: error.email,
+
+            email: [...prevErrors.email, error.email],
           }));
         error?.password &&
           setErrors((prevErrors) => ({
             ...prevErrors,
-            password: error.password,
+            password: [...prevErrors.password, error.password],
           }));
       }
     }
