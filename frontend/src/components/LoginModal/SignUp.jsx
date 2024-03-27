@@ -49,9 +49,9 @@ const SignUp = ({ changeState }) => {
       newErrors.password.push("Password must be at least 8 characters long");
     }
 
-    // if (password.length > 8 && isNumericPassword(password)) {
-    //   newErrors.password.push("The password cannot be entirely numeric.");
-    // }
+    if (password.length > 8 && isNumericPassword(password)) {
+      newErrors.password.push("The password cannot be entirely numeric.");
+    }
 
     if (confirmPassword !== password) {
       newErrors.confirmPassword.push("Passwords do not match");

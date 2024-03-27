@@ -1,9 +1,63 @@
 .container_section {
   background-color: var(--home-background);
-  height: 100vh;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   color: white;
+  font-size: 20px;
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .tabView {
+    border-radius: 25px;
+    background-color: var(--stats-card);
+    padding: 10px 15px;
+    height: 100%;
+
+    ul {
+      margin: 0px;
+      border-radius: 25px;
+      list-style-type: none;
+      background-color: var(--stats-card);
+      padding: 10px;
+      // height: 100%;
+      display: flex;
+      gap: 50px;
+
+      i {
+        color: var(--primary-color);
+        margin-right: 10px;
+      }
+      li {
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          font-weight: bold;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: var(--primary-color);
+          transition: width 0.3s ease-out;
+        }
+
+        &:hover::before {
+          width: 100%;
+        }
+      }
+    }
+
+    .content {
+      flex: 1;
+    }
+  }
 }
