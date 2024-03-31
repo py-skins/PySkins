@@ -1,9 +1,36 @@
 .container_section {
   background-color: var(--home-background);
-  height: 100vh;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   color: white;
+  font-size: 20px;
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  div {
+    background-color: var(--stats-card);
+  }
+
+  .tabView {
+    border-radius: 25px;
+    background-color: var(--stats-card);
+    flex: 1;
+
+    ul {
+      background-color: var(--stats-card);
+
+      a {
+        background-color: var(--stats-card);
+      }
+    }
+  }
+}
+
+.mypanel .p-panel-header {
+  background-color: #07c4e8;
+  color: #ffffff;
 }

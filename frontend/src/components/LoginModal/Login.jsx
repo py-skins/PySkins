@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
-import Button from "../core/button/Button";
+import BasicButton from "../core/button/BasicButton";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../api/userServices";
 import { login } from "../../app/features/userSlice";
@@ -72,7 +72,7 @@ const Login = ({ changeState, CloseForm }) => {
       };
 
       try {
-        const data = await userLogin(body);
+        const data = await userLogin({}, body);
         const userData = {
           email,
           isAuthenticated: true,
@@ -171,7 +171,7 @@ const Login = ({ changeState, CloseForm }) => {
         </div>
 
         <div className={styles.buttonContainer}>
-          <Button type="submit" size="md" variant="red" title="Log In" />
+          <BasicButton type="submit" size="md" variant="red" title="Log In" />
         </div>
 
         {errors.details.length > 0 &&

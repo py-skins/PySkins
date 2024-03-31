@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useContext } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import ChatBarPopup from "./components/chatBar/ChatBar";
 import AboutPage from "./pages/about/AboutPage";
@@ -11,6 +12,7 @@ import HomePage from "./pages/home/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
 import PortalComponent from "./components/Portal/PortalComponent";
 import UserProfilePage from "./pages/profile/UserProfilePage";
+import { PrimeReactContext } from "primereact/api";
 
 import "./App.css";
 
@@ -25,6 +27,9 @@ const routes = [
 ];
 
 function App() {
+  const { changeTheme } = useContext(PrimeReactContext);
+
+  
   return (
     <>
       <ScrollToTop />

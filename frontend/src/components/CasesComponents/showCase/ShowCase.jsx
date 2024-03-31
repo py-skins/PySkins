@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import styles from "./ShowCase.module.scss";
 import SkinCard from "./SkinCard";
-import Button from "../../core/button/Button";
+import BasicButton from "../../core/button/BasicButton";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { fetchCaseSkins, fetchCaseOpening } from "../../../api/casesServices";
 import RaffleRoller from "./RaffleRoller";
@@ -10,12 +10,14 @@ import stylesRaffle from "./RaffleRoller.module.scss";
 
 import dropSound from "./sounds/case_drop_01.mp3";
 import openingSound from "./sounds/CaseOpeningSound.mp3";
+import { useSelector } from "react-redux";
 
 const ShowCase = ({ closeCase, caseName }) => {
   const [skins, setSkins] = useState([]);
   const [numRaffles, setNumRaffles] = useState(1);
   const [rolled, setRolled] = useState("");
   const [isRolling, setIsRolling] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const dropSoundAudio = new Audio(dropSound);
   const openingSoundAudio = new Audio(openingSound);
@@ -107,9 +109,14 @@ const ShowCase = ({ closeCase, caseName }) => {
         raffleRollerContainer.style.marginLeft = `-${width}px`;
       };
 
-      const openedSkin = await fetchCaseOpening(caseName);
+      console.log(user.access);
+      const header = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.access}`,
+      };
+
+      const openedSkin = await fetchCaseOpening(caseName, header);
       const id = findIndexById(skins, openedSkin.id);
-      // console.log(openedSkin.id, id);
 
       setTimeout(() => {
         goRoll(
@@ -150,7 +157,7 @@ const ShowCase = ({ closeCase, caseName }) => {
       )}
 
       <div className={styles.actionBtns}>
-        <Button
+        <BasicButton
           onClick={closeCase}
           variant="red"
           IconLeft={BsChevronLeft}
@@ -183,7 +190,7 @@ const ShowCase = ({ closeCase, caseName }) => {
             )}
 
             {!isCaseOpened && (
-              <Button
+              <BasicButton
                 onClick={openCase}
                 variant="red"
                 IconRight={BsChevronRight}
@@ -192,7 +199,7 @@ const ShowCase = ({ closeCase, caseName }) => {
             )}
 
             {isCaseOpened && (
-              <Button
+              <BasicButton
                 onClick={startRaffle}
                 variant="red"
                 IconRight={BsChevronRight}

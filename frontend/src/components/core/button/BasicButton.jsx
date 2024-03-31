@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Button.scss"; // Import your SCSS
+import styles from "./BasicButton.scss";
 
-const Button = ({
+const BasicButton = ({
   title,
   type,
   IconLeft,
@@ -47,4 +47,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default BasicButton;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Player from "./Player";
 import styles from "./CoinFlip.module.scss";
 import Coin from "./Coin";
-import Button from "../core/button/Button";
+import BasicButton from "../core/button/BasicButton";
 
 const DUMMY_DATA = {
   player1: {
@@ -125,7 +125,7 @@ const CoinFlip = () => {
         {loading && <div className={styles.spinner}></div>}
         {!loading && (
           <>
-            <Button
+            <BasicButton
               onClick={flipCoin}
               variant="red"
               size="lg"
