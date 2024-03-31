@@ -1,8 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 
 from backend.cases import views
 
 urlpatterns = (
-    path('', views.ListCasesView.as_view(), name='list cases'),
-    path('skins/', views.ListSkinsView.as_view(), name='list skins'),
+    path('', views.ListCasesAPIView.as_view(), name='list-cases'),
+    path('<slug:case_slug>/', include([
+        path('', views.OpenCasesAPIView.as_view(), name='open-cases'),
+    ]))
 )
