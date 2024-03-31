@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "../../components/Container/Container";
 import "./hero.scss"; // Import your SCSS file
-import Button from "../core/button/Button";
+import BasicButton from "../core/button/BasicButton";
 import { BsChevronRight, BsSteam } from "react-icons/bs";
 
 const Hero = () => {
@@ -29,7 +29,7 @@ const Hero = () => {
           </div>
 
           <div className="bottom-header">
-            <Button
+            <BasicButton
               title="trade skins now"
               icon={BsChevronRight}
               className="btn"
@@ -38,7 +38,7 @@ const Hero = () => {
               hover
             />
 
-            <Button
+            <BasicButton
               IconRight={BsSteam}
               title="Login with Steam"
               variant="white"

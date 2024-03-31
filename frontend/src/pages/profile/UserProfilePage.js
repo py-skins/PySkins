@@ -1,30 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./UserProfilePage.module.scss";
 import SkinCollection from "../../components/profile/SkinCollection";
+import ProfileDetails from "../../components/profile/ProfileDetails";
+import { TabView, TabPanel } from "primereact/tabview";
 
 const UserProfilePage = () => {
-  const [activeTab, setactiveTab] = useState(1);
-
   return (
     <div className={styles.container_section}>
-      <h1>Profile</h1>
-
-      <div className={styles.tabView}>
-        <ul>
-          <li onClick={() => setactiveTab(1)}>
-            <i className={`${styles.pi} pi pi-user ml-2`} />
-            Details
-          </li>
-          <li onClick={() => setactiveTab(2)}>
-            <i className={`${styles.pi} pi pi-inbox mr-2`} />
-            Skin Collection
-          </li>
-        </ul>
-        <div className={styles.content}>
-          {activeTab === 1 && <div>Details Content</div>}
-          {activeTab === 2 && <SkinCollection />}
-        </div>
-      </div>
+      <TabView className={styles.tabView}>
+        <TabPanel
+          className={styles.asdf}
+          header="Details"
+          leftIcon="pi pi-user ml-2"
+        >
+          <ProfileDetails />
+        </TabPanel>
+        <TabPanel
+          className={styles.asdf}
+          leftIcon="pi pi-inbox mr-2"
+          header="  Skin Collection"
+        >
+          <SkinCollection />
+        </TabPanel>
+      </TabView>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SignUp.module.scss";
-import Button from "../core/button/Button";
+import BasicButton from "../core/button/BasicButton";
 import { userRegister } from "../../api/userServices";
 
 const SignUp = ({ changeState }) => {
@@ -65,8 +65,8 @@ const SignUp = ({ changeState }) => {
       };
 
       try {
-        const data = await userRegister(body);
-        console.log(data);
+        const data = await userRegister({}, body);
+        changeState();
       } catch (error) {
         error?.detail &&
           setErrors((prevErrors) => ({
@@ -172,7 +172,7 @@ const SignUp = ({ changeState }) => {
         </div>
 
         <div className={styles.buttonContainer}>
-          <Button type="submit" size="md" variant="red" title="Sign Up" />
+          <BasicButton type="submit" size="md" variant="red" title="Sign Up" />
         </div>
       </form>
     </div>

@@ -9,9 +9,9 @@ export const fetchCases = async () => {
   }
 };
 
-export const fetchCaseOpening = async (caseName) => {
+export const fetchCaseOpening = async (caseName, header) => {
   try {
-    const data = await get(`api/case/open/?caseName=${caseName}`);
+    const data = await post(`api/case/open/?caseName=${caseName}`, header);
     return data;
   } catch (e) {
     throw e;

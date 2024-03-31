@@ -11,53 +11,26 @@
     margin-bottom: 20px;
   }
 
+  div {
+    background-color: var(--stats-card);
+  }
+
   .tabView {
     border-radius: 25px;
     background-color: var(--stats-card);
-    padding: 10px 15px;
-    height: 100%;
+    flex: 1;
 
     ul {
-      margin: 0px;
-      border-radius: 25px;
-      list-style-type: none;
       background-color: var(--stats-card);
-      padding: 10px;
-      // height: 100%;
-      display: flex;
-      gap: 50px;
 
-      i {
-        color: var(--primary-color);
-        margin-right: 10px;
+      a {
+        background-color: var(--stats-card);
       }
-      li {
-        position: relative;
-        cursor: pointer;
-
-        &:hover {
-          font-weight: bold;
-        }
-
-        &::before {
-          content: "";
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background-color: var(--primary-color);
-          transition: width 0.3s ease-out;
-        }
-
-        &:hover::before {
-          width: 100%;
-        }
-      }
-    }
-
-    .content {
-      flex: 1;
     }
   }
+}
+
+.mypanel .p-panel-header {
+  background-color: #07c4e8;
+  color: #ffffff;
 }

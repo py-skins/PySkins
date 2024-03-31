@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.scss"; // Import your SCSS file
-import Button from "../core/button/Button";
+import BasicButton from "../core/button/BasicButton";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
@@ -63,7 +63,7 @@ const Navbar = () => {
 
         {/* RIGHT SIDE */}
         <div className={`sidebar ${open ? "open" : "close"}`}>
-          <Button
+          <BasicButton
             iconRight={AiOutlineClose}
             onClick={closeMenu}
             variant="outline"
@@ -80,7 +80,7 @@ const Navbar = () => {
             <NavLink to="knives">Knives</NavLink>
 
             {user.isAuthenticated && (
-              <Button
+              <BasicButton
                 iconLeft={IoIosLogOut}
                 variant="red"
                 onClick={logoutHandler}
@@ -92,7 +92,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar__menu-btn">
-          <Button
+          <BasicButton
             size={"sm"}
             variant={"outline"}
             IconRight={HiOutlineMenuAlt4}
