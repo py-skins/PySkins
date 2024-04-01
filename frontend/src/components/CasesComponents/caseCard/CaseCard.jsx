@@ -2,8 +2,9 @@ import styles from "./CaseCard.module.scss";
 
 const CaseCard = ({ caseData, onClick }) => {
   const handleCardClick = () => {
-    onClick(caseData.name);
+    onClick(caseData.slug);
   };
+
   return (
     <article
       id={caseData.name}

@@ -2,25 +2,25 @@ import { get, post } from "./api";
 
 export const fetchCases = async () => {
   try {
-    const data = await get("api/case/all");
+    const data = await get("cases");
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const fetchCaseOpening = async (caseName, header) => {
+export const fetchCaseSkins = async (caseSlug) => {
   try {
-    const data = await post(`api/case/open/?caseName=${caseName}`, header);
+    const data = await get(`cases/${caseSlug}`);
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const fetchCaseSkins = async (caseName) => {
+export const fetchCaseOpening = async (caseSlug, header) => {
   try {
-    const data = await get(`api/case/?caseName=${caseName}`);
+    const data = await post(`cases/${caseSlug}/`, header);
     return data;
   } catch (e) {
     throw e;
