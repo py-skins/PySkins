@@ -6,6 +6,7 @@ from rest_framework.decorators import permission_classes, api_view, action
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 from backend.accounts.models import Account
 from backend.authentication.serializers import AuthUserSerializer
@@ -37,6 +38,8 @@ class OpenCasesAPIView(generics.RetrieveAPIView):
         case = self.get_object()
         skins = case.base_skins.all()
 
+        print(request.headers)
+
         if not skins.exists():
             return Response(
                 data={"detail": "No skins available in this case."},
@@ -51,7 +54,7 @@ class OpenCasesAPIView(generics.RetrieveAPIView):
 
         Skin.objects.create(
             quality=quality,
-            owner=Account.objects.get(user_id=2),
+            owner=Account.objects.get(user_id=request.user.id),
             base_skin=random_skin,
         )
 

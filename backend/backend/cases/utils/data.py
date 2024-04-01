@@ -46,7 +46,7 @@ def inject_skins_and_cases_data():
                     rarity_color=skin_rarity_color,
                     weapon_type=skin_weapon_type,
                     preview_image_url=skin_preview_image_url,
-                    base_case_container=case_instance,
+                    case_container=case_instance,
                 )
 
                 skin_objects.append(skin_instance)
@@ -60,4 +60,3 @@ def inject_skins_and_cases_data():
         batch = skin_objects[i:i + batch_size]
         with transaction.atomic():
             SkinBase.objects.bulk_create(batch)
-
