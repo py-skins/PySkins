@@ -1,4 +1,4 @@
-def get_skin_quality_choices():
+def get_skin_quality_chance_choices():
     FACTORY_NEW = "factory new"
     MINIMAL_WEAR = "minimal wear"
     FIELD_TESTED = "field-tested"
@@ -11,14 +11,14 @@ def get_skin_quality_choices():
     STATTRAK_BATTLE_SCARRED = "stattrak battle-scarred"
 
     return (
-        (FACTORY_NEW, FACTORY_NEW),
-        (MINIMAL_WEAR, MINIMAL_WEAR),
-        (FIELD_TESTED, FIELD_TESTED),
-        (WELL_WORN, WELL_WORN),
-        (BATTLE_SCARRED, BATTLE_SCARRED),
-        (STATTRAK_FACTORY_NEW, STATTRAK_FACTORY_NEW),
-        (STATTRAK_MINIMAL_WEAR, STATTRAK_MINIMAL_WEAR),
-        (STATTRAK_FIELD_TESTED, STATTRAK_FIELD_TESTED),
-        (STATTRAK_WELL_WORN, STATTRAK_WELL_WORN),
-        (STATTRAK_BATTLE_SCARRED, STATTRAK_BATTLE_SCARRED),
+        (FACTORY_NEW, 5),
+        (MINIMAL_WEAR, 21),
+        (FIELD_TESTED, 44),
+        (WELL_WORN, 34),
+        (BATTLE_SCARRED, 15),
+        (STATTRAK_FACTORY_NEW, 1),
+        (STATTRAK_MINIMAL_WEAR, 3),
+        (STATTRAK_FIELD_TESTED, 6),
+        (STATTRAK_WELL_WORN, 7),
+        (STATTRAK_BATTLE_SCARRED, 11),
     )

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
 
     # Custom Apps
+    'backend.accounts',
     'backend.api',
     'backend.authentication',
     'backend.cases',
