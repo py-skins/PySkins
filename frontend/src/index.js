@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "primereact/resources/primereact.css";
-import "primereact/resources/themes/lara-dark-amber/theme.css";
+// import "primereact/resources/themes/lara-dark-amber/theme.css";
+// import "../primereact-theme/theme.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -10,6 +11,7 @@ import { PrimeReactProvider } from "primereact/api";
 
 // import "primeflex/primeflex.css";
 import "./index.css";
+import "./theme.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
