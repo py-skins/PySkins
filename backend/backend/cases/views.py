@@ -22,7 +22,7 @@ class ListCasesAPIView(generics.ListAPIView):
     queryset = Case.objects.all()
 
 
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 class OpenCasesAPIView(generics.RetrieveAPIView):
     queryset = Case.objects.all()
     serializer_class = CaseSerializer
