@@ -2,17 +2,14 @@ import random
 
 from django.contrib.auth import get_user_model
 from rest_framework import generics, status
-from rest_framework.decorators import permission_classes, api_view, action
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 from backend.accounts.models import Account
-from backend.authentication.serializers import AuthUserSerializer
-from backend.cases.models import Case, Skin
+from backend.cases.models import Case
 from backend.cases.serializers import CaseSerializer, SkinSerializer
-from backend.cases.utils.choices import get_skin_quality_chance_choices
+from backend.skins.models import Skin
+from backend.skins.utils.choices import get_skin_quality_chance_choices
 
 UserModel = get_user_model()
 
@@ -22,7 +19,6 @@ class ListCasesAPIView(generics.ListAPIView):
     queryset = Case.objects.all()
 
 
-# @permission_classes([IsAuthenticated])
 class OpenCasesAPIView(generics.RetrieveAPIView):
     queryset = Case.objects.all()
     serializer_class = CaseSerializer
@@ -38,8 +34,6 @@ class OpenCasesAPIView(generics.RetrieveAPIView):
         case = self.get_object()
         skins = case.base_skins.all()
 
-        print(request.headers)
-
         if not skins.exists():
             return Response(
                 data={"detail": "No skins available in this case."},
@@ -47,6 +41,7 @@ class OpenCasesAPIView(generics.RetrieveAPIView):
             )
 
         random_skin = random.choice(skins)
+        wear_rating = random.uniform(0.000001, 0.999999)
 
         quality_choices = get_skin_quality_chance_choices()
         qualities, chances = zip(*quality_choices)
@@ -54,6 +49,7 @@ class OpenCasesAPIView(generics.RetrieveAPIView):
 
         Skin.objects.create(
             quality=quality,
+            wear_rating=wear_rating,
             owner=Account.objects.get(user_id=request.user.id),
             base_skin=random_skin,
         )
