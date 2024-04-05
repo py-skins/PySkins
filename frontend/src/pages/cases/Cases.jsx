@@ -18,21 +18,23 @@ const CasesContainer = () => {
       try {
         const data = await fetchCases();
 
-        const dataArray = [];
-        for (const key in data.data) {
-          const { name, image_url, price } = data.data[key];
-          dataArray.push({ name, image_url, price });
-        }
+        // console.log(data);
+        // const dataArray = [];
+        // for (const key in data.data) {
+        //   const { name, image_url, price } = data.data[key];
+        //   dataArray.push({ name, image_url, price });
+        // }
 
-        setCases(dataArray);
+        setCases(data);
       } catch (e) {
         alert(e);
       }
     })();
   }, []);
 
-  const onCaseClick = (caseName) => {
-    setClickedCaseName(caseName);
+  const onCaseClick = (caseSlug) => {
+    console.log(`clicked ${caseSlug}`);
+    setClickedCaseName(caseSlug);
     setIsCaseClicked(true);
     // const currCase = cases.find((x) => x.name === caseName);
   };
@@ -49,7 +51,7 @@ const CasesContainer = () => {
           <CasesPanorama cases={cases} onCaseClick={onCaseClick} />
         )}
         {isCaseClicked && (
-          <ShowCase closeCase={closeCase} caseName={clickedCaseName} />
+          <ShowCase closeCase={closeCase} caseSlug={clickedCaseName} />
         )}
       </div>
     </section>

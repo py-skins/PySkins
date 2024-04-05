@@ -12,7 +12,7 @@ import dropSound from "./sounds/case_drop_01.mp3";
 import openingSound from "./sounds/CaseOpeningSound.mp3";
 import { useSelector } from "react-redux";
 
-const ShowCase = ({ closeCase, caseName }) => {
+const ShowCase = ({ closeCase, caseSlug }) => {
   const [skins, setSkins] = useState([]);
   const [numRaffles, setNumRaffles] = useState(1);
   const [rolled, setRolled] = useState("");
@@ -25,9 +25,9 @@ const ShowCase = ({ closeCase, caseName }) => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchCaseSkins(caseName);
-        // console.log(data.data.skins);
-        setSkins(data.data.skins);
+        const data = await fetchCaseSkins(caseSlug);
+        console.log(data.skins);
+        setSkins(data.skins);
       } catch (e) {
         alert(e);
       }
@@ -65,7 +65,7 @@ const ShowCase = ({ closeCase, caseName }) => {
       for (let i = 0; i < 100; i++) {
         // console.log(skins.length - 1);
         const randed = getRandomBetween(0, skins.length - 1);
-        let element = `<div id="raffle${row}-CardNumber${i}" class="${stylesRaffle.item}" style="background-image:url(${skins[randed].main_image_url}); border-bottom: 4px solid ${skins[randed].skin_rarity.rarity_color};"></div>`;
+        let element = `<div id="raffle${row}-CardNumber${i}" class="${stylesRaffle.item}" style="background-image:url(${skins[randed].preview_image_url}); border-bottom: 4px solid ${skins[randed].rarity_color};"></div>`;
 
         raffleRollerContainer.insertAdjacentHTML("beforeend", element);
       }
@@ -115,15 +115,15 @@ const ShowCase = ({ closeCase, caseName }) => {
         Authorization: `Bearer ${user.access}`,
       };
 
-      const openedSkin = await fetchCaseOpening(caseName, header);
+      const openedSkin = await fetchCaseOpening(caseSlug, header);
       const id = findIndexById(skins, openedSkin.id);
 
       setTimeout(() => {
         goRoll(
           row,
           skins[id].name,
-          skins[id].main_image_url,
-          skins[id].skin_rarity.rarity_color
+          skins[id].preview_image_url,
+          skins[id].rarity_color
         );
       }, 500 * row);
 
@@ -150,9 +150,10 @@ const ShowCase = ({ closeCase, caseName }) => {
 
       {!isCaseOpened && (
         <div className={styles.skinsList}>
-          {skins.map((skin) => (
-            <SkinCard key={skin.id} skin={skin} />
-          ))}
+          {skins.length > 0 &&
+            skins.map((skin) => {
+              return <SkinCard key={skin.id} skin={skin} />;
+            })}
         </div>
       )}
 
