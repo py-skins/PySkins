@@ -4,16 +4,18 @@ import jwt
 from django.conf import settings
 from django.db import transaction
 
+from backend.skins.models import BaseSkin
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
 # Import your models here
-from backend.cases.models import SkinBase, Case
+from backend.cases.models import Case
 from backend.test_dev.test_data.cases_data import CASES_DATA
 
 
 def inject_skins_and_cases_data():
-    SkinBase.objects.all().delete()
+    BaseSkin.objects.all().delete()
     Case.objects.all().delete()
 
     skin_objects = []
@@ -40,7 +42,7 @@ def inject_skins_and_cases_data():
             skin_main_image_url = skin_data['main_image_url']
 
             try:
-                skin_instance = SkinBase(
+                skin_instance = BaseSkin(
                     name=skin_name,
                     image_url=skin_main_image_url,
                     rarity_color=skin_rarity_color,
@@ -59,4 +61,4 @@ def inject_skins_and_cases_data():
     for i in range(0, len(skin_objects), batch_size):
         batch = skin_objects[i:i + batch_size]
         with transaction.atomic():
-            SkinBase.objects.bulk_create(batch)
+            BaseSkin.objects.bulk_create(batch)
