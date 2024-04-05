@@ -1,12 +1,7 @@
 from rest_framework import serializers
 
-from backend.cases.models import Case, SkinBase
-
-
-class SkinSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SkinBase
-        fields = '__all__'
+from backend.cases.models import Case
+from backend.skins.serializers import SkinSerializer
 
 
 class CaseSerializer(serializers.ModelSerializer):
