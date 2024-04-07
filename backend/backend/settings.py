@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'backend.api',
     'backend.authentication',
     'backend.cases',
+    'backend.skins',
     'backend.test_dev',
 ]
 
