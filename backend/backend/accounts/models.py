@@ -14,7 +14,7 @@ class Account(models.Model):
     first_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    profile_picture = models.URLField(null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='media_files/', null=True, blank=True)
     budget = models.DecimalField(
         max_digits=8,
         decimal_places=2,
