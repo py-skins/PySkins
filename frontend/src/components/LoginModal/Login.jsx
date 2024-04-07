@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Login.module.scss";
 import BasicButton from "../core/button/BasicButton";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../api/userServices";
 import { login } from "../../app/features/userSlice";
-import "primeicons/primeicons.css";
 
 const Login = ({ changeState, CloseForm }) => {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
     details: [],
     email: [],
     password: [],
   });
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const dispatch = useDispatch();
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -65,14 +63,14 @@ const Login = ({ changeState, CloseForm }) => {
     setErrors(errorsTemp);
 
     if (errorsTemp.email.length === 0 && errorsTemp.password.length === 0) {
-      const body = {
-        email: email.toLowerCase(),
-        password: password,
-        password2: password,
-      };
-
       try {
-        const data = await userLogin({}, body);
+        const data = await userLogin({
+          body: {
+            email: email.toLowerCase(),
+            password: password,
+            password2: password,
+          },
+        });
         const userData = {
           email,
           isAuthenticated: true,

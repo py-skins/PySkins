@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./SignUp.module.scss";
 import BasicButton from "../core/button/BasicButton";
 import { userRegister } from "../../api/userServices";
@@ -58,14 +58,15 @@ const SignUp = ({ changeState }) => {
     }
 
     if (Object.keys(newErrors).every((key) => newErrors[key].length === 0)) {
-      const body = {
-        email: formData.email.toLowerCase(),
-        password: formData.password,
-        password2: formData.confirmPassword,
-      };
-
       try {
-        const data = await userRegister({}, body);
+        const data = await userRegister({
+          body: {
+            email: formData.email.toLowerCase(),
+            password: formData.password,
+            password2: formData.confirmPassword,
+          },
+        });
+
         changeState();
       } catch (error) {
         error?.detail &&

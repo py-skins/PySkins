@@ -1,26 +1,32 @@
-import { get, post } from "./api";
+import { get, post } from "./api2";
 
-export const userLogin = async (header, body) => {
+const URLS = {
+  userLogin: "authentication/token/",
+  userRegister: "authentication/register/",
+  userLogout: "authentication/logout/",
+};
+
+export const userLogin = async (config) => {
   try {
-    const data = await post("authentication/token/", header, body);
+    const data = await post(URLS.userLogin, config);
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const userRegister = async (header, body) => {
+export const userRegister = async (config) => {
   try {
-    const data = await post("authentication/register/", header, body);
+    const data = await post(URLS.userRegister, config);
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const userLogOut = async (header) => {
+export const userLogOut = async (config) => {
   try {
-    const data = await post("/authentication/logout", header);
+    const data = await post(URLS.userLogout, config);
     return data;
   } catch (e) {
     throw e;

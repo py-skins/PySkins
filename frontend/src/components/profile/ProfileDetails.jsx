@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./ProfileDetails.module.scss"; // Import SCSS file
 import BasicButton from "../core/button/BasicButton";
-
+import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
+import { FileUpload } from "primereact/fileupload";
 
 const ProfileDetails = () => {
+  const toast = useRef(null);
+
   const [avatar, setAvatar] = useState(
     "https://svgshare.com/getbyhash/sha1-onbIfR3XhKQe87HRuqOmIcRdSag="
   );
@@ -17,6 +20,15 @@ const ProfileDetails = () => {
     budget: 10.0,
   });
 
+  const showSuccess = () => {
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Information Successfuly Updated",
+      life: 3000,
+    });
+  };
+
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     // You can add validation for image type, size, etc. here
@@ -25,6 +37,7 @@ const ProfileDetails = () => {
 
   return (
     <div className={styles.container}>
+      <Toast ref={toast} position="top-center" />
       <div className={styles.leftSection}>
         <div className={styles.avatarContainer}>
           <img
@@ -38,6 +51,18 @@ const ProfileDetails = () => {
             onChange={handleImageUpload}
             className={styles.fileInput}
           />
+
+          {/* <FileUpload
+            name="demo[]"
+            url={"/api/upload"}
+            multiple
+            accept="image/*"
+            maxFileSize={1000000}
+            emptyTemplate={
+              <p className="m-0">Drag and drop files to here to upload.</p>
+            }
+          /> */}
+
           <BasicButton
             onClick={() => {}}
             variant="red"
@@ -104,7 +129,9 @@ const ProfileDetails = () => {
           </div>
 
           <BasicButton
-            onClick={() => {}}
+            onClick={() => {
+              showSuccess();
+            }}
             variant="red"
             // IconLeft={BsChevronLeft}
             title="Update Information"

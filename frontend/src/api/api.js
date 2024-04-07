@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const requester = async (url, method, header, body) => {
   // The server's url
   const hostUrl = "http://localhost:8000/";
