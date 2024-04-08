@@ -25,7 +25,12 @@ const ShowCase = ({ closeCase, caseSlug }) => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchCaseSkins(caseSlug);
+        const data = await fetchCaseSkins(caseSlug, {
+          header: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.access}`,
+          },
+        });
         console.log(data.skins);
         setSkins(data.skins);
       } catch (e) {
@@ -110,12 +115,12 @@ const ShowCase = ({ closeCase, caseSlug }) => {
       };
 
       console.log(user.access);
-      const header = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.access}`,
-      };
-
-      const openedSkin = await fetchCaseOpening(caseSlug, header);
+      const openedSkin = await fetchCaseOpening(caseSlug, {
+        header: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.access}`,
+        },
+      });
       const id = findIndexById(skins, openedSkin.id);
 
       setTimeout(() => {

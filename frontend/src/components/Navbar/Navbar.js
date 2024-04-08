@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.scss"; // Import your SCSS file
 import BasicButton from "../core/button/BasicButton";
 import { AiOutlineClose } from "react-icons/ai";
@@ -14,7 +14,11 @@ import { useSelector } from "react-redux";
 import { logout } from "../../app/features/userSlice";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { open, openMenu, closeMenu } = useToggle(false);
+  const [avatar, setAvatar] = useState(
+    "https://svgshare.com/getbyhash/sha1-onbIfR3XhKQe87HRuqOmIcRdSag="
+  );
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -38,7 +42,17 @@ const Navbar = () => {
         </div>
 
         {user.isAuthenticated && (
-          <div className={`profile`}>
+          <div
+            className={`profile`}
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            <img
+              src={avatar || "placeholder.jpg"} // Placeholder image or uploaded image
+              alt="Avatar"
+              // className={styles.avatar}
+            />
             <p>{user.email}</p>
           </div>
         )}
