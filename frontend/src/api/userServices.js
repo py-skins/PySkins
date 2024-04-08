@@ -1,4 +1,4 @@
-import { get, post } from "./api2";
+import { post } from "./api2";
 
 const URLS = {
   userLogin: "authentication/token/",

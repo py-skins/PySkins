@@ -26,7 +26,7 @@ export const fetchCaseSkins = async (caseSlug, config) => {
 
 export const fetchCaseOpening = async (caseSlug, config) => {
   try {
-    const data = await post(URLS.caseOpening + caseSlug, config);
+    const data = await post(`${URLS.caseOpening}${caseSlug}/open`, config);
     return data;
   } catch (e) {
     throw e;
