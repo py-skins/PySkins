@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import styles from "./CaseOpening.module.scss";
 import SkinCard from "./SkinCard";
 import BasicButton from "../../core/button/BasicButton";
@@ -158,6 +157,7 @@ const CaseOpening = () => {
             return <SkinCard key={skin.id} skin={skin} />;
           })}
       </div>
+
       <div className={styles.actionBtns}>
         <BasicButton
           onClick={() => {

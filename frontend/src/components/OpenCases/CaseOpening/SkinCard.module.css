@@ -1,13 +1,15 @@
 .skinCard {
-  width: 200px;
-  height: 180px;
+  max-width: 160px;
+  min-height: 160px;
+  cursor: pointer;
   animation: 1s ease 0s 1 normal none running showcase;
   transition-timing-function: cubic-bezier(0, 0.11, 0.33, 1);
-  display: block;
 }
 
-.imageContainer {
-  display: block;
+.itemImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(
     rgba(85, 85, 85, 0.6),
     rgba(136, 136, 136, 0.6),
@@ -15,51 +17,16 @@
     rgba(187, 187, 187, 0.6)
   );
   box-shadow: inset 0px 0px 2px #444;
-  height: 80%;
+  height: 70%;
   width: 100%;
   position: relative;
   overflow: hidden;
+  padding: 2px;
 
-  .hoverPopUp {
-    position: absolute;
-    top: 0;
-    left: -200px;
-    width: 100%;
-    height: 100%;
-    transition: 0.3s ease-in-out;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 15px;
-    color: #fff;
-    font-weight: 600;
-    text-align: center;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.35) 0%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
+  img {
+    width: 95%;
+    height: auto;
   }
-
-  .hoverPopUpIcon {
-    font-size: 30px;
-  }
-
-  .item:hover .hoverPopUp {
-    left: 0px;
-  }
-
-  .img {
-    width: 100%;
-  }
-}
-
-.itemInfo {
-  padding: 3px;
-  color: #fff;
-  font-size: 12px;
 }
 
 .itemName {
@@ -73,8 +40,45 @@
   text-overflow: ellipsis;
 }
 
+.itemInfo {
+  padding: 3px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.hoverPopUp {
+  position: absolute;
+  top: 0;
+  left: -200px;
+  width: 100%;
+  height: 100%;
+  transition: 0.3s ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+.hoverPopUpIcon {
+  font-size: 30px;
+}
+
+.skinCard:hover .hoverPopUp {
+  left: 0px;
+}
+
 @media (max-width: 1280px) {
-  .item {
+  .skinCard {
     max-width: 150px;
   }
 
@@ -101,7 +105,7 @@
   }
 }
 
-/* @keyframes showcase {
+@keyframes showcase {
   0% {
     transform: scale(0.8);
     opacity: 0;
@@ -116,4 +120,4 @@
   90% {
     transform: scale(1);
   }
-} */
+}
