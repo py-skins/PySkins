@@ -7,24 +7,29 @@
   font-size: 20px;
   padding: 20px;
 
+  .message {
+    align-self: center;
+    color: var(--desc-color);
+  }
+
   h1 {
     margin-bottom: 20px;
   }
 
   div {
-    background-color: var(--stats-card);
+    background-color: var(--home-background);
   }
 
   .tabView {
     border-radius: 25px;
-    background-color: var(--stats-card);
+    background-color: var(--home-background);
     flex: 1;
 
     ul {
-      background-color: var(--stats-card);
+      background-color: var(--home-background);
 
       a {
-        background-color: var(--stats-card);
+        background-color: var(--home-background);
       }
     }
   }
