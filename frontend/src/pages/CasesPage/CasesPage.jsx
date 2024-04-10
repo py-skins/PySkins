@@ -1,11 +1,10 @@
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import ShowCase from "../../components/CasesComponents/showCase/ShowCase";
 import CasesPanorama from "../../components/CasesComponents/casesPanorama/CasesPanorama";
-import styles from "./Cases.module.css";
+import styles from "./CasesPage.module.css";
 import { fetchCases } from "../../api/casesServices";
-import Loading from "../../components/core/Loading/Loading";
 
-const CasesContainer = () => {
+const CasesPage = () => {
   const initialCasesState = [];
 
   const [cases, setCases] = useState(initialCasesState);
@@ -49,4 +48,4 @@ const CasesContainer = () => {
   );
 };
 
-export default CasesContainer;
+export default CasesPage;

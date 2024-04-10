@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Knives.module.scss";
+import styles from "./KnivesPage.module.scss";
 
 const KnivesPage = () => {
   return (
