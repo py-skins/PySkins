@@ -1,7 +1,7 @@
 import React from "react";
-import Container from "../../components/Container/Container";
+import Container from "../../Container/Container";
 import "./hero.scss"; // Import your SCSS file
-import BasicButton from "../core/button/BasicButton";
+import BasicButton from "../../core/button/BasicButton";
 import { BsChevronRight, BsSteam } from "react-icons/bs";
 
 const Hero = () => {
@@ -11,7 +11,7 @@ const Hero = () => {
         {/* LEFT BOX */}
         <div className="left-box">
           <div className="top-header">
-            Over 2 + <span>trades completed</span>
+            Over 200 000 + <span>trades completed</span>
           </div>
 
           <div className="hero-big-header">

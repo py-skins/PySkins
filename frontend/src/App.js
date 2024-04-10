@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import ChatBarPopup from "./components/chatBar/ChatBar";
+import ChatBarPopup from "./components/ChatBar/ChatBar";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import CasinoPage from "./pages/CasinoPage/CasinoPage";
 import ServicesPage from "./pages/ServicesPage/ServicesPage";

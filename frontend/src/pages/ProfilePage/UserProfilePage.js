@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./UserProfilePage.module.scss";
-import SkinCollection from "../../components/Profile/SkinCollection";
+import SkinCollection from "../../components/Profile/SkinCollections/SkinCollection";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { TabView, TabPanel } from "primereact/tabview";
 import { useSelector } from "react-redux";

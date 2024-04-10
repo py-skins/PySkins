@@ -1,6 +1,6 @@
 // import React from 'react'
 import React from "react";
-import Hero from "../../components/HomePageComponents/Hero";
+import Hero from "../../components/HomePageComponents/Hero/Hero";
 import Statistics from "../../components/HomePageComponents/Statistics/Statistics";
 import "./homePage.scss"; // Import your SCSS file
 import Products from "../../components/HomePageComponents/Products/Products";

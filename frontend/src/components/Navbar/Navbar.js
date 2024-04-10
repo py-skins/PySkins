@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import useToggle from "../../hooks/useToggle";
 import BackDrop from "../core/backdrop/BackDrop";
 import PortalComponent from "../Portal/PortalComponent";
-import LoginModal from "../LoginModal/LoginModal";
+import LoginModal from "../LoginSignUp/LoginModal";
 import { useSelector } from "react-redux";
 import { logout } from "../../app/features/userSlice";
 

@@ -4,16 +4,16 @@ export default function useToggle(defaultValue) {
   const [open, setOpen] = useState(defaultValue);
 
   const toggle = () => {
-    setOpen(currentValue => !currentValue);
+    setOpen((currentValue) => !currentValue);
   };
 
   const openMenu = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const closeMenu = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return { open, toggle, openMenu, closeMenu };
 }
