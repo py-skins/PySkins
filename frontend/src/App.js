@@ -5,7 +5,8 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import CasinoPage from "./pages/CasinoPage/CasinoPage";
 import ServicesPage from "./pages/ServicesPage/ServicesPage";
 import KnivesPage from "./pages/KnivesPage/KnivesPage";
-import CasesPage from "./pages/CasesPage/CasesPage";
+import CasesContainerPage from "./pages/CasesContainerPage/CasesContainerPage";
+import CasesOpeningPage from "./pages/CaseOpeningPage/CaseOpeningPage";
 import Footer from "./components/core/footer/Footer";
 import HomePage from "./pages/HomePage/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
@@ -18,7 +19,8 @@ const routes = [
   { path: "/", element: <HomePage /> },
   { path: "/profile", element: <UserProfilePage /> },
   { path: "/about", element: <AboutPage /> },
-  { path: "/cases", element: <CasesPage /> },
+  { path: "/cases", element: <CasesContainerPage /> },
+  { path: "/cases/:id", element: <CasesOpeningPage /> },
   { path: "/casino", element: <CasinoPage /> },
   { path: "/services", element: <ServicesPage /> },
   { path: "/knives", element: <KnivesPage /> },

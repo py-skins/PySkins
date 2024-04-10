@@ -30,8 +30,8 @@ const Hero = () => {
 
           <div className="bottom-header">
             <BasicButton
-              title="trade skins now"
-              icon={BsChevronRight}
+              title="Open cases now"
+              iconRight={BsChevronRight}
               className="btn"
               variant="red"
               size="md"

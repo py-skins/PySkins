@@ -1,8 +1,11 @@
 import styles from "./CaseCard.module.scss";
+import { useNavigate } from "react-router-dom";
 
-const CaseCard = ({ caseData, onClick }) => {
+const CaseCard = ({ caseData }) => {
+  const navigate = useNavigate();
+
   const handleCardClick = () => {
-    onClick(caseData.slug);
+    navigate(`/cases/${caseData.slug}`);
   };
 
   return (

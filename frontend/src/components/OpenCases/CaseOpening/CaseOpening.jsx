@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-import styles from "./ShowCase.module.scss";
+import styles from "./CaseOpening.module.scss";
 import SkinCard from "./SkinCard";
 import BasicButton from "../../core/button/BasicButton";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
@@ -12,7 +13,10 @@ import dropSound from "./sounds/case_drop_01.mp3";
 import openingSound from "./sounds/CaseOpeningSound.mp3";
 import { useSelector } from "react-redux";
 
-const ShowCase = ({ closeCase, caseSlug }) => {
+const ShowCase = () => {
+  const { id: caseSlug } = useParams();
+  const navigate = useNavigate();
+
   const [skins, setSkins] = useState([]);
   const [numRaffles, setNumRaffles] = useState(1);
   const [rolled, setRolled] = useState("");
@@ -164,7 +168,9 @@ const ShowCase = ({ closeCase, caseSlug }) => {
 
       <div className={styles.actionBtns}>
         <BasicButton
-          onClick={closeCase}
+          onClick={() => {
+            navigate(-1);
+          }}
           variant="red"
           IconLeft={BsChevronLeft}
           title="Back to cases"
