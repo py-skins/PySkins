@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./statistics.scss"; // Import your SCSS file
-import Container from "../../../components/Container/Container";
+import styles from "./Statistics.module.scss";
+import Layout from "../../Layout/Layout";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
 
@@ -28,13 +28,13 @@ const Statistics = () => {
 
   return (
     <ScrollTrigger onEnter={() => setCounter(true)}>
-      <Container>
-        <div className="stats-card-wrapper">
+      <Layout>
+        <div className={styles[`stats-card-wrapper`]}>
           {tabs &&
             tabs
               .filter((tab) => tab.desc === "Deposit bonus")
               .map((item) => (
-                <div className="stats-card" key={item.number}>
+                <div className={styles[`stats-card`]} key={item.number}>
                   {counter && (
                     <>
                       <CountUp
@@ -67,7 +67,7 @@ const Statistics = () => {
             tabs
               .filter((tab) => tab.desc !== "Deposit bonus")
               .map((item) => (
-                <div className="stats-card" key={item.number}>
+                <div className={styles[`stats-card`]} key={item.number}>
                   {counter && (
                     <CountUp
                       start={0}
@@ -80,7 +80,7 @@ const Statistics = () => {
                 </div>
               ))}
         </div>
-      </Container>
+      </Layout>
     </ScrollTrigger>
   );
 };

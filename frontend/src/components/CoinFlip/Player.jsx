@@ -1,9 +1,9 @@
 import React from "react";
-import "./Player.scss";
+import styles from "./Player.module.scss";
 
 const Player = ({ name, image, itemsCount, itemsValue, winChance }) => {
   return (
-    <div className="container">
+    <div className={styles.container}>
       <p>{name}</p>
       <img src={image} alt={name} />
       <p style={{ color: "var(--paragraph-color)" }}>{itemsCount} ITEMS</p>

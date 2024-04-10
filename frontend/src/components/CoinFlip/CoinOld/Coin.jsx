@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./coin.module.scss";
+import styles from "./Coin.module.scss";
 
 const Coin = () => {
   const [value, setValue] = useState(-1);

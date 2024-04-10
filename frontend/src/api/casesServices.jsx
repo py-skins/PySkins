@@ -1,4 +1,4 @@
-import { get, post } from "./api2";
+import { get, post } from "./API";
 
 const URLS = {
   fetchCases: "cases",

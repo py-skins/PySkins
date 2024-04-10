@@ -3,9 +3,11 @@
   height: 180px;
   animation: 1s ease 0s 1 normal none running showcase;
   transition-timing-function: cubic-bezier(0, 0.11, 0.33, 1);
+  display: block;
 }
 
 .imageContainer {
+  display: block;
   background: linear-gradient(
     rgba(85, 85, 85, 0.6),
     rgba(136, 136, 136, 0.6),
@@ -50,6 +52,7 @@
   }
 
   .img {
+    width: 100%;
   }
 }
 

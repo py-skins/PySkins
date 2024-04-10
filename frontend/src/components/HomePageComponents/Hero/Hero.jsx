@@ -1,26 +1,26 @@
 import React from "react";
-import Container from "../../Container/Container";
-import "./hero.scss"; // Import your SCSS file
+import Layout from "../../Layout/Layout";
+import styles from "./Hero.module.scss";
 import BasicButton from "../../core/button/BasicButton";
 import { BsChevronRight, BsSteam } from "react-icons/bs";
 
 const Hero = () => {
   return (
-    <Container>
-      <div className="wrapper">
+    <Layout>
+      <div className={styles.wrapper}>
         {/* LEFT BOX */}
-        <div className="left-box">
-          <div className="top-header">
+        <div className={styles[`left-box`]}>
+          <div className={styles[`top-header`]}>
             Over 200 000 + <span>trades completed</span>
           </div>
 
-          <div className="hero-big-header">
+          <div className={styles[`hero-big-header`]}>
             <div>
               trade <span>cs2</span> skins
             </div>
           </div>
 
-          <div className="desc">
+          <div className={styles[`desc`]}>
             <p>
               Our CS2 Trade Bot Has All the Skins You Need!
               <br />
@@ -28,7 +28,7 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="bottom-header">
+          <div className={styles[`bottom-header`]}>
             <BasicButton
               title="Open cases now"
               iconRight={BsChevronRight}
@@ -50,16 +50,16 @@ const Hero = () => {
         </div>
 
         {/* BACKGROUND WORDS */}
-        <div className="stroke-wrapper">
-          <div className="stroke-text">trade csgo</div>
+        <div className={styles[`stroke-wrapper`]}>
+          <div className={styles[`stroke-text`]}>trade csgo</div>
         </div>
 
         {/* IMAGES */}
-        <div className="hero-imgContainer">
-          <img src="/img/knive.png" alt="" className="hero-knive" />
+        <div className={styles[`hero-imgContainer`]}>
+          <img src="/img/knive.png" alt="" className={styles[`hero-knive`]} />
         </div>
       </div>
-    </Container>
+    </Layout>
   );
 };
 

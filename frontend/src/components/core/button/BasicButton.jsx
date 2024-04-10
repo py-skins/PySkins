@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./BasicButton.scss";
+import styles from "./BasicButton.module.scss";
 
 const BasicButton = ({
   title,
@@ -14,31 +14,31 @@ const BasicButton = ({
   opacity,
 }) => {
   return (
-    <div className="btn-wrapper">
+    <div className={styles[`btn-wrapper`]}>
       <button
         onClick={onClick}
         className={`
-        btn
-        ${variant === "red" ? "red" : null}
-        ${variant === "outline" ? "outline" : null}
-        ${variant === "white" ? "white" : null}
-        ${size === "sm" ? "sm" : null}
-        ${size === "md" ? "md" : null}
-        ${size === "lg" ? "lg" : null}
-        ${reverse ? "reverse" : null}
-        ${hover ? "hover" : null}
-        ${opacity ? "opacity" : null}
+        ${styles[`btn`]}
+        ${variant === "red" ? [styles[`red`]] : null}
+        ${variant === "outline" ? [styles[`outline`]] : null}
+        ${variant === "white" ? [styles[`white`]] : null}
+        ${size === "sm" ? [styles[`sm`]] : null}
+        ${size === "md" ? [styles[`md`]] : null}
+        ${size === "lg" ? [styles[`lg`]] : null}
+        ${reverse ? [styles[`reverse`]] : null}
+        ${hover ? [styles[`hover`]] : null}
+        ${opacity ? [styles[`opacity`]] : null}
         
         `}
       >
         {IconLeft && (
-          <div className="icon">
+          <div className={styles.icon}>
             <IconLeft size={18} />
           </div>
         )}
         {title}
         {IconRight && (
-          <div className="icon">
+          <div className={styles.icon}>
             <IconRight size={18} />
           </div>
         )}

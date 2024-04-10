@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import styles from "./CaseOpening.module.scss";
@@ -6,22 +6,21 @@ import SkinCard from "./SkinCard";
 import BasicButton from "../../core/button/BasicButton";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { fetchCaseSkins, fetchCaseOpening } from "../../../api/casesServices";
-import RaffleRoller from "./RaffleRoller";
 import stylesRaffle from "./RaffleRoller.module.scss";
-import { ProgressSpinner } from "primereact/progressspinner";
 
 import dropSound from "./sounds/case_drop_01.mp3";
 import openingSound from "./sounds/CaseOpeningSound.mp3";
 import { useSelector } from "react-redux";
 
-const ShowCase = () => {
+const CaseOpening = () => {
   const { id: caseSlug } = useParams();
   const navigate = useNavigate();
 
   const [caseInfo, setCaseInfo] = useState(null);
+  const [skins, setSkins] = useState([]);
 
   const [isCaseOpened, setIsCaseOpened] = useState(false);
-  const [skins, setSkins] = useState([]);
+
   const [numRaffles, setNumRaffles] = useState(1);
   const [rolled, setRolled] = useState("");
   const [isRolling, setIsRolling] = useState(false);
@@ -143,26 +142,22 @@ const ShowCase = () => {
 
   return (
     <div className={styles.caseopening_container}>
-      <Suspense fallback={<ProgressSpinner />}>
-        <>
-          {caseInfo && (
-            <div className={styles.caseInfo}>
-              <p className={styles.welcome_msg}>
-                Unlock Container <span>{caseInfo.name}</span>
-              </p>
-              <img src={caseInfo.image_url} alt="case-img" />
-            </div>
-          )}
-
-          <div className={styles.skinsList}>
-            {skins.length > 0 &&
-              skins.map((skin) => {
-                return <SkinCard key={skin.id} skin={skin} />;
-              })}
-          </div>
-        </>
-      </Suspense>
-
+      <div className={styles.caseInfo}>
+        {caseInfo && (
+          <>
+            <p className={styles.welcome_msg}>
+              Unlock Container <span>{caseInfo.name}</span>
+            </p>
+            <img src={caseInfo.image_url} alt="case-img" />
+          </>
+        )}
+      </div>
+      <div className={styles.skinsList}>
+        {skins.length > 0 &&
+          skins.map((skin) => {
+            return <SkinCard key={skin.id} skin={skin} />;
+          })}
+      </div>
       <div className={styles.actionBtns}>
         <BasicButton
           onClick={() => {
@@ -222,4 +217,4 @@ const ShowCase = () => {
   );
 };
 
-export default ShowCase;
+export default React.memo(CaseOpening);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./navbar.scss"; // Import your SCSS file
+import styles from "./navbar.module.scss";
 import BasicButton from "../core/button/BasicButton";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
@@ -33,9 +33,11 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={`navbar ${open ? "open" : "close"}`}>
+      <div
+        className={`${styles.navbar} ${open ? [styles.open] : [styles.close]}`}
+      >
         {/* LOGO */}
-        <div className="logo">
+        <div className={styles.logo}>
           <NavLink to="/">
             <img src={"/img/pylogo-transperant.png"} alt="" />
           </NavLink>
@@ -44,29 +46,25 @@ const Navbar = () => {
         {user.isAuthenticated && (
           <>
             <div
-              className={`profile`}
+              className={styles.profile}
               onClick={() => {
                 navigate("/profile");
               }}
             >
-              <div className={`budget`}>
+              <div className={styles.budget}>
                 <i className="pi pi-wallet" style={{ fontSize: "1.2rem" }}></i>
-                <p className="money">{user.budget.toFixed(2)}</p>
+                <p className={styles.money}>{user.budget.toFixed(2)}</p>
               </div>
 
-              <img
-                src={avatar || "placeholder.jpg"} // Placeholder image or uploaded image
-                alt="Avatar"
-                // className={styles.avatar}
-              />
+              <img src={avatar || "placeholder.jpg"} alt="Avatar" />
               <p>{user.email}</p>
             </div>
           </>
         )}
         {!user.isAuthenticated && (
-          <div className={`login`}>
+          <div className={styles.login}>
             <p
-              className={`login`}
+              className={styles.login}
               onClick={() => {
                 setShowModal(true);
               }}
@@ -81,8 +79,11 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* RIGHT SIDE */}
-        <div className={`sidebar ${open ? "open" : "close"}`}>
+        <div
+          className={`${styles.sidebar} ${
+            open ? [styles.open] : [styles.close]
+          }`}
+        >
           <BasicButton
             iconRight={AiOutlineClose}
             onClick={closeMenu}
@@ -90,7 +91,7 @@ const Navbar = () => {
             size="sm"
           />
 
-          <div className="right-side" onClick={closeMenu}>
+          <div className={styles[`right-side`]} onClick={closeMenu}>
             <NavLink to="profile">Proifle</NavLink>
             <NavLink to="/">Home</NavLink>
             <NavLink to="about">About</NavLink>
@@ -111,7 +112,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="navbar__menu-btn">
+        <div className={styles[`navbar__menu-btn`]}>
           <BasicButton
             size={"sm"}
             variant={"outline"}

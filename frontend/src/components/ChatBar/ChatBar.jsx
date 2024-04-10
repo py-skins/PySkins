@@ -1,13 +1,12 @@
-// ChatBarPopup.js
 import React, { useState } from "react";
-import { AiOutlineWechat } from "react-icons/ai"
-import { BsFillChatDotsFill } from "react-icons/bs"
-import "./chatBar.scss"; // Import your SCSS file
+import { AiOutlineWechat } from "react-icons/ai";
+import { BsFillChatDotsFill } from "react-icons/bs";
+import styles from "./ChatBar.module.scss";
 
 const ChatBarPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [userInput, setUserInput] = useState(""); // State to store user input
+  const [userInput, setUserInput] = useState("");
 
   const toggleChatPopup = () => {
     setIsOpen(!isOpen);
@@ -22,41 +21,50 @@ const ChatBarPopup = () => {
   };
 
   const handleInputChange = (e) => {
-    // Update user input as they type
     setUserInput(e.target.value);
   };
 
   const handleSend = () => {
     if (userInput.trim() !== "") {
-      // If the user sends a message, add it to the messages
       setMessages([...messages, userInput]);
-      setUserInput(""); // Clear the user input field
+      setUserInput("");
     }
   };
 
   return (
-    <div className={`chat-bar-popup ${isOpen ? "open" : ""}`}>
-      <button className="chat-button" onClick={toggleChatPopup}>
-        {/* {isOpen ? "Close Chat" : "Open Chat"} */}
-        {isOpen ? <AiOutlineWechat size={28}/> : <BsFillChatDotsFill size={24}/>}
+    <div
+      className={`${styles[`chat-bar-popup`]} ${
+        isOpen ? [styles[`open`]] : ""
+      }`}
+    >
+      <button className={styles[`chat-button`]} onClick={toggleChatPopup}>
+        {isOpen ? (
+          <AiOutlineWechat size={28} />
+        ) : (
+          <BsFillChatDotsFill size={24} />
+        )}
       </button>
       {isOpen && (
-        <div className="chat-popup">
-          <div className="chat-messages">
+        <div className={styles[`chat-popup`]}>
+          <div className={styles[`chat-messages`]}>
             {messages.map((message, index) => (
-              <div key={index} className="chat-message">
+              <div key={index} className={styles[`chat-message`]}>
                 {message}
               </div>
             ))}
           </div>
-          <div className="input-area">
+          <div className={styles[`input-area`]}>
             <input
               type="text"
               value={userInput}
               onChange={handleInputChange}
               placeholder="Type your message..."
             />
-            <button className="send-button" type="submit" onClick={handleSend}>
+            <button
+              className={styles[`send-button`]}
+              type="submit"
+              onClick={handleSend}
+            >
               Send
             </button>
           </div>

@@ -9,7 +9,7 @@ const InventorySkinCard = ({ skinData }) => {
           borderLeft: `6px solid ${skinData.skin_rarity.rarity_color}`,
         }}
       >
-        <img src={skinData.main_image_url} alt="Skin image" />
+        <img src={skinData.main_image_url} alt="Skin" />
       </div>
       <div className={styles.itemInfo}>
         <p className={styles.itemName}>{skinData.name}</p>

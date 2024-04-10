@@ -1,6 +1,6 @@
 import React from "react";
-import Container from "../../Container/Container";
-import "./navCards.scss"; // Import your SCSS file
+import Layout from "../../Layout/Layout";
+import styles from "./NavCards.module.scss";
 import SingleNavCard from "./SingleNavCard";
 import { SiExpertsexchange } from "react-icons/si";
 import { MdCurrencyExchange } from "react-icons/md";
@@ -8,8 +8,8 @@ import { FaHandshake } from "react-icons/fa";
 
 const NavCards = () => {
   return (
-    <Container>
-      <div className="card__wrapper">
+    <Layout>
+      <div className={styles.card__wrapper}>
         <SingleNavCard
           icon={SiExpertsexchange}
           title="Trade CS2 Skins"
@@ -31,7 +31,7 @@ const NavCards = () => {
           delayTwo={true}
         />
       </div>
-    </Container>
+    </Layout>
   );
 };
 

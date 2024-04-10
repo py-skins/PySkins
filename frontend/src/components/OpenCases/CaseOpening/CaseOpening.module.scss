@@ -32,14 +32,10 @@
   }
 
   .skinsList {
-    width: 100%;
-    gap: 10px;
-    padding: 20px;
+    padding: 20px 10px 10px 10px;
     display: flex;
+    gap: 10px;
     flex-wrap: wrap;
-    justify-content: start;
-    align-self: center;
-    justify-self: center;
   }
 
   .actionBtns {

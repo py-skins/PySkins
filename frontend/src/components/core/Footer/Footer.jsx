@@ -1,11 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
-import "./footer.scss";
+import styles from "./Footer.module.scss";
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-desc">
+    <footer className={styles.footer}>
+      <div className={styles[`footer-container`]}>
+        <div className={styles[`footer-desc`]}>
           <h4>Introducing PySkins: Created From Gamers, For Gamers!</h4>
           <p>
             PySkins is a cutting-edge website developed by a team of skilled
@@ -23,7 +23,7 @@ function Footer() {
 
           <p>Copyright © PySkins 2024 All Rights Reserved</p>
         </div>
-        <div className="footer-col">
+        <div className={styles[`footer-col`]}>
           <h4>About</h4>
           <ul>
             <li>
@@ -43,9 +43,9 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="footer-col">
+        <div className={styles[`footer-col`]}>
           <h4>follow us</h4>
-          <div className="social-links">
+          <div className={styles[`social-links`]}>
             <Link to="/">
               <i className="fab fa-facebook-f"></i>
             </Link>

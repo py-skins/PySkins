@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import "./products.scss"; // Import your SCSS file
-import Container from "../../Container/Container";
+import styles from "./Products.module.scss";
+import Layout from "../../Layout/Layout";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { fetchCasesOld } from "../../../api/casesServices";
@@ -54,9 +54,9 @@ const Products = () => {
   const caseData = skins.map((index) => index.skins[1]);
 
   return (
-    <Container>
-      <div className="carousel">
-        <h1 className="card-header">Trade Our CS2 Skins</h1>
+    <Layout>
+      <div className={styles[`carousel`]}>
+        <h1 className={styles[`card-header`]}>Trade Our CS2 Skins</h1>
         <ScrollTrigger onEnter={() => setLoad(true)}>
           <Carousel
             responsive={responsive}
@@ -68,7 +68,7 @@ const Products = () => {
               <div key={index}>
                 {/* LOAD SKINS WHEN SCROLL ON CAROUSEL */}
                 {load && (
-                  <div className="card-wrapper">
+                  <div className={styles[`card-wrapper`]}>
                     <Suspense fallback={<Skeleton type="carousel" />}>
                       <SkinsCarousel product={product} />
                     </Suspense>
@@ -79,7 +79,7 @@ const Products = () => {
           </Carousel>
         </ScrollTrigger>
       </div>
-    </Container>
+    </Layout>
   );
 };
 
