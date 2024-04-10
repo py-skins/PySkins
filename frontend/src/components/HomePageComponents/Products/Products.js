@@ -44,9 +44,7 @@ const Products = () => {
     try {
       const data = await fetchCasesOld();
       setSkins(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

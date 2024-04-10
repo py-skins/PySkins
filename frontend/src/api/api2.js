@@ -9,8 +9,6 @@ const requester = async (url, config) => {
     config.body = JSON.stringify(config.body);
   }
 
-  console.log("requester", config);
-
   try {
     const response = await fetch(hostUrl + url, config);
     // Checking if the status is 204 (NO CONTENT) to return the response without parsing if to an object

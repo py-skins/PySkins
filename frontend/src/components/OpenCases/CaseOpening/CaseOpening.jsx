@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import styles from "./CaseOpening.module.scss";
@@ -8,6 +8,7 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { fetchCaseSkins, fetchCaseOpening } from "../../../api/casesServices";
 import RaffleRoller from "./RaffleRoller";
 import stylesRaffle from "./RaffleRoller.module.scss";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 import dropSound from "./sounds/case_drop_01.mp3";
 import openingSound from "./sounds/CaseOpeningSound.mp3";
@@ -17,6 +18,9 @@ const ShowCase = () => {
   const { id: caseSlug } = useParams();
   const navigate = useNavigate();
 
+  const [caseInfo, setCaseInfo] = useState(null);
+
+  const [isCaseOpened, setIsCaseOpened] = useState(false);
   const [skins, setSkins] = useState([]);
   const [numRaffles, setNumRaffles] = useState(1);
   const [rolled, setRolled] = useState("");
@@ -29,13 +33,8 @@ const ShowCase = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchCaseSkins(caseSlug, {
-          header: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.access}`,
-          },
-        });
-        console.log(data.skins);
+        const data = await fetchCaseSkins(caseSlug, {});
+        setCaseInfo(data);
         setSkins(data.skins);
       } catch (e) {
         alert(e);
@@ -46,7 +45,6 @@ const ShowCase = () => {
     dropSoundAudio.play();
   }, []);
 
-  const [isCaseOpened, setIsCaseOpened] = useState(false);
   const openCase = () => {
     setIsCaseOpened(true);
   };
@@ -72,7 +70,6 @@ const ShowCase = () => {
       }
 
       for (let i = 0; i < 100; i++) {
-        // console.log(skins.length - 1);
         const randed = getRandomBetween(0, skins.length - 1);
         let element = `<div id="raffle${row}-CardNumber${i}" class="${stylesRaffle.item}" style="background-image:url(${skins[randed].preview_image_url}); border-bottom: 4px solid ${skins[randed].rarity_color};"></div>`;
 
@@ -114,11 +111,9 @@ const ShowCase = () => {
         if (window.innerWidth <= 500) {
           width = 5680;
         }
-        // console.log("Viewport:", window.innerWidth);
         raffleRollerContainer.style.marginLeft = `-${width}px`;
       };
 
-      console.log(user.access);
       const openedSkin = await fetchCaseOpening(caseSlug, {
         header: {
           "Content-Type": "application/json",
@@ -147,24 +142,26 @@ const ShowCase = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <p className={styles.welcome_msg}>Items that might be in this case:</p>
-      {isCaseOpened && (
-        <RaffleRoller
-          skins={skins}
-          rolled={rolled}
-          raffles={numRaffles}
-        ></RaffleRoller>
-      )}
+    <div className={styles.caseopening_container}>
+      <Suspense fallback={<ProgressSpinner />}>
+        <>
+          {caseInfo && (
+            <div className={styles.caseInfo}>
+              <p className={styles.welcome_msg}>
+                Unlock Container <span>{caseInfo.name}</span>
+              </p>
+              <img src={caseInfo.image_url} alt="case-img" />
+            </div>
+          )}
 
-      {!isCaseOpened && (
-        <div className={styles.skinsList}>
-          {skins.length > 0 &&
-            skins.map((skin) => {
-              return <SkinCard key={skin.id} skin={skin} />;
-            })}
-        </div>
-      )}
+          <div className={styles.skinsList}>
+            {skins.length > 0 &&
+              skins.map((skin) => {
+                return <SkinCard key={skin.id} skin={skin} />;
+              })}
+          </div>
+        </>
+      </Suspense>
 
       <div className={styles.actionBtns}>
         <BasicButton

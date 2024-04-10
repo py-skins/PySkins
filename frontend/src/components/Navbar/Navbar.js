@@ -42,19 +42,26 @@ const Navbar = () => {
         </div>
 
         {user.isAuthenticated && (
-          <div
-            className={`profile`}
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            <img
-              src={avatar || "placeholder.jpg"} // Placeholder image or uploaded image
-              alt="Avatar"
-              // className={styles.avatar}
-            />
-            <p>{user.email}</p>
-          </div>
+          <>
+            <div
+              className={`profile`}
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              <div className={`budget`}>
+                <i className="pi pi-wallet" style={{ fontSize: "1.2rem" }}></i>
+                <p className="money">{user.budget.toFixed(2)}</p>
+              </div>
+
+              <img
+                src={avatar || "placeholder.jpg"} // Placeholder image or uploaded image
+                alt="Avatar"
+                // className={styles.avatar}
+              />
+              <p>{user.email}</p>
+            </div>
+          </>
         )}
         {!user.isAuthenticated && (
           <div className={`login`}>
@@ -62,7 +69,6 @@ const Navbar = () => {
               className={`login`}
               onClick={() => {
                 setShowModal(true);
-                console.log(showModal);
               }}
             >
               Log In

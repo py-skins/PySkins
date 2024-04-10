@@ -1,74 +1,95 @@
-.container {
-  padding: 10px;
+.caseopening_container {
+  // min-height: calc(100vh - 70px);
+  width: 100%;
+  background: var(--home-background);
+  color: white;
+  padding: 20px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.welcome_msg {
-  font-weight: 500;
-  font-size: 24px;
-}
-
-.start {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  p {
-    cursor: pointer;
-    padding: 8px 15px;
-    margin-right: 10px;
-    background-color: #0e1a23;
-    border-radius: 50%;
-  }
+  .caseInfo {
+    width: 100%;
+    .welcome_msg {
+      font-weight: 500;
+      font-size: 24px;
 
-  .active {
-    background-color: var(--primary-color);
-  }
-}
-
-.skinsList {
-  height: 100%;
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  align-self: center;
-  justify-self: center;
-}
-
-.actionBtns {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.rouletteWrapper {
-  height: 500px;
-}
-
-.roulette {
-  padding-top: 100px;
-  overflow: hidden;
-  position: relative;
-}
-
-.blurredRoulette {
-  filter: blur(3px) brightness(75%);
-}
-
-.circleRoulette {
-  transform: scale(1.1);
-}
-
-@media (max-width: 500px) {
-  .start {
-    p {
-      padding: 5px 12px;
-      margin-right: 5px;
+      span {
+        font-size: 30px;
+        color: var(--Yellow-Color);
+      }
     }
+
+    img {
+      min-width: 15%;
+      max-width: 300px;
+      filter: drop-shadow(0px 0px 12px #fff6);
+    }
+
+    border-bottom: var(--primary-color) solid 2px;
+  }
+
+  .skinsList {
+    width: 100%;
+    gap: 10px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .actionBtns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }
+
+// .start {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   p {
+//     cursor: pointer;
+//     padding: 8px 15px;
+//     margin-right: 10px;
+//     background-color: #0e1a23;
+//     border-radius: 50%;
+//   }
+
+//   .active {
+//     background-color: var(--primary-color);
+//   }
+// }
+
+// .rouletteWrapper {
+//   height: 500px;
+// }
+
+// .roulette {
+//   padding-top: 100px;
+//   overflow: hidden;
+//   position: relative;
+// }
+
+// .blurredRoulette {
+//   filter: blur(3px) brightness(75%);
+// }
+
+// .circleRoulette {
+//   transform: scale(1.1);
+// }
+
+// @media (max-width: 500px) {
+//   .start {
+//     p {
+//       padding: 5px 12px;
+//       margin-right: 5px;
+//     }
+//   }
+// }

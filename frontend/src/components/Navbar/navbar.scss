@@ -129,6 +129,22 @@
   background-color: var(--home-background);
   cursor: pointer;
 
+  .budget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: var(--Yellow-Color);
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    padding: 6px 12px;
+
+    .money {
+      color: var(--Yellow-Color);
+      margin-left: 5px;
+    }
+  }
+
   img {
     width: 30px;
     height: 30px;

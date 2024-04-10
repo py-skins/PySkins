@@ -79,7 +79,6 @@ const CoinFlip = () => {
     setWinner(".");
     setMessage("");
     const random = parseFloat((Math.random() * 100).toFixed(2));
-    console.log(random);
     const result = random <= p2WinChance ? "heads" : "tails";
 
     deferFn(() => {

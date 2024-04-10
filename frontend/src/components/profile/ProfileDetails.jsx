@@ -16,7 +16,7 @@ const ProfileDetails = () => {
     firstName: "",
     lastName: "",
     dateOfBirth: "",
-    budget: 10.0,
+    budget: 0,
   });
 
   const showSuccess = () => {
