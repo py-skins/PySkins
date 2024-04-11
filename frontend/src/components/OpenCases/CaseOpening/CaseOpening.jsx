@@ -1,32 +1,29 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CaseOpening.module.scss";
 import SkinCard from "./SkinCard";
 import BasicButton from "../../core/button/BasicButton";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { fetchCaseSkins, fetchCaseOpening } from "../../../api/casesServices";
-import stylesRaffle from "./RaffleRoller.module.scss";
-
 import dropSound from "./sounds/case_drop_01.mp3";
-import openingSound from "./sounds/CaseOpeningSound.mp3";
+import { Toast } from "primereact/toast";
+
 import { useSelector } from "react-redux";
+import RaffleRoller from "./RaffleRoller";
 
 const CaseOpening = () => {
   const { id: caseSlug } = useParams();
+  const user = useSelector((state) => state.user);
+  const dropSoundAudio = new Audio(dropSound);
+
+  const toast = useRef(null);
   const navigate = useNavigate();
 
   const [caseInfo, setCaseInfo] = useState(null);
   const [skins, setSkins] = useState([]);
-
-  const [isCaseOpened, setIsCaseOpened] = useState(false);
-
   const [numRaffles, setNumRaffles] = useState(1);
-  const [rolled, setRolled] = useState("");
-  const [isRolling, setIsRolling] = useState(false);
-  const user = useSelector((state) => state.user);
-
-  const dropSoundAudio = new Audio(dropSound);
-  const openingSoundAudio = new Audio(openingSound);
+  const [openedSkin, setOpenedSkin] = useState({});
+  const [RaffleComponent, setRaffleComponent] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -43,177 +40,91 @@ const CaseOpening = () => {
     dropSoundAudio.play();
   }, []);
 
-  const openCase = () => {
-    setIsCaseOpened(true);
-  };
-
-  function findIndexById(array, id) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === id) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
   const startRaffle = async () => {
-    const generate = async (row) => {
-      const raffleRollerContainer = document.getElementById(`raffle${row}`);
-      raffleRollerContainer.style.transition = "sdf";
-      raffleRollerContainer.style.marginLeft = "0px";
-      raffleRollerContainer.innerHTML = "";
-
-      function getRandomBetween(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
-      for (let i = 0; i < 100; i++) {
-        const randed = getRandomBetween(0, skins.length - 1);
-        let element = `<div id="raffle${row}-CardNumber${i}" class="${stylesRaffle.item}" style="background-image:url(${skins[randed].preview_image_url}); border-bottom: 4px solid ${skins[randed].rarity_color};"></div>`;
-
-        raffleRollerContainer.insertAdjacentHTML("beforeend", element);
-      }
-
-      const goRoll = (row, skin, skinimg, rarity) => {
-        const raffleRollerContainer = document.getElementById(`raffle${row}`);
-        raffleRollerContainer.style.transition =
-          "all 8s cubic-bezier(.08,.6,0,1)";
-        const winningItem = document.getElementById(
-          `raffle${row}-CardNumber73`
-        );
-        winningItem.style.backgroundImage = `url(${skinimg})`;
-        winningItem.style.borderColor = `${rarity}`;
-
-        setTimeout(() => {
-          winningItem.classList.add(stylesRaffle["winning-item"]);
-          setRolled(skin);
-          const win_element = `<div class='${stylesRaffle.item}' style='background-image: url(${skinimg}) ; border-bottom: 4px solid ${rarity}'></div>`;
-
-          const inventory = document.querySelector(
-            `.${stylesRaffle.inventory}`
-          );
-          inventory.insertAdjacentHTML("beforeend", win_element);
-          // dropSoundAudio.volume = 0.1;
-          // dropSoundAudio.play();
-
-          if (row === numRaffles) {
-            setIsRolling(false);
-          }
-        }, 9000);
-
-        // let width = 10250;
-        // let width = 5680;
-
-        let width = 10250;
-        // Check viewport width
-        if (window.innerWidth <= 500) {
-          width = 5680;
-        }
-        raffleRollerContainer.style.marginLeft = `-${width}px`;
-      };
-
-      const openedSkin = await fetchCaseOpening(caseSlug, {
-        header: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.access}`,
-        },
+    if (!user.isAuthenticated) {
+      toast.current.show({
+        severity: "warn",
+        summary: "Attention",
+        detail: "You are not Logged In!",
+        life: 2000,
       });
-      const id = findIndexById(skins, openedSkin.id);
-
-      setTimeout(() => {
-        goRoll(
-          row,
-          skins[id].name,
-          skins[id].preview_image_url,
-          skins[id].rarity_color
-        );
-      }, 500 * row);
-
-      setIsRolling(true);
-    };
-
-    for (let i = 1; i <= numRaffles; i++) {
-      generate(i);
-      openingSoundAudio.volume = 0.1;
-      openingSoundAudio.play();
+      return;
     }
+
+    const openedSkin = await fetchCaseOpening(caseSlug, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.access}`,
+      },
+    });
+
+    // console.log(openedSkin);
+    // const openedSkin = {
+    //   id: 9,
+    //   name: "P90 Neoqueen Large Rendering",
+    //   image_url:
+    //     "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p90_gs_p90_neoqueen_light_large.fa2a81f8c7906b2683b5eb4b562edd2529ad2cf0.png",
+    //   rarity_color: "#8847FF",
+    //   weapon_type: "SMG",
+    //   preview_image_url:
+    //     "https://csgostash.com/storage/img/skin_sideview/s1545.png?id=eb65a96c0e7dbd8fd4247e1949b97b90",
+    //   case_container: 1,
+    // };
+
+    setOpenedSkin(openedSkin);
+    setRaffleComponent(true);
   };
 
   return (
-    <div className={styles.caseopening_container}>
-      <div className={styles.caseInfo}>
-        {caseInfo && (
-          <>
-            <p className={styles.welcome_msg}>
-              Unlock Container <span>{caseInfo.name}</span>
-            </p>
-            <img src={caseInfo.image_url} alt="case-img" />
-          </>
-        )}
-      </div>
-      <div className={styles.skinsList}>
-        {skins.length > 0 &&
-          skins.map((skin) => {
-            return <SkinCard key={skin.id} skin={skin} />;
-          })}
-      </div>
-
-      <div className={styles.actionBtns}>
-        <BasicButton
-          onClick={() => {
-            navigate(-1);
-          }}
-          variant="red"
-          IconLeft={BsChevronLeft}
-          title="Back to cases"
-        />
-
-        {!isRolling && (
-          <div className={styles.start}>
-            {isCaseOpened && (
+    <>
+      <div className={styles.caseopening_container}>
+        <Toast ref={toast} position="top-center" />
+        <div className={styles.upper}>
+          {RaffleComponent && (
+            <RaffleRoller
+              caseInfo={caseInfo}
+              raffles={numRaffles}
+              openedSkin={openedSkin}
+              close={() => setRaffleComponent(false)}
+            />
+          )}
+          <div className={styles.caseInfo}>
+            {caseInfo && (
               <>
-                <p
-                  className={numRaffles === 1 ? styles.active : ""}
-                  onClick={() => setNumRaffles(1)}
-                >
-                  1
+                <p className={styles.welcome_msg}>
+                  Unlock Container <span>{caseInfo.name}</span>
                 </p>
-                <p
-                  onClick={() => setNumRaffles(2)}
-                  className={numRaffles === 2 ? styles.active : ""}
-                >
-                  2
-                </p>
-                <p
-                  onClick={() => setNumRaffles(3)}
-                  className={numRaffles === 3 ? styles.active : ""}
-                >
-                  3
-                </p>
+                <img src={caseInfo.image_url} alt="case-img" />
               </>
             )}
-
-            {!isCaseOpened && (
-              <BasicButton
-                onClick={openCase}
-                variant="red"
-                IconRight={BsChevronRight}
-                title="Open container"
-              />
-            )}
-
-            {isCaseOpened && (
-              <BasicButton
-                onClick={startRaffle}
-                variant="red"
-                IconRight={BsChevronRight}
-                title="Open container"
-              />
-            )}
           </div>
-        )}
+          <div className={styles.skinsList}>
+            {skins.length > 0 &&
+              skins.map((skin) => {
+                return <SkinCard key={skin.id} skin={skin} />;
+              })}
+          </div>
+        </div>
+
+        <div className={styles.actionBtns}>
+          <BasicButton
+            onClick={() => {
+              navigate(-1);
+            }}
+            variant="red"
+            IconLeft={BsChevronLeft}
+            title="Back to cases"
+          />
+
+          <BasicButton
+            onClick={startRaffle}
+            variant="red"
+            IconRight={BsChevronRight}
+            title="Open container"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

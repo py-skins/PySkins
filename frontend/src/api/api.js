@@ -1,11 +1,12 @@
 const requester = async (url, config) => {
   const hostUrl = "http://localhost:8000/";
 
+  config.headers = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
   if (config.body) {
-    config.headers = {
-      "Content-Type": "application/json",
-      ...config.header,
-    };
     config.body = JSON.stringify(config.body);
   }
 
@@ -29,6 +30,7 @@ const requester = async (url, config) => {
 
 // A post function using the requester that expects url and a body
 export const post = async (url, config) => {
+  console.log(`config`, config);
   try {
     const data = await requester(url, { method: "POST", ...config });
     return data;
