@@ -30,7 +30,6 @@ const requester = async (url, config) => {
 
 // A post function using the requester that expects url and a body
 export const post = async (url, config) => {
-  console.log(`config`, config);
   try {
     const data = await requester(url, { method: "POST", ...config });
     return data;

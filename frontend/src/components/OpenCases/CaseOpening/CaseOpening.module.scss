@@ -17,6 +17,7 @@
     width: 100%;
 
     .caseInfo {
+      z-index: 3;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -36,8 +37,11 @@
 
       img {
         align-self: center;
-        min-width: 15%;
-        max-width: 300px;
+        // width: 350px;
+        height: 350px;
+
+        // min-width: 15%;
+        // max-width: 300px;
         filter: drop-shadow(0px 0px 12px #fff6);
       }
 
@@ -54,10 +58,15 @@
 
   .actionBtns {
     // border-top: var(--primary-color) solid 2px;
+    height: 54px;
     padding-top: 10px;
     width: 50%;
     display: flex;
     justify-content: space-between;
+  }
+
+  .placeholder {
+    height: 54px;
   }
 }
 

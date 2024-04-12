@@ -12,11 +12,16 @@ function findIndexById(array, id) {
   return -1;
 }
 
-const RaffleRoller = ({ caseInfo, raffles, openedSkin, close }) => {
+const RaffleRoller = ({
+  caseInfo,
+  raffles,
+  openedSkin,
+  close,
+  rolling,
+  setRolling,
+}) => {
   const openingSoundAudio = new Audio(openingSound);
   const dropSoundAudio = new Audio(dropSound);
-  const [isRolling, setIsRolling] = useState(false);
-  const [rolled, setRolled] = useState("");
 
   const startRaffle = async () => {
     const generate = async (row) => {
@@ -37,7 +42,7 @@ const RaffleRoller = ({ caseInfo, raffles, openedSkin, close }) => {
       }
 
       const goRoll = (row, skinName, skinimg, rarity) => {
-        setIsRolling(true);
+        setRolling(true);
         const raffleRollerContainer = document.getElementById(`raffle${row}`);
         raffleRollerContainer.style.transition =
           "all 8s cubic-bezier(.08,.6,0,1)";
@@ -49,7 +54,6 @@ const RaffleRoller = ({ caseInfo, raffles, openedSkin, close }) => {
 
         setTimeout(() => {
           winningItem.classList.add(styles["winning-item"]);
-          setRolled(skinName);
           // const win_element = `<div class='${styles.item}' style='background-image: url(${skinimg}) ; border-bottom: 4px solid ${rarity}'></div>`;
 
           // const inventory = document.querySelector(`.${styles.inventory}`);
@@ -58,7 +62,7 @@ const RaffleRoller = ({ caseInfo, raffles, openedSkin, close }) => {
           dropSoundAudio.play();
 
           if (row === raffles) {
-            setIsRolling(false);
+            setRolling(false);
           }
         }, 9000);
 
@@ -84,7 +88,7 @@ const RaffleRoller = ({ caseInfo, raffles, openedSkin, close }) => {
         );
       }, 500 * row);
 
-      setIsRolling(true);
+      setRolling(true);
     };
 
     for (let i = 1; i <= raffles; i++) {
@@ -101,15 +105,32 @@ const RaffleRoller = ({ caseInfo, raffles, openedSkin, close }) => {
   return (
     <>
       <div className={styles["raffle-container"]}>
-        <div className={styles.backDrop} onClick={() => close()}></div>
+        <div
+          className={styles.backDrop}
+          onClick={() => {
+            !rolling && close();
+          }}
+        ></div>
 
-        <div className={styles.caseInfo}>
-          {caseInfo && (
+        <div
+          className={styles.caseInfo}
+          onClick={() => {
+            !rolling && close();
+          }}
+        >
+          {rolling ? (
             <>
               <p className={styles.welcome_msg}>
                 Opening Container <span>{caseInfo.name}</span>
               </p>
               <img src={caseInfo.image_url} alt="case-img" />
+            </>
+          ) : (
+            <>
+              <p className={styles.welcome_msg}>
+                Opened Skin <span>{openedSkin.name}</span>
+              </p>
+              <img src={openedSkin.image_url} alt="case-img" />
             </>
           )}
         </div>

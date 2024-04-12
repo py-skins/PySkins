@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CaseOpening.module.scss";
 import SkinCard from "./SkinCard";
@@ -8,11 +9,14 @@ import { fetchCaseSkins, fetchCaseOpening } from "../../../api/casesServices";
 import dropSound from "./sounds/case_drop_01.mp3";
 import { Toast } from "primereact/toast";
 
+import { logout } from "../../../app/features/userSlice";
+
 import { useSelector } from "react-redux";
 import RaffleRoller from "./RaffleRoller";
 
 const CaseOpening = () => {
   const { id: caseSlug } = useParams();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const dropSoundAudio = new Audio(dropSound);
 
@@ -24,6 +28,7 @@ const CaseOpening = () => {
   const [numRaffles, setNumRaffles] = useState(1);
   const [openedSkin, setOpenedSkin] = useState({});
   const [RaffleComponent, setRaffleComponent] = useState(false);
+  const [isRolling, setIsRolling] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -51,28 +56,28 @@ const CaseOpening = () => {
       return;
     }
 
-    const openedSkin = await fetchCaseOpening(caseSlug, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.access}`,
-      },
-    });
+    setRaffleComponent(false);
 
-    // console.log(openedSkin);
-    // const openedSkin = {
-    //   id: 9,
-    //   name: "P90 Neoqueen Large Rendering",
-    //   image_url:
-    //     "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p90_gs_p90_neoqueen_light_large.fa2a81f8c7906b2683b5eb4b562edd2529ad2cf0.png",
-    //   rarity_color: "#8847FF",
-    //   weapon_type: "SMG",
-    //   preview_image_url:
-    //     "https://csgostash.com/storage/img/skin_sideview/s1545.png?id=eb65a96c0e7dbd8fd4247e1949b97b90",
-    //   case_container: 1,
-    // };
+    try {
+      const openedSkin = await fetchCaseOpening(caseSlug, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.access}`,
+        },
+      });
 
-    setOpenedSkin(openedSkin);
-    setRaffleComponent(true);
+      setOpenedSkin(openedSkin);
+      setRaffleComponent(true);
+    } catch (error) {
+      toast.current.show({
+        severity: "warn",
+        summary: error?.messages[0]?.message,
+        detail: "You are automatically Logged Out",
+        life: 2000,
+      });
+
+      dispatch(logout());
+    }
   };
 
   return (
@@ -86,6 +91,8 @@ const CaseOpening = () => {
               raffles={numRaffles}
               openedSkin={openedSkin}
               close={() => setRaffleComponent(false)}
+              rolling={isRolling}
+              setRolling={(state) => setIsRolling(state)}
             />
           )}
           <div className={styles.caseInfo}>
@@ -106,23 +113,27 @@ const CaseOpening = () => {
           </div>
         </div>
 
-        <div className={styles.actionBtns}>
-          <BasicButton
-            onClick={() => {
-              navigate(-1);
-            }}
-            variant="red"
-            IconLeft={BsChevronLeft}
-            title="Back to cases"
-          />
+        {!isRolling && (
+          <div className={styles.actionBtns}>
+            <BasicButton
+              onClick={() => {
+                navigate(-1);
+              }}
+              variant="red"
+              IconLeft={BsChevronLeft}
+              title="Back to cases"
+            />
 
-          <BasicButton
-            onClick={startRaffle}
-            variant="red"
-            IconRight={BsChevronRight}
-            title="Open container"
-          />
-        </div>
+            <BasicButton
+              onClick={startRaffle}
+              variant="red"
+              IconRight={BsChevronRight}
+              title="Open container"
+            />
+          </div>
+        )}
+
+        {isRolling && <p className={styles.placeholder}>{""}</p>}
       </div>
     </>
   );

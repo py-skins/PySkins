@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../Layout/Layout";
 import styles from "./Hero.module.scss";
 import BasicButton from "../../core/button/BasicButton";
 import { BsChevronRight, BsSteam } from "react-icons/bs";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <Layout>
       <div className={styles.wrapper}>
@@ -36,6 +38,9 @@ const Hero = () => {
               variant="red"
               size="md"
               hover
+              onClick={() => {
+                navigate("/cases");
+              }}
             />
 
             <BasicButton
