@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userId: 0,
   email: "",
-  budget: 0,
+  budget: 10.0,
   userSkinCollection: [],
   isAuthenticated: false,
   refresh: "",
@@ -15,7 +15,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      console.log("action:", action.payload);
       return {
         ...state,
         ...action.payload,

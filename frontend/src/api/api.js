@@ -1,23 +1,17 @@
-const requester = async (url, method, header, body) => {
-  // The server's url
+const requester = async (url, config) => {
   const hostUrl = "http://localhost:8000/";
-  let options = {};
-  options.method = method;
-  options.headers = {};
 
-  //   Checking if the request has a body to apply a content type to it and to stringify the body to a JSON so it can be sent
-  if (header) {
-    options.headers = { ...header };
-  }
+  config.headers = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
 
-  //   Checking if the request has a body to apply a content type to it and to stringify the body to a JSON so it can be sent
-  if (body) {
-    options.headers["Content-Type"] = "application/json";
-    options.body = JSON.stringify(body);
+  if (config.body) {
+    config.body = JSON.stringify(config.body);
   }
 
   try {
-    const response = await fetch(hostUrl + url, options);
+    const response = await fetch(hostUrl + url, config);
     // Checking if the status is 204 (NO CONTENT) to return the response without parsing if to an object
     if (response.status === 204) {
       return response;
@@ -35,36 +29,36 @@ const requester = async (url, method, header, body) => {
 };
 
 // A post function using the requester that expects url and a body
-export const post = async (url, header, body) => {
+export const post = async (url, config) => {
   try {
-    const data = await requester(url, "POST", header, body);
+    const data = await requester(url, { method: "POST", ...config });
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const get = async (url) => {
+export const get = async (url, config) => {
   try {
-    const data = await requester(url, "GET");
+    const data = await requester(url, { method: "GET", ...config });
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const patch = async (url, header, body) => {
+export const patch = async (url, config) => {
   try {
-    const data = await requester(url, "PATCH", header, body);
+    const data = await requester(url, { method: "PATCH", ...config });
     return data;
   } catch (e) {
     throw e;
   }
 };
 
-export const del = async (url, header, body) => {
+export const del = async (url, config) => {
   try {
-    const data = await requester("DELETE", url, header, body);
+    const data = await requester(url, { method: "DELETE", ...config });
     return data;
   } catch (e) {
     throw e;

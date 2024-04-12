@@ -1,0 +1,116 @@
+.caseopening_container {
+  position: relative;
+  min-height: calc(100vh - 70px);
+  background: var(--home-background);
+  color: white;
+  padding: 20px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+
+  .upper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .caseInfo {
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      width: 100%;
+
+      .welcome_msg {
+        // z-index: 0;
+        font-weight: 500;
+        font-size: 24px;
+
+        span {
+          font-size: 30px;
+          color: var(--Yellow-Color);
+        }
+      }
+
+      img {
+        align-self: center;
+        // width: 350px;
+        height: 350px;
+
+        // min-width: 15%;
+        // max-width: 300px;
+        filter: drop-shadow(0px 0px 12px #fff6);
+      }
+
+      border-bottom: var(--primary-color) solid 2px;
+    }
+
+    .skinsList {
+      padding: 20px 10px 10px 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  }
+
+  .actionBtns {
+    // border-top: var(--primary-color) solid 2px;
+    height: 54px;
+    padding-top: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .placeholder {
+    height: 54px;
+  }
+}
+
+// .start {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   p {
+//     cursor: pointer;
+//     padding: 8px 15px;
+//     margin-right: 10px;
+//     background-color: #0e1a23;
+//     border-radius: 50%;
+//   }
+
+//   .active {
+//     background-color: var(--primary-color);
+//   }
+// }
+
+// .rouletteWrapper {
+//   height: 500px;
+// }
+
+// .roulette {
+//   padding-top: 100px;
+//   overflow: hidden;
+//   position: relative;
+// }
+
+// .blurredRoulette {
+//   filter: blur(3px) brightness(75%);
+// }
+
+// .circleRoulette {
+//   transform: scale(1.1);
+// }
+
+// @media (max-width: 500px) {
+//   .start {
+//     p {
+//       padding: 5px 12px;
+//       margin-right: 5px;
+//     }
+//   }
+// }

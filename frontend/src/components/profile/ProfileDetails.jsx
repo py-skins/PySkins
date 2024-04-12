@@ -5,7 +5,6 @@ import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
-import { FileUpload } from "primereact/fileupload";
 
 const ProfileDetails = () => {
   const toast = useRef(null);
@@ -14,10 +13,10 @@ const ProfileDetails = () => {
     "https://svgshare.com/getbyhash/sha1-onbIfR3XhKQe87HRuqOmIcRdSag="
   );
   const [userData, setUserData] = useState({
-    firstName: "Lyubomir",
-    lastName: "Maksimov",
+    firstName: "",
+    lastName: "",
     dateOfBirth: "",
-    budget: 10.0,
+    budget: 0,
   });
 
   const showSuccess = () => {
