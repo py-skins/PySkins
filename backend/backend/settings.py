@@ -82,7 +82,7 @@ DATABASES = {
         "NAME": "py_skins_db",
         "USER": "postgres",
         "PASSWORD": "1234qwer",
-        "HOST": "localhost",
+        "HOST": "postgres",
         "PORT": "5432",
     }
 }
