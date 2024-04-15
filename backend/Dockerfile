@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Run Django migrations
-CMD ["python", "manage.py", "migrate"]
+CMD ["python", "manage.py", "migrate", "&&", "python", "manage.py", "populate_db"]
