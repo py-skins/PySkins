@@ -1,5 +1,7 @@
 .layout__container {
   margin: 0 15px;
+  background: var(--home-background);
+
   @media screen and (min-width: 1120px) {
     max-width: 1120px;
     margin-left: auto;

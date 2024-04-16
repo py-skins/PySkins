@@ -1,7 +1,9 @@
 .container_section {
   background-color: var(--home-background);
   height: calc(100vh - 70px);
+  width: 100%;
   display: flex;
+  justify-content: start;
   flex-direction: column;
   color: white;
   font-size: 20px;
