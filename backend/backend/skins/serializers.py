@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from backend.skins.models import BaseSkin
+from backend.skins.models import Skin
 
 
 class SkinSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BaseSkin
+        model = Skin
         fields = '__all__'
