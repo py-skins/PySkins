@@ -48,7 +48,7 @@ const Navbar = () => {
             <div
               className={styles.profile}
               onClick={() => {
-                navigate("/profile");
+                navigate("/Profile");
               }}
             >
               <div className={styles.budget}>

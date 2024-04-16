@@ -15,7 +15,7 @@ import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
 
 const routes = [
   { path: "/", element: <HomePage /> },
-  { path: "/profile", element: <UserProfilePage /> },
+  { path: "/Profile", element: <UserProfilePage /> },
   { path: "/about", element: <AboutPage /> },
   { path: "/cases", element: <CasesContainerPage /> },
   { path: "/cases/:id", element: <CasesOpeningPage /> },
