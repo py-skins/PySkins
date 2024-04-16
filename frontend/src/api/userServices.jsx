@@ -4,6 +4,8 @@ const URLS = {
   userLogin: "authentication/token/",
   userRegister: "authentication/register/",
   userLogout: "authentication/logout/",
+  userAccountSkinCollection: "accounts/",
+  userAccountUpdateInfo: "accounts/update"
 };
 
 export const userLogin = async (config) => {

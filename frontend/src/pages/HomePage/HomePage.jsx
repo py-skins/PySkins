@@ -3,7 +3,7 @@ import React from "react";
 import Hero from "../../components/HomePageComponents/Hero/Hero";
 import Statistics from "../../components/HomePageComponents/Statistics/Statistics";
 import "./homePage.scss"; // Import your SCSS file
-import Products from "../../components/HomePageComponents/Products/Products";
+// import Products from "../../components/HomePageComponents/Products/Products";
 import NavCards from "../../components/HomePageComponents/NavCards/NavCards";
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
     <div className="home">
       <Hero />
       <Statistics />
-      <Products />
+      {/*<Products />*/}
       <NavCards />
     </div>
   );

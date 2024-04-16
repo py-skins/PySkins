@@ -48,7 +48,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    fetchSkins();
+    // fetchSkins();
   }, [load]);
 
   const caseData = skins.map((index) => index.skins[1]);
