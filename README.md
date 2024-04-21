@@ -26,9 +26,9 @@ To get started with PySkins, follow these steps:
 2. Set up your development environment using Docker.
 3. Make sure you have Python installed on your machine.
 4. Run the following commands in the terminal:
-   - docker-compose up -d
-   - docker-compose exec django python manage.py migrate
-   - docker-compose exec django python manage.py populate_db
+- docker-compose up -d
+- docker-compose exec django python manage.py migrate
+- docker-compose exec django python manage.py populate_db
 
 ## Contributing
 
