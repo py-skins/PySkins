@@ -9,7 +9,7 @@ PySkins is a comprehensive platform designed for opening, selling, and buying CS
 - **Skin and Case Management**: PySkins offers robust functionalities for managing CS2 skins and cases, including opening cases, selling skins, and purchasing items.
 - **Custom API**: We've developed a custom API that collects base information about skins and cases, populating them into our database to facilitate smooth operations.
 - **Technological Stack**: The project leverages cutting-edge technologies such as Django REST for backend development, React for frontend interfaces, PostgreSQL for database management, and Docker for local development environments.
-- **Team Collaboration**: Our team, comprised of four members (with two actively engaged and two on standby), collaborates to ensure the project's success and evolution.
+- **Team Collaboration**: Our team, comprised of 3 members (with two actively engaged and one on standby), collaborates to ensure the project's success and evolution.
 
 ## Technologies Used
 
