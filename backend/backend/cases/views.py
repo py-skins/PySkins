@@ -1,13 +1,14 @@
-import random
-
 from django.contrib.auth import get_user_model
 from rest_framework import generics, status
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from backend.accounts.models import Account
 from backend.cases.models import Case
+from backend.cases.responses import NotEnoughMoneyResponse, SkinsDoesNotExistResponse
 from backend.cases.serializers import CaseSerializer
+from backend.cases.utils.skin_dropper import SkinDropper
 from backend.skins.models import Skin
 from backend.skins.serializers import SkinSerializer, BaseSkinSerializer
 from backend.skins.utils.choices import get_skin_quality_chance_choices, get_skin_chance_choices
@@ -34,34 +35,37 @@ class CaseDetailAPIView(generics.RetrieveAPIView):
 
 class CaseOpenAPIView(generics.CreateAPIView):
     serializer_class = SkinSerializer
-
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         case = Case.objects.get(slug=self.kwargs['case_slug'])
         skins = case.base_skins.all()
 
         if not skins.exists():
-            return Response(
-                data={'detail': 'No skins available in this case.'},
-                status=status.HTTP_404_NOT_FOUND,
-            )
+            return SkinsDoesNotExistResponse('No skins available in this case.')
+
+        if case.price > request.user.account.budget:
+            return NotEnoughMoneyResponse('Not enough money to open the case.')
+
+        skin_dropper = SkinDropper(skins)
 
         # Drop skin color based on percent condition
         skin_choices = get_skin_chance_choices()
-        colors, chances = zip(*skin_choices)
-        color = random.choices(colors, weights=chances, k=1)[0]
+
+        # Get skin color based on percent condition
+        color = skin_dropper.get_skin_color(skin_choices)
 
         # Drop the skin
-        skins_with_matching_color = skins.filter(rarity_color=color)
-        dropped_skin = random.choice(skins_with_matching_color)
+        dropped_skin = skin_dropper.get_dropped_skin(color)
+
+        # Get all quality choices
+        quality_choices = get_skin_quality_chance_choices()
 
         # Drop quality based on percent condition
-        quality_choices = get_skin_quality_chance_choices()
-        qualities, chances = zip(*quality_choices)
-        quality = random.choices(qualities, weights=chances, k=1)[0]
+        quality = skin_dropper.get_skin_quality(quality_choices)
 
-        wear_rating = random.uniform(0.000001, 0.999999)
+        # Get random wear rating
+        wear_rating = skin_dropper.get_random_wear_rating()
 
         Skin.objects.create(
             quality=quality,
