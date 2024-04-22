@@ -1,8 +1,7 @@
 import os
+
 import django
-import jwt
-from django.conf import settings
-from django.db import transaction
+from django.db import connection
 
 from backend.skins.models import BaseSkin
 
@@ -15,10 +14,7 @@ from backend.test_dev.test_data.cases_data import CASES_DATA
 
 
 def inject_skins_and_cases_data():
-    BaseSkin.objects.all().delete()
-    Case.objects.all().delete()
-
-    skin_objects = []
+    truncate_tables(['cases_case', 'skins_baseskin'])
 
     for json_data in CASES_DATA:
         case_data = json_data['case_data']
@@ -42,7 +38,7 @@ def inject_skins_and_cases_data():
             skin_main_image_url = skin_data['main_image_url']
 
             try:
-                skin_instance = BaseSkin(
+                BaseSkin.objects.create(
                     name=skin_name,
                     image_url=skin_main_image_url,
                     rarity_color=skin_rarity_color,
@@ -50,15 +46,11 @@ def inject_skins_and_cases_data():
                     preview_image_url=skin_preview_image_url,
                     case_container=case_instance,
                 )
-
-                skin_objects.append(skin_instance)
-
             except Exception as e:
                 raise Exception(e)
 
-    batch_size = 100
 
-    for i in range(0, len(skin_objects), batch_size):
-        batch = skin_objects[i:i + batch_size]
-        with transaction.atomic():
-            BaseSkin.objects.bulk_create(batch)
+def truncate_tables(tables):
+    with connection.cursor() as cursor:
+        for table_name in tables:
+            cursor.execute(f'TRUNCATE TABLE {table_name} CASCADE;')
