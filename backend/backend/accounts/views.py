@@ -9,10 +9,10 @@ from backend.skins.serializers import SkinSerializer
 
 class AccountListSkinsAPIView(generics.ListAPIView):
     serializer_class = SkinSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = Skin.objects.filter(owner=self.request.user)
+        queryset = Skin.objects.filter(owner_id=self.request.user.id)
         return queryset
 
 

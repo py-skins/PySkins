@@ -7,8 +7,9 @@ from rest_framework.response import Response
 
 from backend.accounts.models import Account
 from backend.cases.models import Case
-from backend.cases.serializers import CaseSerializer, SkinSerializer
+from backend.cases.serializers import CaseSerializer
 from backend.skins.models import Skin
+from backend.skins.serializers import SkinSerializer, BaseSkinSerializer
 from backend.skins.utils.choices import get_skin_quality_chance_choices, get_skin_chance_choices
 
 UserModel = get_user_model()
@@ -69,5 +70,5 @@ class CaseOpenAPIView(generics.CreateAPIView):
             base_skin=dropped_skin,
         )
 
-        skin_serializer = SkinSerializer(dropped_skin)
+        skin_serializer = BaseSkinSerializer(dropped_skin)
         return Response(skin_serializer.data, status=status.HTTP_200_OK)
