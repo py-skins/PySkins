@@ -71,6 +71,7 @@ const Login = ({ changeState, CloseForm }) => {
             password2: password,
           },
         });
+        console.log(data);
         const userData = {
           email,
           isAuthenticated: true,

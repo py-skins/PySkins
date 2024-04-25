@@ -3,7 +3,6 @@
   justify-self: flex-start;
   background: var(--home-background);
   color: white;
-  // padding: 160px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -13,7 +12,7 @@
 .backDrop {
   background: var(--home-background);
   z-index: 1;
-  opacity: 80%;
+  opacity: 90%;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -42,21 +41,17 @@
 
   img {
     align-self: center;
-    // width: 350px;
-    height: 350px;
-    // min-width: 15%;
-    // max-width: 300px;
+    height: 320px;
     filter: drop-shadow(0px 0px 12px #fff6);
   }
-
-  // border-bottom: var(--primary-color) solid 2px;
 }
 
 .raffle-roller {
   z-index: 2;
   position: relative;
   margin: 40px auto;
-  width: 1480px;
+  width: 100%;
+  // width: 1480px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -65,7 +60,7 @@
 .raffle-roller-container {
   width: 15000px;
   max-width: 15000px;
-  height: 200px;
+  height: 160px;
   // background: #191726;
   margin-left: 0;
   transition: all 8s cubic-bezier(0.08, 0.6, 0, 1);

@@ -1,11 +1,11 @@
-import { post } from "./api";
+import { get, post } from "./api";
 
 const URLS = {
   userLogin: "authentication/token/",
   userRegister: "authentication/register/",
   userLogout: "authentication/logout/",
   userAccountSkinCollection: "accounts/",
-  userAccountUpdateInfo: "accounts/update"
+  userAccountUpdateInfo: "accounts/update/",
 };
 
 export const userLogin = async (config) => {
@@ -29,6 +29,24 @@ export const userRegister = async (config) => {
 export const userLogOut = async (config) => {
   try {
     const data = await post(URLS.userLogout, config);
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const userGetProfileDetails = async (config) => {
+  try {
+    const data = await get(URLS.userAccountUpdateInfo, config);
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const userUpdateProfileDetails = async (config) => {
+  try {
+    const data = await post(URLS.userAccountUpdateInfo, config);
     return data;
   } catch (e) {
     throw e;
