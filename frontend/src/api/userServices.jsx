@@ -52,3 +52,12 @@ export const userUpdateProfileDetails = async (config) => {
     throw e;
   }
 };
+
+export const userSkinCollection = async (config) => {
+  try {
+    const data = await get(URLS.userAccountSkinCollection, config);
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};

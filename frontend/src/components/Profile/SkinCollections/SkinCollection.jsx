@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { Toast } from "primereact/toast";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./SkinCollection.module.scss";
 import InventorySkinCard from "./InventorySkinCard";
+import { userSkinCollection } from "../../../api/userServices";
 
 const SkinCollection = () => {
+  const toast = useRef(null);
+  const user = useSelector((state) => state.user);
   const [skins, setSkins] = useState([
     {
       skin_rarity: {
@@ -194,8 +199,31 @@ const SkinCollection = () => {
     },
   ]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const skinCollectionData = await userSkinCollection({
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.access}`,
+          },
+        });
+
+        console.log(skinCollectionData);
+      } catch (error) {
+        toast.current.show({
+          severity: "warn",
+          summary: error?.messages[0]?.message,
+          detail: "Fail Fetching Details Data",
+          life: 2000,
+        });
+      }
+    })();
+  }, []);
+
   return (
     <div className={styles.skin_container}>
+      <Toast ref={toast} position="top-center" />
       {skins.map((skinData, index) => {
         return <InventorySkinCard key={index} skinData={skinData} />;
       })}

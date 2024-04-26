@@ -7,6 +7,7 @@ import { BsChevronRight, BsSteam } from "react-icons/bs";
 
 const Hero = () => {
   const navigate = useNavigate();
+
   return (
     <Layout>
       <div className={styles.wrapper}>

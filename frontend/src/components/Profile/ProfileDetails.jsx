@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./ProfileDetails.module.scss"; // Import SCSS file
+import styles from "./ProfileDetails.module.scss";
 import BasicButton from "../core/button/BasicButton";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";

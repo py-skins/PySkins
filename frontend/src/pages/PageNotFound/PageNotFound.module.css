@@ -1,0 +1,15 @@
+.container {
+  background-color: var(--home-background);
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.title {
+  font-size: 15rem;
+  color: #fff //var(--primary-color);;
+  padding: 10px;
+}
