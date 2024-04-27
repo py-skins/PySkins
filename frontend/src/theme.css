@@ -4223,7 +4223,7 @@
     box-shadow: 0 0 0 0.2rem #bfd1f6;
   }
   .p-paginator {
-    background: #ffffff;
+    /* background: #ffffff; */
     color: #6c757d;
     border: solid #e9ecef;
     border-width: 0;
@@ -5400,7 +5400,8 @@
     box-shadow: inset 0 0 0 0.2rem #bfd1f6;
   }
   .p-tabview .p-tabview-panels {
-    background: #ffffff;
+    width: 100%;
+    background: var(--home-background);
     padding: 1rem;
     border: 0 none;
     color: #495057;

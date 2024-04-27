@@ -13,6 +13,7 @@ import { logout } from "../../../app/features/userSlice";
 
 import { useSelector } from "react-redux";
 import RaffleRoller from "./RaffleRoller";
+import Layout from "../../Layout/Layout";
 
 const CaseOpening = () => {
   const { id: caseSlug } = useParams();
@@ -83,57 +84,59 @@ const CaseOpening = () => {
   return (
     <>
       <div className={styles.caseopening_container}>
-        <Toast ref={toast} position="top-center" />
-        <div className={styles.upper}>
-          {RaffleComponent && (
-            <RaffleRoller
-              caseInfo={caseInfo}
-              raffles={numRaffles}
-              openedSkin={openedSkin}
-              close={() => setRaffleComponent(false)}
-              rolling={isRolling}
-              setRolling={(state) => setIsRolling(state)}
-            />
-          )}
-          <div className={styles.caseInfo}>
-            {caseInfo && (
-              <>
-                <p className={styles.welcome_msg}>
-                  Unlock Container <span>{caseInfo.name}</span>
-                </p>
-                <img src={caseInfo.image_url} alt="case-img" />
-              </>
+        <Layout>
+          <Toast ref={toast} position="top-center" />
+          <div className={styles.upper}>
+            {RaffleComponent && (
+              <RaffleRoller
+                caseInfo={caseInfo}
+                raffles={numRaffles}
+                openedSkin={openedSkin}
+                close={() => setRaffleComponent(false)}
+                rolling={isRolling}
+                setRolling={(state) => setIsRolling(state)}
+              />
             )}
+            <div className={styles.caseInfo}>
+              {caseInfo && (
+                <>
+                  <p className={styles.welcome_msg}>
+                    Unlock Container <span>{caseInfo.name}</span>
+                  </p>
+                  <img src={caseInfo.image_url} alt="case-img" />
+                </>
+              )}
+            </div>
+            <div className={styles.skinsList}>
+              {skins.length > 0 &&
+                skins.map((skin) => {
+                  return <SkinCard key={skin.id} skin={skin} />;
+                })}
+            </div>
           </div>
-          <div className={styles.skinsList}>
-            {skins.length > 0 &&
-              skins.map((skin) => {
-                return <SkinCard key={skin.id} skin={skin} />;
-              })}
-          </div>
-        </div>
 
-        {!isRolling && (
-          <div className={styles.actionBtns}>
-            <BasicButton
-              onClick={() => {
-                navigate(-1);
-              }}
-              variant="red"
-              IconLeft={BsChevronLeft}
-              title="Back to cases"
-            />
+          {!isRolling && (
+            <div className={styles.actionBtns}>
+              <BasicButton
+                onClick={() => {
+                  navigate(-1);
+                }}
+                variant="red"
+                IconLeft={BsChevronLeft}
+                title="Back to cases"
+              />
 
-            <BasicButton
-              onClick={startRaffle}
-              variant="red"
-              IconRight={BsChevronRight}
-              title="Open container"
-            />
-          </div>
-        )}
+              <BasicButton
+                onClick={startRaffle}
+                variant="red"
+                IconRight={BsChevronRight}
+                title="Open container"
+              />
+            </div>
+          )}
 
-        {isRolling && <p className={styles.placeholder}>{""}</p>}
+          {isRolling && <p className={styles.placeholder}>{""}</p>}
+        </Layout>
       </div>
     </>
   );

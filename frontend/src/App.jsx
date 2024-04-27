@@ -12,16 +12,18 @@ import HomePage from "./pages/HomePage/HomePage";
 import ScrollToTop from "./components/Navbar/ScrollToTop";
 import PortalComponent from "./components/Portal/PortalComponent";
 import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 const routes = [
   { path: "/", element: <HomePage /> },
-  { path: "/Profile", element: <UserProfilePage /> },
+  { path: "/profile", element: <UserProfilePage /> },
   { path: "/about", element: <AboutPage /> },
   { path: "/cases", element: <CasesContainerPage /> },
   { path: "/cases/:id", element: <CasesOpeningPage /> },
   { path: "/casino", element: <CasinoPage /> },
   { path: "/services", element: <ServicesPage /> },
   { path: "/knives", element: <KnivesPage /> },
+  { path: "*", element: <PageNotFound /> },
 ];
 
 function App() {

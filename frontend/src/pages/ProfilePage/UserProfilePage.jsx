@@ -4,38 +4,37 @@ import SkinCollection from "../../components/Profile/SkinCollections/SkinCollect
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { TabView, TabPanel } from "primereact/tabview";
 import { useSelector } from "react-redux";
+import Layout from "../../components/Layout/Layout";
 
 const UserProfilePage = () => {
   const user = useSelector((state) => state.user);
 
   return (
-    <>
-      {!user.isAuthenticated && (
-        <div className={styles.container_section}>
+    <div className={styles.container_section}>
+      <Layout>
+        {!user.isAuthenticated && (
           <p className={styles.message}>Login to see your profile</p>
-        </div>
-      )}
-      {user.isAuthenticated && (
-        <div className={styles.container_section}>
+        )}
+        {user.isAuthenticated && (
           <TabView className={styles.tabView}>
             <TabPanel
-              className={styles.asdf}
               header="Details"
               leftIcon="pi pi-user ml-2"
+              className={styles.tabPanel}
             >
               <ProfileDetails />
             </TabPanel>
             <TabPanel
-              className={styles.asdf}
               leftIcon="pi pi-inbox mr-2"
               header="  Skin Collection"
+              className={styles.tabPanel}
             >
               <SkinCollection />
             </TabPanel>
           </TabView>
-        </div>
-      )}
-    </>
+        )}
+      </Layout>
+    </div>
   );
 };
 

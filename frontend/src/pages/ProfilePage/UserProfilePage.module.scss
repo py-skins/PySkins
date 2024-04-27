@@ -1,4 +1,5 @@
 .container_section {
+  width: 100%;
   background-color: var(--home-background);
   height: calc(100vh - 70px);
   display: flex;
@@ -7,23 +8,11 @@
   font-size: 20px;
   padding: 20px;
 
-  .message {
-    align-self: center;
-    color: var(--desc-color);
-  }
-
-  h1 {
-    margin-bottom: 20px;
-  }
-
-  div {
-    background-color: var(--home-background);
-  }
-
   .tabView {
-    border-radius: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: var(--home-background);
-    flex: 1;
 
     ul {
       background-color: var(--home-background);
@@ -33,9 +22,9 @@
       }
     }
   }
-}
 
-.mypanel .p-panel-header {
-  background-color: #07c4e8;
-  color: #ffffff;
+  .message {
+    align-self: center;
+    color: var(--desc-color);
+  }
 }

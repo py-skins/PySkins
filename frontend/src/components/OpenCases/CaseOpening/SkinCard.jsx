@@ -1,4 +1,4 @@
-import styles from "./SkinCard.module.css";
+import styles from "./SkinCard.module.scss";
 
 const SkinCard = ({ skin }) => {
   return (

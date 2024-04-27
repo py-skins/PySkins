@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./RaffleRoller.module.scss";
 import openingSound from "./sounds/CaseOpeningSound.mp3";
 import dropSound from "./sounds/case_drop_01.mp3";
+import Layout from "../../Layout/Layout";
 
 function findIndexById(array, id) {
   for (let i = 0; i < array.length; i++) {
@@ -54,10 +55,6 @@ const RaffleRoller = ({
 
         setTimeout(() => {
           winningItem.classList.add(styles["winning-item"]);
-          // const win_element = `<div class='${styles.item}' style='background-image: url(${skinimg}) ; border-bottom: 4px solid ${rarity}'></div>`;
-
-          // const inventory = document.querySelector(`.${styles.inventory}`);
-          // inventory.insertAdjacentHTML("beforeend", win_element);
           dropSoundAudio.volume = 0.1;
           dropSoundAudio.play();
 
@@ -66,10 +63,7 @@ const RaffleRoller = ({
           }
         }, 9000);
 
-        // let width = 10250;
-        // let width = 5680;
-
-        let width = 10250;
+        let width = 10480;
         // Check viewport width
         if (window.innerWidth <= 500) {
           width = 5680;

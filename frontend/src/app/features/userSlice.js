@@ -1,13 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userId: 0,
-  email: "",
-  budget: 10.0,
-  userSkinCollection: [],
   isAuthenticated: false,
   refresh: "",
   access: "",
+  budget: 10.0,
+  email: "",
+  //=============================
+  username: "",
+  firstName: "",
+  lastName: "",
+  dateOfBirth: "",
+  profilePicture: "",
+  //=============================
+  userSkinCollection: [],
+  //=============================
+  userId: 0,
 };
 
 const userSlice = createSlice({
@@ -20,12 +28,18 @@ const userSlice = createSlice({
         ...action.payload,
       };
     },
+    update: (state, action) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
     logout: () => {
       return initialState;
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, update, logout } = userSlice.actions;
 
 export default userSlice.reducer;
