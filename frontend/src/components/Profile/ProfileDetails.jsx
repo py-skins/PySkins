@@ -10,7 +10,7 @@ import {
   userGetProfileDetails,
   userUpdateProfileDetails,
 } from "../../api/userServices";
-import { update } from "../../app/features/userSlice";
+import { logout, update } from "../../app/features/userSlice";
 
 const ProfileDetails = () => {
   const user = useSelector((state) => state.user);
@@ -27,6 +27,8 @@ const ProfileDetails = () => {
   });
 
   useEffect(() => {
+    console.log("enter");
+
     (async () => {
       try {
         const profileDetails = await userGetProfileDetails({
@@ -60,9 +62,11 @@ const ProfileDetails = () => {
           detail: "Fail Fetching Details Data",
           life: 2000,
         });
+
+        dispatch(logout());
       }
     })();
-  }, []);
+  }, [user.access]);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -71,6 +75,7 @@ const ProfileDetails = () => {
   };
 
   const UpdateInformationHandler = async (event) => {
+    console.log("update");
     event.preventDefault();
 
     try {

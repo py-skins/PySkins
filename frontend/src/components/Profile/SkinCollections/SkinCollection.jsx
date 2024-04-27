@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./SkinCollection.module.scss";
 import InventorySkinCard from "./InventorySkinCard";
 import { userSkinCollection } from "../../../api/userServices";
+import { logout } from "../../../app/features/userSlice";
 
 const SkinCollection = () => {
   const toast = useRef(null);
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [skins, setSkins] = useState([
     {
@@ -200,25 +202,25 @@ const SkinCollection = () => {
   ]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const skinCollectionData = await userSkinCollection({
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.access}`,
-          },
-        });
-
-        console.log(skinCollectionData);
-      } catch (error) {
-        toast.current.show({
-          severity: "warn",
-          summary: error?.messages[0]?.message,
-          detail: "Fail Fetching Details Data",
-          life: 2000,
-        });
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     const skinCollectionData = await userSkinCollection({
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${user.access}`,
+    //       },
+    //     });
+    //     console.log(skinCollectionData);
+    //   } catch (error) {
+    //     toast.current.show({
+    //       severity: "warn",
+    //       summary: error?.messages[0]?.message,
+    //       detail: "Fail Fetching Details Data",
+    //       life: 2000,
+    //     });
+    //     dispatch(logout());
+    //   }
+    // })();
   }, []);
 
   return (

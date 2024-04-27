@@ -16,7 +16,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 const routes = [
   { path: "/", element: <HomePage /> },
-  { path: "/Profile", element: <UserProfilePage /> },
+  { path: "/profile", element: <UserProfilePage /> },
   { path: "/about", element: <AboutPage /> },
   { path: "/cases", element: <CasesContainerPage /> },
   { path: "/cases/:id", element: <CasesOpeningPage /> },
