@@ -95,7 +95,7 @@ const Navbar = () => {
             <NavLink to="profile">Proifle</NavLink>
             <NavLink to="/">Home</NavLink>
             <NavLink to="about">About</NavLink>
-            <NavLink to="services">Services</NavLink>
+            <NavLink to="marketplace">Marketplace</NavLink>
             <NavLink to="casino">Casino</NavLink>
             <NavLink to="cases">Cases</NavLink>
             <NavLink to="knives">Knives</NavLink>
