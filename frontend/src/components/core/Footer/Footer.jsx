@@ -30,7 +30,7 @@ function Footer() {
               <Link to="/about">about us</Link>
             </li>
             <li>
-              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/marketplace">Marketplace</NavLink>
             </li>
             <li>
               <Link to="/casino">Casino Games</Link>
