@@ -1,0 +1,31 @@
+.stats-card-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  // border: 1px solid beige;
+
+  @media screen and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 640px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .stats-card {
+    width: 100%;
+    background-color: var(--stats-card);
+    padding: 20px;
+    border-radius: 7px;
+
+    :nth-child(1) {
+      color: var(--primary-color);
+      font-size: 40px;
+      font-weight: 700;
+    }
+    :nth-child(2) {
+      color: var(--desc-color);
+    }
+  }
+}

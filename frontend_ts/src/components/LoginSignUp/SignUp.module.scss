@@ -1,0 +1,104 @@
+.container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  background-color: var(--stats-card);
+  border-radius: 20px;
+  z-index: 3;
+
+  .title {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    align-self: center;
+    color: #fff;
+
+    .link {
+      text-decoration: none;
+      position: relative;
+      color: var(--primary-color);
+      cursor: pointer;
+
+      &:hover {
+        font-weight: bold;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease-out;
+      }
+
+      &:hover::before {
+        width: 100%;
+      }
+    }
+  }
+
+  form {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--stats-card);
+    padding: 30px 40px;
+    border-radius: 10px;
+
+    .buttonContainer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .inputBox {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      .p-input-icon-left {
+        position: relative;
+      }
+
+      .pi {
+        position: absolute;
+        top: 50%;
+        left: 0.75rem;
+        margin-top: -0.5rem;
+        font-family: "primeicons";
+        color: var(--primary-color);
+        speak: none;
+        font-style: normal;
+        line-height: 1;
+      }
+
+      .inputText {
+        width: 100%;
+        color: #4b5563;
+        background: #ffffff;
+        padding: 0.75rem 0.75rem;
+        padding-left: 2.5rem;
+        border: none;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
+      }
+    }
+  }
+}
+
+.error {
+  color: var(--primary-color);
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 5px;
+}

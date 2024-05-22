@@ -1,0 +1,33 @@
+.container {
+  min-width: 100px;
+  background-color: var(--stats-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  p {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 15%;
+    margin-bottom: 10px;
+  }
+}
+
+@media ((max-width: 768px)) {
+  .container {
+    padding: 10px;
+
+    p {
+      font-size: 16px;
+    }
+  }
+}
