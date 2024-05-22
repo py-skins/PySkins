@@ -1,0 +1,35 @@
+.container {
+  flex: 1;
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+
+  color: var(--primary-color);
+  background-color: var(--home-background); //var(--stats-card);
+
+  .avatarContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    border-right: solid;
+
+    .fileInput {
+      position: absolute;
+      opacity: 0;
+    }
+    .avatar {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+    }
+  }
+
+  .userInfo {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}

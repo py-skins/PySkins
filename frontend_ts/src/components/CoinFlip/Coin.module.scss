@@ -1,0 +1,59 @@
+.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coin {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  margin: 1rem 0rem;
+  transform-style: preserve-3d;
+
+  .side {
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    background-size: contain;
+    position: absolute;
+
+    &:first-child {
+      background-image: url("https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?w=740&t=st=1707335725~exp=1707336325~hmac=70ac83625b855cece28a5e6411b2a5fcd711bbd4ce29c607c9065969d61a6ae3");
+    }
+
+    &:last-child {
+      background-image: url("https://img.freepik.com/free-vector/scary-little-blue-monster-cartoon-illustration_1284-64093.jpg?w=740&t=st=1707335767~exp=1707336367~hmac=8b406693252b55ee4c9301b58ea1ba6806a9e865d90a9e32d61ef9e7619020f1");
+      transform: rotateY(-180deg);
+    }
+  }
+
+  &.heads {
+    animation: flipHeads 3s forwards;
+  }
+
+  &.tails {
+    animation: flipTails 3s forwards;
+  }
+}
+
+@keyframes flipHeads {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(1800deg);
+  }
+}
+
+@keyframes flipTails {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(1620deg);
+  }
+}

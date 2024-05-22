@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  align-self: center;
+  padding: 20px;
+}
+
+.playersInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // font-size: 24px;
+  color: var(--text-color);
+  gap: 20px;
+  align-self: center;
+  width: 100%;
+}
+
+.message {
+  font-size: 24px;
+  color: white;
+  margin-top: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+
+  .spinner {
+    min-height: 37px;
+  }
+
+  button {
+    padding: 10px 50px;
+    max-width: 150px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .buttonLeave {
+    background-color: var(--red-color);
+
+    &:hover {
+      background-color: var(--red-hover-color);
+    }
+  }
+  .buttonStart {
+    background-color: var(--green-color);
+
+    &:hover {
+      background-color: var(--green-hover-color);
+    }
+  }
+}
+
+@media ((max-width: 768px)) {
+  .container {
+    padding: 10px;
+  }
+  .playersInfo {
+    gap: 10px;
+  }
+}
+
+.hide {
+  opacity: 0.6;
+}

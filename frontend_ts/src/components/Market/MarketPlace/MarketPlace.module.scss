@@ -1,0 +1,30 @@
+.container_section {
+  width: 100%;
+  background-color: var(--home-background);
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.productImage {
+  width: 8rem !important;
+  padding: 5px;
+}
+
+.productInfo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.productName {
+  margin-left: 10px;
+  color: var(--text-white);
+}
+
+.price {
+  color: var(--text-white);
+}

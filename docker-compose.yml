@@ -1,4 +1,4 @@
-version: '3'
+version: "4"
 
 services:
   postgres:
@@ -29,3 +29,12 @@ services:
     image: py-skins-react
     ports:
       - "3000:3000"
+
+  frontend_ts:
+    container_name: py-skins-react-ts
+    build:
+      context: frontend_ts
+      dockerfile: Dockerfile
+    image: py-skins-react-ts
+    ports:
+      - "3001:3001"

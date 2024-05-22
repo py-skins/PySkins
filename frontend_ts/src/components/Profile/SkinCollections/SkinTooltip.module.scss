@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: start;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.type {
+  font-weight: 500;
+  font-size: 12px;
+}
